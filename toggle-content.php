@@ -1,22 +1,19 @@
 <?php
-/**
- * Plugin Name:     Toggle Content
- * Description:     Example block written with ESNext standard and JSX support – build step required.
- * Version:         0.1.0
- * Author:          The WordPress Contributors
- * License:         GPL-2.0-or-later
- * License URI:     https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:     toggle-content
- *
- * @package         block
- */
 
 /**
- * Registers all block assets so that they can be enqueued through the block editor
- * in the corresponding context.
+ * Plugin Name: Toggle Content
+ * Plugin URI: https://essential-blocks.com
+ * Description: Toggle Content block for Gutenberg
+ * Author: WPDeveloper
+ * Author URI: https://wpdeveloper.net
+ * Version: 1.0.1
+ * License: GPL2+
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
+ * Text Domain: toggle-content 
  *
- * @see https://developer.wordpress.org/block-editor/tutorials/block-tutorial/applying-styles-with-stylesheets/
+ * @package block 
  */
+
 
 if( ! class_exists('EB_Font_Loader') ) {
 	require_once __DIR__ . '/includes/font-loader.php';
