@@ -1,14 +1,9 @@
 {
-	"name": "create-block/toggle-content",
+	"name": "block/toggle-content",
 	"title": "Toggle Content",
 	"category": "widgets",
-	"icon": "smiley",
-	"description": "Example block written with ESNext standard and JSX support – build step required.",
-	"textdomain": "create-block",
-	"supports": {
-		"html": false
-	},
+	"description": "",
+	"textdomain": "toggle-content",
 	"editorScript": "file:./build/index.js",
-	"editorStyle": "file:./build/index.css",
 	"style": "file:./build/style-index.css"
 }
