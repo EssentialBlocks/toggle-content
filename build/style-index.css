@@ -130,6 +130,10 @@
 [type="checkbox"]:checked + .eb-text-switch-wrapper .eb-toggle-primary-label {
   opacity: 0.5; }
 
+.eb-typography-base div {
+  display: flex;
+  justify-content: space-between; }
+
 .eb-unit-control-btn-group {
   margin: 0px 0px -20px 0px;
   text-align: right;
