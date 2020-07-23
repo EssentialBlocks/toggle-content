@@ -57,7 +57,7 @@ function create_block_toggle_content_block_init() {
   );
 
 	if( ! WP_Block_Type_Registry::get_instance()->is_registered( 'essential-blocks/toggle-content' ) ) {
-    register_block_type( 'create-block/toggle-content', array(
+    register_block_type( 'block/toggle-content', array(
       'editor_script' => 'create-block-toggle-content-block-editor',
       'style'         => 'create-block-toggle-content-block',
     ) );
