@@ -43,14 +43,6 @@ function create_block_toggle_content_block_init() {
 		$script_asset['version']
 	);
 
-	$editor_css = 'build/index.css';
-	wp_register_style(
-		'create-block-toggle-content-block-editor',
-		plugins_url( $editor_css, __FILE__ ),
-		array(),
-		filemtime( "$dir/$editor_css" )
-	);
-
 	$style_css = 'build/style-index.css';
 	wp_register_style(
 		'create-block-toggle-content-block',
@@ -59,10 +51,17 @@ function create_block_toggle_content_block_init() {
 		filemtime( "$dir/$style_css" )
 	);
 
+  $frontend_js = "src/frontend.js";
+   wp_enqueue_script(
+    'essential-blocks-toggle-content-frontend',
+    plugins_url($frontend_js, __FILE__),
+    array( "jquery","wp-editor"),
+    true
+  );
+
 	if( ! WP_Block_Type_Registry::get_instance()->is_registered( 'essential-blocks/toggle-content' ) ) {
     register_block_type( 'create-block/toggle-content', array(
       'editor_script' => 'create-block-toggle-content-block-editor',
-      'editor_style'  => 'create-block-toggle-content-block-editor',
       'style'         => 'create-block-toggle-content-block',
     ) );
   }
