@@ -1,12 +1,14 @@
 <?php
 /**
- * Plugin Name:     Toggle Content
- * Description:     Example block written with ESNext standard and JSX support – build step required.
- * Version:         0.1.0
- * Author:          The WordPress Contributors
- * License:         GPL-2.0-or-later
- * License URI:     https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:     toggle-content
+ * Plugin Name: Toggle Content
+ * Plugin URI: https://essential-blocks.com
+ * Description: Toggle Content block for Gutenberg
+ * Author: WPDeveloper
+ * Author URI: https://wpdeveloper.net
+ * Version: 1.0.1
+ * License: GPL2+
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
+ * Text Domain: toggle-content 
  *
  * @package         block
  */
