@@ -6,8 +6,8 @@
  * Author: WPDeveloper
  * Author URI: https://wpdeveloper.net
  * Version: 1.0.1
- * License: GPL2+
- * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
+ * License: GPL3+
+ * License URI: http://www.gnu.org/licenses/gpl-3.0.txt
  * Text Domain: toggle-content 
  *
  * @package toggle-content 

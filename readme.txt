@@ -2,7 +2,7 @@
 Contributors: wpdevteam, re_enter_rupok, Asif2BD, alam789
 Tags: gutenberg, block, blocks, editor, toggle, toggle content, content toggle, content switch, switch block, gutenberg blocks
 Requires at least: 5.0
-Tested up to: 5.4
+Tested up to: 5.5
 Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -16,7 +16,9 @@ Toggle Content block for Gutenberg to switch content or blocks with a beautiful 
 It’s super easy to use and support nested blocks within the content area. You can also switch blocks view with an easy and beautiful switcher.
 
 **Completely Customizable:** You can customize Toggle Content just the way you want.
+
 **Super Light-weight:** No extra resources used and it's highly optimized for super fast loading & instant Live editing.
+
 **Dedicated Support:** We’ve an extraordinary support team ready to help you. Ask your questions in the support forum, we’ll get back to you immediately.
 
 
@@ -33,8 +35,9 @@ This Block is brought to you by [WPDeveloper](https://wpdeveloper.net), the team
 
 ## 🙌 JOIN THE COMMUNITY ##
 
-- 🎦 Subscribe to our [Youtube Channel](https://www.youtube.com/wpdevelopernet/?sub_confirmation=1) to watch video tutorials on WordPress.
-- 🤝 Join our [Facebook Community](https://www.facebook.com/groups/wpdeveloper.net/) & get connected with expert web creators like yourself.
+🎦 Subscribe to our [Youtube Channel](https://www.youtube.com/wpdevelopernet/?sub_confirmation=1) to watch video tutorials on WordPress.
+
+🤝 Join our [Facebook Community](https://www.facebook.com/groups/wpdeveloper.net/) & get connected with expert web creators like yourself.
 
 🧡 LOVED Toggle Content? Rate us on [WordPress Repository](https://wordpress.org/support/plugin/toggle-content/reviews/#new-post)
 
