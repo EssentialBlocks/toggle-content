@@ -13,6 +13,9 @@ registerBlockType("block/toggle-content", {
 	category: "widgets",
 	icon,
 	attributes,
+	supports: {
+		align: ["wide", "full"],
+	},
 	edit: Edit,
 	save,
 });
