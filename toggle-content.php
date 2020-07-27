@@ -14,12 +14,8 @@
  */
 
 
-if( ! class_exists('EB_Font_Loader') ) {
-	require_once __DIR__ . '/includes/font-loader.php';
-}
-if( ! class_exists('EB_Post_Meta') ) {
-	require_once __DIR__ . '/includes/post-meta.php';
-}
+require_once __DIR__ . '/includes/font-loader.php';
+require_once __DIR__ . '/includes/post-meta.php';
 
 function create_block_toggle_content_block_init() {
 	$dir = dirname( __FILE__ );

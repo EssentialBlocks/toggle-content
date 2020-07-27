@@ -5,7 +5,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class EB_Post_Meta
+class Toggle_Post_Meta
 {
     public function __construct()
     {
@@ -39,4 +39,4 @@ class EB_Post_Meta
     }
 }
 
-new EB_Post_Meta();
+new Toggle_Post_Meta();
