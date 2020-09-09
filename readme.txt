@@ -3,7 +3,7 @@ Contributors: wpdevteam, re_enter_rupok, Asif2BD, alam789
 Tags: gutenberg, block, blocks, editor, toggle, toggle content, content toggle, content switch, switch block, gutenberg blocks
 Requires at least: 5.0
 Tested up to: 5.5
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -87,6 +87,8 @@ Yes, it will work with any standard WordPress theme.
 
 == Changelog ==
 
+= 1.0.2 - 09-09-2020 =
+- Fix frontend js file missing issue
 
 = 1.0.1 - 23-07-2020 =
 - Updated Block structure

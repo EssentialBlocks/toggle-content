@@ -5,7 +5,7 @@
  * Description: Toggle Content block for Gutenberg
  * Author: WPDeveloper
  * Author URI: https://wpdeveloper.net
- * Version: 1.0.1
+ * Version: 1.0.2
  * License: GPL3+
  * License URI: http://www.gnu.org/licenses/gpl-3.0.txt
  * Text Domain: toggle-content 
