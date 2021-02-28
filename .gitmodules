@@ -10,3 +10,6 @@
 [submodule "util/unit-control"]
 	path = util/unit-control
 	url = git@github.com:EssentialBlocks/unit-control.git
+[submodule "util/toggle-button"]
+	path = util/toggle-button
+	url = git@github.com:EssentialBlocks/toggle-button.git
