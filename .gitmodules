@@ -1,0 +1,3 @@
+[submodule "util/color-control"]
+	path = util/color-control
+	url = git@github.com:EssentialBlocks/color-control.git
