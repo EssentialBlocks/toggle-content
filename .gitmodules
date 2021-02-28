@@ -7,3 +7,6 @@
 [submodule "util/typography-control"]
 	path = util/typography-control
 	url = git@github.com:EssentialBlocks/typography-control.git
+[submodule "util/unit-control"]
+	path = util/unit-control
+	url = git@github.com:EssentialBlocks/unit-control.git
