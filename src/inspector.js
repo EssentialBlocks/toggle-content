@@ -351,6 +351,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 			{switchStyle !== "text" && backgroundType === "gradient" && (
 				<PanelBody title={__("Background Gradient")} initialOpen={false}>
 					<GradientColorController
+						gradientColor={backgroundGradient}
 						onChange={(backgroundGradient) =>
 							setAttributes({ backgroundGradient })
 						}
@@ -375,6 +376,9 @@ const Inspector = ({ attributes, setAttributes }) => {
 			{switchStyle !== "text" && controllerType === "gradient" && (
 				<PanelBody title={__("Controller Gradient")} initialOpen={false}>
 					<GradientColorController
+						gradientColor={
+							controllerGradient || "linear-gradient(45deg,#ffffff,#ffffff)"
+						}
 						onChange={(controllerGradient) =>
 							setAttributes({ controllerGradient })
 						}
