@@ -1,4 +1,59 @@
+import * as typoPrefixs from "./constants/typographyPrefixConstants";
+
+import {
+	tglWrapMarginConst,
+	tglWrapPaddingConst,
+} from "./constants/dimensionsConstants";
+
+// import { WrpBgConst } from "./constants/backgroundsConstants";
+
+// import {
+// 	WrpBdShadowConst,
+// 	prefixSocialBdShadow,
+// } from "./constants/borderShadowConstants";
+
+// import {
+// 	wrapperWidth,
+// 	rangeIconSize,
+// 	rangeIconPadding,
+// 	rangeIconDistance,
+// 	rangeIconRowGap,
+// 	sclDeviderPosRight,
+// } from "./constants/rangeNames";
+
+import {
+	generateTypographyAttributes,
+	generateDimensionsAttributes,
+	// generateBackgroundAttributes,
+	// generateBorderShadowAttributes,
+	// generateResponsiveRangeAttributes,
+} from "../util/helpers";
+
 const attributes = {
+	// the following 4 attributes is must required for responsive options and asset generation for frontend
+	// responsive control attributes ⬇
+	resOption: {
+		type: "string",
+		default: "Desktop",
+	},
+
+	// blockId attribute for making unique className and other uniqueness ⬇
+	blockId: {
+		type: "string",
+	},
+
+	//
+	blockRoot: {
+		type: "string",
+		default: "essential_block",
+	},
+
+	// blockMeta is for keeping all the styles ⬇
+	blockMeta: {
+		type: "object",
+	},
+
+	//
 	id: {
 		type: "string",
 	},
@@ -49,41 +104,41 @@ const attributes = {
 		type: "string",
 		default: "px",
 	},
-	fontFamily: {
-		type: "string",
-	},
-	fontWeight: {
-		type: "string",
-	},
-	fontSize: {
-		type: "number",
-	},
-	fontSizeUnit: {
-		type: "string",
-		default: "px",
-	},
-	lineHeight: {
-		type: "number",
-	},
-	lineHeightUnit: {
-		type: "string",
-		default: "px",
-	},
-	letterSpacing: {
-		type: "number",
-	},
-	letterSpacingUnit: {
-		type: "string",
-		default: "px",
-	},
-	textDecoration: {
-		type: "string",
-		default: "none",
-	},
-	textTransform: {
-		type: "string",
-		default: "none",
-	},
+	// fontFamily: {
+	// 	type: "string",
+	// },
+	// fontWeight: {
+	// 	type: "string",
+	// },
+	// fontSize: {
+	// 	type: "number",
+	// },
+	// fontSizeUnit: {
+	// 	type: "string",
+	// 	default: "px",
+	// },
+	// lineHeight: {
+	// 	type: "number",
+	// },
+	// lineHeightUnit: {
+	// 	type: "string",
+	// 	default: "px",
+	// },
+	// letterSpacing: {
+	// 	type: "number",
+	// },
+	// letterSpacingUnit: {
+	// 	type: "string",
+	// 	default: "px",
+	// },
+	// textDecoration: {
+	// 	type: "string",
+	// 	default: "none",
+	// },
+	// textTransform: {
+	// 	type: "string",
+	// 	default: "none",
+	// },
 	backgroundType: {
 		type: "string",
 		default: "solid",
@@ -151,6 +206,29 @@ const attributes = {
 		type: "boolean",
 		default: false,
 	},
+
+	// typography attributes
+	...generateTypographyAttributes(Object.values(typoPrefixs)),
+
+	//
+	...generateDimensionsAttributes(
+		tglWrapMarginConst
+		//,
+		// {
+		// 	top: 15,
+		// 	bottom: 20,
+		// 	isLinked: false,
+		// }
+	),
+	...generateDimensionsAttributes(
+		tglWrapPaddingConst
+		//,
+		// {
+		// 	top: 15,
+		// 	bottom: 20,
+		// 	isLinked: false,
+		// }
+	),
 };
 
 export default attributes;

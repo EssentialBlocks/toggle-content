@@ -13,7 +13,7 @@ export const INITIAL_CONTENT = [
 export const SWITCH_STYLES = [
 	{ label: __("Rectangle"), value: "rectangle" },
 	{ label: __("Rounded"), value: "rounded" },
-	{ label: __("Text"), value: "text" },
+	// { label: __("Text"), value: "text" },
 	{ label: __("Toggle"), value: "toggle" },
 ];
 

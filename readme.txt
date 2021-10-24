@@ -1,9 +1,9 @@
 === Toggle Content ===
-Contributors: wpdevteam, re_enter_rupok, Asif2BD, alam789
+Contributors: wpdevteam, re_enter_rupok, Asif2BD, rahat89, hztyfoon
 Tags: gutenberg, block, blocks, editor, toggle, toggle content, content toggle, content switch, switch block, gutenberg blocks
-Requires at least: 5.0
-Tested up to: 5.5
-Stable tag: 1.0.2
+Requires at least: 5.6
+Tested up to: 5.8
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -86,6 +86,14 @@ Yes, it will work with any standard WordPress theme.
 
 
 == Changelog ==
+
+= 1.1.0 - (hanzala-dev) =
+* Added: Dynamic asset generation for inline styles
+* Added: Responsive control
+* Improved: Controls and structure
+* Improved: Inspector Panel Design & controls
+* Improved: Responsive Device Preview improved. Now the preview options synced with the wordpress's default preview button.
+* Improved: Security for asset generation
 
 = 1.0.2 - 09-09-2020 =
 - Fix frontend js file missing issue
