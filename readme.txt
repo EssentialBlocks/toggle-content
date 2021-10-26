@@ -109,4 +109,4 @@ Yes, it will work with any standard WordPress theme.
 
 
 == Upgrade Notice ==
-
+[Major update] New structure and performance improvement, will break existing block.
