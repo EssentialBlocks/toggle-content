@@ -139,22 +139,15 @@
 }
 
 /* -------- Switch Styles ------------*/
-[type="checkbox"] {
+.eb-toggle-switch input[type="checkbox"] {
 	display: none;
 }
 [type="checkbox"]:checked + .eb-text-switch-wrapper .eb-text-switch-toggle {
 	transform: translateX(100%);
-	background-color: #34323d;
 }
 [type="checkbox"]:checked + .eb-text-switch-wrapper .eb-toggle-secondary-label {
 	opacity: 1;
 }
 [type="checkbox"]:checked + .eb-text-switch-wrapper .eb-toggle-primary-label {
 	opacity: 0.5;
-}
-
-// Typography style
-.eb-typography-base div {
-	display: flex;
-	justify-content: space-between;
 }

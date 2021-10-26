@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function (event) {
 	let toggleBlocks = document.querySelectorAll(".eb-toggle-wrapper");
 
+	if (!toggleBlocks) return;
+
 	for (let block of toggleBlocks) {
 		// Selectors
 		let switcher = block.querySelector(".eb-toggle-switch > input");
@@ -25,8 +27,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
 		let bgColor = block.getAttribute("data-bg-color");
 		let activeBg = block.getAttribute("data-active-bg");
 
-		const defaultBg = "#3074ff";
-		const defaultActiveBg = "#0f52ba";
+		const defaultBg = "inherit";
+		const defaultActiveBg = "inherit";
 
 		// Set initial display values, we'll use them to toggle content
 		let primaryDisplay = window.getComputedStyle(content.children[0]).display;
