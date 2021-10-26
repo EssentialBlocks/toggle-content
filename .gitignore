@@ -25,3 +25,7 @@ node_modules/
 
 # dotenv environment variables file
 .env
+
+package-lock.json
+yarn.lock
+.DS_Store

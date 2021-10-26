@@ -11,7 +11,7 @@ Toggle Content block for Gutenberg to switch content or blocks with a beautiful 
 
 == Description ==
 
-**Content Toggle** will let you showcase your key content in an interactive way to attract visitors instantly. Using this Toggle Content plugin, you can use this feature within the Gutenberg Editor. 
+**Content Toggle** will let you showcase your key content in an interactive way to attract visitors instantly. Using this Toggle Content plugin, you can use this feature within the Gutenberg Editor.
 
 It’s super easy to use and support nested blocks within the content area. You can also switch blocks view with an easy and beautiful switcher.
 
@@ -22,7 +22,7 @@ It’s super easy to use and support nested blocks within the content area. You 
 **Dedicated Support:** We’ve an extraordinary support team ready to help you. Ask your questions in the support forum, we’ll get back to you immediately.
 
 
-## 🚀 BACKED BY A TRUSTED TEAM ## 
+## 🚀 BACKED BY A TRUSTED TEAM ##
 
 This Block is brought to you by [WPDeveloper](https://wpdeveloper.net), the team behind the most popular elements library [Essential Addons for Elementor](https://wordpress.org/plugins/essential-addons-for-elementor-lite/) (used by almost 700,000 happy users from 180+ countries).
 
@@ -66,7 +66,7 @@ Visit [WPDeveloper](https://wpdeveloper.net/) to learn more about how to do bett
 
 = Modern Way: =
 1. Go to the WordPress Block/Gutenberg Editor
-2. Search For "Toggle Content". 
+2. Search For "Toggle Content".
 3. Install in 1-click
 
 = Old Way: =
@@ -87,7 +87,7 @@ Yes, it will work with any standard WordPress theme.
 
 == Changelog ==
 
-= 1.1.0 - (hanzala-dev) =
+= 1.1.0 - 26/10/2021 =
 * Added: Dynamic asset generation for inline styles
 * Added: Responsive control
 * Improved: Controls and structure
