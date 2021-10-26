@@ -1,21 +1,6 @@
-[submodule "util/color-control"]
-	path = util/color-control
-	url = git@github.com:EssentialBlocks/color-control.git
-[submodule "util/image-avatar"]
-	path = util/image-avatar
-	url = git@github.com:EssentialBlocks/image-avatar.git
-[submodule "util/unit-control"]
-	path = util/unit-control
-	url = git@github.com:EssentialBlocks/unit-control.git
 [submodule "lib/style-handler"]
 	path = lib/style-handler
 	url = git@github.com:EssentialBlocks/style-handler.git
-[submodule "util/toggle-button"]
-	path = util/toggle-button
-	url = git@github.com:EssentialBlocks/toggle-button.git
-[submodule "util/typography-control-v2"]
-	path = util/typography-control-v2
-	url = git@github.com:EssentialBlocks/typography-control-v2.git
-[submodule "util/dimensions-control-v2"]
-	path = util/dimensions-control-v2
-	url = git@github.com:EssentialBlocks/dimensions-control-v2.git
+[submodule "util"]
+	path = util
+	url = git@github.com:EssentialBlocks/controls.git
