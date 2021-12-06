@@ -15,13 +15,16 @@
 	},
 	"devDependencies": {
 		"@babel/plugin-proposal-class-properties": "^7.10.4",
-		"@wordpress/scripts": "^12.1.1"
+		"@wordpress/scripts": "^14.1.0"
 	},
 	"dependencies": {
 		"@fonticonpicker/react-fonticonpicker": "^1.2.0",
 		"array-move": "^3.0.1",
 		"classnames": "^2.2.6",
 		"react-sortable-hoc": "^1.11.0",
-		"react-transition-group": "^4.3.0"
+		"react-transition-group": "^4.4.1",
+		"react-select": "^5.0.0",
+		"mini-css-extract-plugin": "^0.9.0",
+		"style-loader": "^1.1.3"
 	}
 }
