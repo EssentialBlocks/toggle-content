@@ -56,23 +56,14 @@ function create_block_toggle_content_block_init()
 	wp_register_style(
 		'create-block-toggle-content-block-editor',
 		plugins_url($editor_css, __FILE__),
-		array(),
+		array('create-block-toggle-content-block'),
 		filemtime("$dir/$editor_css")
 	);
-
-	// $frontend_js = "build/frontend.js";
-	// wp_enqueue_script(
-	// 	'essential-blocks-toggle-content-frontend',
-	// 	plugins_url($frontend_js, __FILE__),
-	// 	array(),
-	// 	filemtime("$dir/$frontend_js"),
-	// 	true
-	// );
 
 
 	if (!is_admin()) {
 		$frontend_js = "build/frontend.js";
-		wp_enqueue_script(
+		wp_register_script(
 			'essential-blocks-toggle-content-frontend',
 			plugins_url($frontend_js, __FILE__),
 			array(),
@@ -85,13 +76,13 @@ function create_block_toggle_content_block_init()
 		register_block_type('toggle-content/toggle-content', array(
 			'editor_script' => 'create-block-toggle-content-block-editor',
 			'editor_style' 	=> 'create-block-toggle-content-block-editor',
-			'style' 		=> 'create-block-toggle-content-block',
-			// 'render_callback' => function ($attributes, $content) {
-			// 	if (!is_admin()) {
-			// 		wp_enqueue_script('essential-blocks-toggle-content-frontend');
-			// 	}
-			// 	return $content;
-			// }
+			'render_callback' => function ($attributes, $content) {
+				if (!is_admin()) {
+					wp_enqueue_style('create-block-toggle-content-block');
+					wp_enqueue_script('essential-blocks-toggle-content-frontend');
+				}
+				return $content;
+			}
 		));
 	}
 }
