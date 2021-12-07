@@ -61,16 +61,14 @@ function create_block_toggle_content_block_init()
 	);
 
 
-	if (!is_admin()) {
-		$frontend_js = "build/frontend.js";
-		wp_register_script(
-			'essential-blocks-toggle-content-frontend',
-			plugins_url($frontend_js, __FILE__),
-			array(),
-			filemtime("$dir/$frontend_js"),
-			true
-		);
-	}
+	$frontend_js = "build/frontend.js";
+	wp_register_script(
+		'essential-blocks-toggle-content-frontend',
+		plugins_url($frontend_js, __FILE__),
+		array(),
+		filemtime("$dir/$frontend_js"),
+		true
+	);
 
 	if (!WP_Block_Type_Registry::get_instance()->is_registered('essential-blocks/toggle-content')) {
 		register_block_type('toggle-content/toggle-content', array(
