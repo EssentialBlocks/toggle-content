@@ -2,11 +2,11 @@
 	"name": "toggle-content/toggle-content",
 	"title": "Toggle Content",
 	"category": "widgets",
-	"description": "",
+	"description": "Toggle Contents or blocks with a beautiful switcher.",
+	"apiVersion": 2,
 	"supports": {
 		"align": ["wide", "full"]
 	},
 	"textdomain": "toggle-content",
-	"editorScript": "file:./build/index.js",
-	"style": "file:./build/style-index.css"
+	"editorScript": "file:./dist/index.js"
 }

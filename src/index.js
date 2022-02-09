@@ -1,27 +1,22 @@
 /**
  * WordPress dependencies
  */
-const { __ } = wp.i18n;
-const { registerBlockType } = wp.blocks;
+import { __ } from "@wordpress/i18n";
 
 /**
  * Internal dependencies
  */
-import { ToggleContentIcon } from "../util/icons";
+import { ToggleContentIcon } from "./icon";
 import Edit from "./edit";
 import Save from "./save";
 import example from "./example";
-import metadata from "./block.json";
+import metadata from "../block.json";
 import attributes from "./attributes";
 import "./style.scss";
+const { ebConditionalRegisterBlockType } = EBToggleContentControls;
 
-const { name, category } = metadata;
-
-registerBlockType(name, {
-	title: __("Toggle Content", "essential-blocks"),
-	description: __("Toggle Contents or blocks with a beautiful switcher."),
+ebConditionalRegisterBlockType(metadata, {
 	icon: ToggleContentIcon,
-	category,
 	attributes,
 	edit: Edit,
 	save: Save,
@@ -29,8 +24,5 @@ registerBlockType(name, {
 		__("Toggle", "essential-blocks"),
 		__("eb Toggle Content", "essential-blocks"),
 	],
-	supports: {
-		align: ["wide", "full"],
-	},
 	example,
 });

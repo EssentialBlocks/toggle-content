@@ -1,21 +1,18 @@
 /**
  * WordPress dependencies
  */
-const { __ } = wp.i18n;
-const {
+import { __ } from "@wordpress/i18n";
+import { useEffect } from "@wordpress/element";
+import { InspectorControls, PanelColorSettings } from "@wordpress/block-editor";
+import {
 	PanelBody,
 	RadioControl,
 	RangeControl,
 	SelectControl,
 	ToggleControl,
-	BaseControl,
-	Button,
-	Dropdown,
-	TabPanel,
-} = wp.components;
-const { select } = wp.data;
-const { useEffect, useState, useRef } = wp.element;
-const { InspectorControls, PanelColorSettings } = wp.blockEditor;
+	TabPanel
+} from "@wordpress/components";
+import { select } from "@wordpress/data";
 
 /**
  * Internal dependencies
@@ -26,37 +23,69 @@ import {
 	SEPERATOR_TYPE,
 	BORDER_STYLES,
 	INITIAL_CONTENT,
-	TEXT_TRANSFORM,
-	TEXT_DECORATION,
+	// TEXT_TRANSFORM,
+	// TEXT_DECORATION,
 } from "./constants";
-import UnitControl from "../util/unit-control";
-import GradientColorController from "../util/gradient-color-controller";
-import FontPicker from "../util/typography-control/FontPicker";
-import ColorControl from "../util/color-control";
-import ResetControl from "../util/reset-control";
-
-import TypographyDropdown from "../util/typography-control-v2";
-import ResponsiveDimensionsControl from "../util/dimensions-control-v2";
-import ResponsiveRangeController from "../util/responsive-range-control";
-import ImageAvatar from "../util/image-avatar/";
-import BorderShadowControl from "../util/border-shadow-control";
-import BackgroundControl from "../util/background-control";
-import DealSocialProfiles from "../util/social-profiles-v2/DealSocialProfiles";
-
-import IconList from "../util/faIcons";
 
 import {
-	TypographyIcon,
-	// UserIcon,
-	LeftAlignIcon,
-	RightAlignIcon,
-	CenterAlignIcon,
-} from "../util/icons";
+	rangeButtonWidth,
+	rangeButtonHeight,
+	rangeHeadingSpace,
+} from "./constants/rangeNames";
 
-import {
-	mimmikCssForResBtns,
-	mimmikCssOnPreviewBtnClickWhileBlockSelected,
-} from "../util/helpers";
+import { WrpBgConst } from "./constants/backgroundsConstants";
+
+import { WrpBdShadowConst } from "./constants/borderShadowConstants";
+
+// import UnitControl from "../../../util/unit-control";
+// import GradientColorControl from "../../../util/gradient-color-controller";
+// // import FontPicker from "../../../util/typography-control/FontPicker";
+// import ColorControl from "../../../util/color-control";
+// import ResetControl from "../../../util/reset-control";
+
+// import TypographyDropdown from "../../../util/typography-control-v2";
+// import ResponsiveDimensionsControl from "../../../util/dimensions-control-v2";
+// import ResponsiveRangeController from "../../../util/responsive-range-control";
+// // import ImageAvatar from "../../../util/image-avatar/";
+// import BorderShadowControl from "../../../util/border-shadow-control";
+// import BackgroundControl from "../../../util/background-control";
+
+// import {
+// 	mimmikCssForResBtns,
+// 	mimmikCssOnPreviewBtnClickWhileBlockSelected,
+// } from "../../../util/helpers";
+
+// import IconList from "../../../util/faIcons";
+
+// import {
+// 	TypographyIcon,
+// 	// UserIcon,
+// 	LeftAlignIcon,
+// 	RightAlignIcon,
+// 	CenterAlignIcon,
+// } from "../../../util/icons";
+
+const {
+	//
+	// mimmikCssForResBtns,
+	// mimmikCssOnPreviewBtnClickWhileBlockSelected,
+
+	//
+	UnitControl,
+	GradientColorControl,
+	ColorControl,
+	ResetControl,
+	TypographyDropdown,
+	ResponsiveDimensionsControl,
+	ResponsiveRangeController,
+	BorderShadowControl,
+	BackgroundControl,
+} = window.EBToggleContentControls;
+
+const editorStoreForGettingPreivew =
+	eb_style_handler.editor_type === "edit-site"
+		? "core/edit-site"
+		: "core/edit-post";
 
 import objAttributes from "./attributes";
 
@@ -111,29 +140,29 @@ const Inspector = ({ attributes, setAttributes }) => {
 	// this useEffect is for setting the resOption attribute to desktop/tab/mobile depending on the added 'eb-res-option-' class only the first time once
 	useEffect(() => {
 		setAttributes({
-			resOption: select("core/edit-post").__experimentalGetPreviewDeviceType(),
+			resOption: select(editorStoreForGettingPreivew).__experimentalGetPreviewDeviceType(),
 		});
 	}, []);
 
-	// this useEffect is for mimmiking css for all the eb blocks on resOption changing
-	useEffect(() => {
-		mimmikCssForResBtns({
-			domObj: document,
-			resOption,
-		});
-	}, [resOption]);
+	// // this useEffect is for mimmiking css for all the eb blocks on resOption changing
+	// useEffect(() => {
+	// 	mimmikCssForResBtns({
+	// 		domObj: document,
+	// 		resOption,
+	// 	});
+	// }, [resOption]);
 
-	// this useEffect is to mimmik css for responsive preview in the editor page when clicking the buttons in the 'Preview button of wordpress' located beside the 'update' button while any block is selected and it's inspector panel is mounted in the DOM
-	useEffect(() => {
-		const cleanUp = mimmikCssOnPreviewBtnClickWhileBlockSelected({
-			domObj: document,
-			select,
-			setAttributes,
-		});
-		return () => {
-			cleanUp();
-		};
-	}, []);
+	// // this useEffect is to mimmik css for responsive preview in the editor page when clicking the buttons in the 'Preview button of wordpress' located beside the 'update' button while any block is selected and it's inspector panel is mounted in the DOM
+	// useEffect(() => {
+	// 	const cleanUp = mimmikCssOnPreviewBtnClickWhileBlockSelected({
+	// 		domObj: document,
+	// 		select,
+	// 		setAttributes,
+	// 	});
+	// 	return () => {
+	// 		cleanUp();
+	// 	};
+	// }, []);
 
 	const resRequiredProps = {
 		setAttributes,
@@ -179,7 +208,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 
 	return (
 		<InspectorControls key="controls">
-			<div className="eb-panel-control">
+			<span className="eb-panel-control">
 				<TabPanel
 					className="eb-parent-tab-panel"
 					activeClass="active-tab"
@@ -196,7 +225,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 								<>
 									<PanelBody>
 										<RadioControl
-											label={__("Initial Content")}
+											label={__("Initial Content", "essential-blocks")}
 											selected={initialContent}
 											onChange={(initialContent) =>
 												setAttributes({ initialContent })
@@ -205,7 +234,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 										/>
 
 										<SelectControl
-											label={__("Switch Type")}
+											label={__("Switch Type", "essential-blocks")}
 											value={switchStyle}
 											onChange={(switchStyle) => setAttributes({ switchStyle })}
 											options={SWITCH_STYLES}
@@ -213,41 +242,40 @@ const Inspector = ({ attributes, setAttributes }) => {
 
 										{(switchStyle === "rounded" ||
 											switchStyle === "reactangle") && (
-											<SelectControl
-												label={__("Switch Size")}
-												value={switchSize}
-												options={SWITCH_SIZE}
-												onChange={(switchSize) => setAttributes({ switchSize })}
-											/>
-										)}
+												<SelectControl
+													label={__("Switch Size", "essential-blocks")}
+													value={switchSize}
+													options={SWITCH_SIZE}
+													onChange={(switchSize) => setAttributes({ switchSize })}
+												/>
+											)}
 
 										{switchStyle === "toggle" && (
-											<RangeControl
-												label={__("Button Height")}
-												value={buttonHeight}
-												onChange={(buttonHeight) =>
-													setAttributes({ buttonHeight })
-												}
-												min={10}
-												max={100}
-											/>
-										)}
+											<>
+												<ResponsiveRangeController
+													noUnits
+													baseLabel={__("Button Height", "essential-blocks")}
+													controlName={rangeButtonHeight}
+													resRequiredProps={resRequiredProps}
+													min={10}
+													max={200}
+													step={1}
+												/>
 
-										{switchStyle === "toggle" && (
-											<RangeControl
-												label={__("Button Width")}
-												value={buttonWidth}
-												onChange={(buttonWidth) =>
-													setAttributes({ buttonWidth })
-												}
-												min={10}
-												max={100}
-											/>
+												<ResponsiveRangeController
+													baseLabel={__("Button Width", "essential-blocks")}
+													controlName={rangeButtonWidth}
+													resRequiredProps={resRequiredProps}
+													min={10}
+													max={100}
+													step={1}
+												/>
+											</>
 										)}
 
 										{switchStyle === "text" && (
 											<SelectControl
-												label={__("Sepetator Type")}
+												label={__("Sepetator Type", "essential-blocks")}
 												value={seperatorType}
 												options={SEPERATOR_TYPE}
 												onChange={(seperatorType) =>
@@ -256,48 +284,38 @@ const Inspector = ({ attributes, setAttributes }) => {
 											/>
 										)}
 
-										<UnitControl
-											selectedUnit={headingSpaceUnit}
-											unitTypes={[
-												{ label: "px", value: "px" },
-												{ label: "%", value: "%" },
-											]}
-											onClick={(headingSpaceUnit) =>
-												setAttributes({ headingSpaceUnit })
-											}
-										/>
-
-										<RangeControl
-											label={__("Heading Space")}
-											value={headingSpace}
-											onChange={(headingSpace) =>
-												setAttributes({ headingSpace })
-											}
+										<ResponsiveRangeController
+											baseLabel={__("Heading Space", "essential-blocks")}
+											controlName={rangeHeadingSpace}
+											resRequiredProps={resRequiredProps}
+											min={10}
+											max={100}
+											step={1}
 										/>
 
 										{(switchStyle === "rectangle" ||
 											switchStyle === "rounded") && (
-											<>
-												<UnitControl
-													selectedUnit={labelSpaceUnit}
-													unitTypes={[
-														{ label: "px", value: "px" },
-														{ label: "%", value: "%" },
-													]}
-													onClick={(labelSpaceUnit) =>
-														setAttributes({ labelSpaceUnit })
-													}
-												/>
+												<>
+													<UnitControl
+														selectedUnit={labelSpaceUnit}
+														unitTypes={[
+															{ label: "px", value: "px" },
+															{ label: "%", value: "%" },
+														]}
+														onClick={(labelSpaceUnit) =>
+															setAttributes({ labelSpaceUnit })
+														}
+													/>
 
-												<RangeControl
-													label={__("Label Space")}
-													value={labelSpace}
-													onChange={(labelSpace) =>
-														setAttributes({ labelSpace })
-													}
-												/>
-											</>
-										)}
+													<RangeControl
+														label={__("Label Space", "essential-blocks")}
+														value={labelSpace}
+														onChange={(labelSpace) =>
+															setAttributes({ labelSpace })
+														}
+													/>
+												</>
+											)}
 
 										<TypographyDropdown
 											baseLabel="Typography"
@@ -319,11 +337,11 @@ const Inspector = ({ attributes, setAttributes }) => {
 
 									{switchStyle !== "text" && (
 										<PanelBody
-											title={__("Switch Background")}
+											title={__("Switch Background", "essential-blocks")}
 											initialOpen={false}
 										>
 											<ToggleControl
-												label={__("Gradient Background")}
+												label={__("Gradient Background", "essential-blocks")}
 												checked={backgroundType === "gradient"}
 												onChange={() =>
 													setAttributes({
@@ -335,7 +353,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 
 											{backgroundType === "solid" && (
 												<PanelColorSettings
-													title={__("Background Color")}
+													title={__("Background Color", "essential-blocks")}
 													// initialOpen={false}
 													colorSettings={[
 														{
@@ -350,10 +368,10 @@ const Inspector = ({ attributes, setAttributes }) => {
 
 											{backgroundType === "gradient" && (
 												<PanelBody
-													title={__("Background Gradient")}
-													// initialOpen={false}
+													title={__("Background Gradient", "essential-blocks")}
+												// initialOpen={false}
 												>
-													<GradientColorController
+													<GradientColorControl
 														gradientColor={
 															backgroundGradient ||
 															"linear-gradient(45deg,#eef2f3,#8e92ab)"
@@ -369,11 +387,11 @@ const Inspector = ({ attributes, setAttributes }) => {
 
 									{switchStyle !== "text" && (
 										<PanelBody
-											title={__("Controller Background")}
+											title={__("Controller Background", "essential-blocks")}
 											initialOpen={false}
 										>
 											<ToggleControl
-												label={__("Gradient Controller")}
+												label={__("Gradient Controller", "essential-blocks")}
 												checked={controllerType === "gradient"}
 												onChange={() =>
 													setAttributes({
@@ -385,7 +403,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 
 											{controllerType === "solid" && (
 												<PanelColorSettings
-													title={__("Controller Color")}
+													title={__("Controller Color", "essential-blocks")}
 													// initialOpen={false}
 													colorSettings={[
 														{
@@ -400,10 +418,10 @@ const Inspector = ({ attributes, setAttributes }) => {
 
 											{controllerType === "gradient" && (
 												<PanelBody
-													title={__("Controller Gradient")}
-													// initialOpen={false}
+													title={__("Controller Gradient", "essential-blocks")}
+												// initialOpen={false}
 												>
-													<GradientColorController
+													<GradientColorControl
 														gradientColor={
 															controllerGradient ||
 															"linear-gradient(45deg,#eef2f3,#8e92ab)"
@@ -417,22 +435,22 @@ const Inspector = ({ attributes, setAttributes }) => {
 										</PanelBody>
 									)}
 
-									<PanelBody title={__("Border")} initialOpen={false}>
+									<PanelBody title={__("Border", "essential-blocks")} initialOpen={false}>
 										<SelectControl
-											label={__("Border Style")}
+											label={__("Border Style", "essential-blocks")}
 											value={borderStyle}
 											options={BORDER_STYLES}
 											onChange={(borderStyle) => setAttributes({ borderStyle })}
 										/>
 
 										<ColorControl
-											label={__("Border Color")}
+											label={__("Border Color", "essential-blocks")}
 											color={borderColor}
 											onChange={(borderColor) => setAttributes({ borderColor })}
 										/>
 
 										<RangeControl
-											label={__("Border Width")}
+											label={__("Border Width", "essential-blocks")}
 											value={borderWidth}
 											onChange={(borderWidth) => setAttributes({ borderWidth })}
 											min={0}
@@ -441,7 +459,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 
 										{switchStyle === "text" && (
 											<RangeControl
-												label={__("Border Radius")}
+												label={__("Border Radius", "essential-blocks")}
 												value={borderRadius}
 												onChange={(borderRadius) =>
 													setAttributes({ borderRadius })
@@ -453,9 +471,9 @@ const Inspector = ({ attributes, setAttributes }) => {
 									</PanelBody>
 
 									{switchStyle !== "text" && (
-										<PanelBody title={__("Shadow")} initialOpen={false}>
+										<PanelBody title={__("Shadow", "essential-blocks")} initialOpen={false}>
 											<ColorControl
-												label={__("Shadow Color")}
+												label={__("Shadow Color", "essential-blocks")}
 												color={shadowColor}
 												onChange={(shadowColor) =>
 													setAttributes({ shadowColor })
@@ -466,7 +484,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 												onReset={() => setAttributes({ hOffset: undefined })}
 											>
 												<RangeControl
-													label={__("Horizontal Offset")}
+													label={__("Horizontal Offset", "essential-blocks")}
 													value={hOffset}
 													onChange={(hOffset) => setAttributes({ hOffset })}
 													min={0}
@@ -478,7 +496,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 												onReset={() => setAttributes({ vOffset: undefined })}
 											>
 												<RangeControl
-													label={__("Vertical Offset")}
+													label={__("Vertical Offset", "essential-blocks")}
 													value={vOffset}
 													onChange={(vOffset) => setAttributes({ vOffset })}
 													min={0}
@@ -490,7 +508,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 												onReset={() => setAttributes({ blur: undefined })}
 											>
 												<RangeControl
-													label={__("Blur")}
+													label={__("Blur", "essential-blocks")}
 													value={blur}
 													onChange={(blur) => setAttributes({ blur })}
 													min={0}
@@ -502,7 +520,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 												onReset={() => setAttributes({ spread: undefined })}
 											>
 												<RangeControl
-													label={__(" Spread")}
+													label={__(" Spread", "essential-blocks")}
 													value={spread}
 													onChange={(spread) => setAttributes({ spread })}
 													min={0}
@@ -511,7 +529,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 											</ResetControl>
 
 											<ToggleControl
-												label={__("Inset")}
+												label={__("Inset", "essential-blocks")}
 												checked={inset}
 												onChange={() => setAttributes({ inset: !inset })}
 											/>
@@ -523,7 +541,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 								<>
 									<PanelBody
 										title={__("Margin & Padding")}
-										// initialOpen={true}
+									// initialOpen={true}
 									>
 										<ResponsiveDimensionsControl
 											resRequiredProps={resRequiredProps}
@@ -536,12 +554,28 @@ const Inspector = ({ attributes, setAttributes }) => {
 											baseLabel="Padding"
 										/>
 									</PanelBody>
+
+									<PanelBody title={__("Background ", "essential-blocks")} initialOpen={false}>
+										<BackgroundControl
+											controlName={WrpBgConst}
+											resRequiredProps={resRequiredProps}
+										/>
+									</PanelBody>
+
+									<PanelBody title={__("Border & Shadow")} initialOpen={false}>
+										<BorderShadowControl
+											controlName={WrpBdShadowConst}
+											resRequiredProps={resRequiredProps}
+										// noShadow
+										// noBorder
+										/>
+									</PanelBody>
 								</>
 							)}
 						</div>
 					)}
 				</TabPanel>
-			</div>
+			</span>
 		</InspectorControls>
 	);
 };

@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-const { InnerBlocks, RichText, useBlockProps } = wp.blockEditor;
+import { InnerBlocks, RichText, useBlockProps } from "@wordpress/block-editor";
 
 /**
  * Internal dependencies
@@ -16,12 +16,11 @@ const Save = ({ attributes }) => {
 		initialContent,
 		switchStyle,
 		switchSize,
-		buttonWidth,
 		seperatorType,
 		activeColor,
 		activeBg,
-		primaryLabelText,
-		secondaryLabelText,
+		primaryLabelText = "First",
+		secondaryLabelText = "Second",
 		alignment,
 		primaryLabelColor,
 		secondaryLabelColor,
@@ -31,16 +30,30 @@ const Save = ({ attributes }) => {
 	} = attributes;
 
 	const getMargin = () => {
-		let width = buttonWidth || 30;
-
 		switch (alignment) {
 			case "center":
-				return `${(100 - width) / 2}%`;
+				return {
+					marginLeft: "auto",
+					marginRight: "auto",
+				};
+
 			case "right":
-				return `${100 - width}%`;
+				return {
+					marginLeft: "auto",
+					marginRight: "0px",
+				};
+
 			case "left":
-				return `0%`;
+				return {
+					marginLeft: "0px",
+					marginRight: "auto",
+				};
 		}
+
+		return {
+			marginLeft: "auto",
+			marginRight: "auto",
+		};
 	};
 
 	return (
@@ -71,10 +84,7 @@ const Save = ({ attributes }) => {
 						style={{ display: "none" }}
 					/>
 					<div className="eb-text-switch-wrapper">
-						<div
-							className="eb-text-switch-content"
-							style={{ width: `${buttonWidth}%`, marginLeft: getMargin() }}
-						>
+						<div className="eb-text-switch-content" style={{ ...getMargin() }}>
 							<label className="eb-text-switch-label" for={`eb-${id}`}>
 								<div className="eb-text-switch-toggle"></div>
 								<div className="eb-switch-names">

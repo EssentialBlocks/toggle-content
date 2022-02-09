@@ -1,3 +1,10 @@
+/*!***************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/style.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************/
+.eb-toggle-wrapper > * {
+  position: relative;
+}
+
 .eb-toggle-switch {
   position: relative;
   display: inline-block;
@@ -36,7 +43,6 @@
   width: 48px;
   height: 26px;
 }
-
 .toggle-s .eb-toggle-controller {
   height: 20px;
   width: 20px;
@@ -48,7 +54,6 @@
   width: 72px;
   height: 36px;
 }
-
 .toggle-l .eb-toggle-controller {
   height: 28px;
   width: 28px;
@@ -60,7 +65,6 @@
   width: 84px;
   height: 42px;
 }
-
 .toggle-xl .eb-toggle-controller {
   height: 32px;
   width: 32px;
@@ -126,9 +130,11 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
-
 .eb-switch-names span {
   flex: 1;
 }
@@ -138,18 +144,20 @@
 }
 
 /* -------- Switch Styles ------------*/
-.eb-toggle-switch input[type="checkbox"] {
+.eb-toggle-switch input[type=checkbox] {
   display: none;
 }
 
-[type="checkbox"]:checked + .eb-text-switch-wrapper .eb-text-switch-toggle {
+[type=checkbox]:checked + .eb-text-switch-wrapper .eb-text-switch-toggle {
   transform: translateX(100%);
 }
 
-[type="checkbox"]:checked + .eb-text-switch-wrapper .eb-toggle-secondary-label {
+[type=checkbox]:checked + .eb-text-switch-wrapper .eb-toggle-secondary-label {
   opacity: 1;
 }
 
-[type="checkbox"]:checked + .eb-text-switch-wrapper .eb-toggle-primary-label {
+[type=checkbox]:checked + .eb-text-switch-wrapper .eb-toggle-primary-label {
   opacity: 0.5;
 }
+
+/*# sourceMappingURL=style.css.map*/

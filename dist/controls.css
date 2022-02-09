@@ -1,3 +1,6 @@
+/*!*****************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/backend.scss ***!
+  \*****************************************************************************************************************************************************************************************************************************************/
 /**
  * The following styles get applied inside the editor only.
  */
@@ -8,18 +11,12 @@
   z-index: 999999;
 }
 
-.eb-row-wrapper
-> .eb-row-inner
-> .block-editor-inner-blocks
-> .block-editor-block-list__layout {
+.eb-row-wrapper > .eb-row-inner > .block-editor-inner-blocks > .block-editor-block-list__layout {
   display: flex;
   flex-wrap: nowrap;
 }
 
-.eb-panel-control
-.components-button-group.eb-unit-control-btn-group
-.components-button
-.eb-category-icon {
+.eb-panel-control .components-button-group.eb-unit-control-btn-group .components-button .eb-category-icon {
   margin-left: 8px;
 }
 
@@ -90,12 +87,12 @@
   background-color: #551ef7 !important;
 }
 
-.eb-panel-control input[type="checkbox"]:focus {
+.eb-panel-control input[type=checkbox]:focus {
   box-shadow: 0 0 0 1px #551ef7;
 }
 
 /* Radio button style */
-.eb-panel-control .components-radio-control__input[type="radio"]:checked {
+.eb-panel-control .components-radio-control__input[type=radio]:checked {
   background-color: #551ef7;
 }
 
@@ -104,10 +101,7 @@
   line-height: 1.4;
 }
 
-.wp-core-ui
-.eb-panel-control
-select.components-select-control__input
-option:hover {
+.wp-core-ui .eb-panel-control select.components-select-control__input option:hover {
   color: white;
   background: #551ef7 !important;
 }
@@ -157,24 +151,19 @@ option:hover {
   margin-bottom: 15px;
 }
 
-.eb-panel-control
-.components-base-control
-.components-form-toggle
-.components-form-toggle__track {
+.block-editor-block-inspector .eb-panel-control .components-toggle-control.components-base-control {
+  margin: 10px 0;
+}
+
+.eb-panel-control .components-base-control .components-form-toggle .components-form-toggle__track {
   box-shadow: none !important;
 }
 
-.eb-panel-control
-.components-base-control
-.components-form-toggle:not(.is-checked)
-.components-form-toggle__track {
+.eb-panel-control .components-base-control .components-form-toggle:not(.is-checked) .components-form-toggle__track {
   border-color: #ebebeb !important;
 }
 
-.eb-panel-control
-.components-base-control
-.components-form-toggle:not(.is-checked)
-.components-form-toggle__thumb {
+.eb-panel-control .components-base-control .components-form-toggle:not(.is-checked) .components-form-toggle__thumb {
   border-color: #a6a6bf;
   background-color: #a6a6bf;
 }
@@ -183,10 +172,7 @@ option:hover {
   display: flex;
 }
 
-.eb-panel-control
-.components-base-control__field
-.components-button-group
-.components-button {
+.eb-panel-control .components-base-control__field .components-button-group .components-button {
   flex: 1;
   display: flex;
   justify-content: center;
@@ -232,9 +218,7 @@ option:hover {
   height: 20px;
 }
 
-.eb-panel-control
-.components-button-group.eb-unit-control-btn-group
-.components-button {
+.eb-panel-control .components-button-group.eb-unit-control-btn-group .components-button {
   height: 20px !important;
   padding: 0 0 0 6px;
   text-transform: uppercase;
@@ -243,9 +227,7 @@ option:hover {
   z-index: 999999;
 }
 
-.eb-panel-control
-.components-button-group.eb-unit-control-btn-group
-.components-button.is-primary {
+.eb-panel-control .components-button-group.eb-unit-control-btn-group .components-button.is-primary {
   box-shadow: none !important;
 }
 
@@ -253,86 +235,47 @@ option:hover {
   display: block;
 }
 
-.eb-panel-control
-.responsiveRangeControllerWrapper
-.eb-unit-control-btn-group
-.eb-unit-control-btn {
+.eb-panel-control .responsiveRangeControllerWrapper .eb-unit-control-btn-group .eb-unit-control-btn {
   display: inline-block;
 }
 
-.eb-panel-control
-.components-panel__body
-.dimention-container
-.dimention-label {
+.eb-panel-control .components-panel__body .dimention-container .dimention-label {
   height: 20px;
   margin-bottom: 0 !important;
   color: #5f5f5f;
 }
 
-.eb-panel-control
-.components-panel__body
-.dimention-container
-.input-container
-.input-wrapper-group {
+.eb-panel-control .components-panel__body .dimention-container .input-container .input-wrapper-group {
   display: flex;
   flex: 1;
 }
 
-.eb-panel-control
-.components-panel__body
-.dimention-container
-.input-container
-.input-wrapper-group
-.input-wrapper {
+.eb-panel-control .components-panel__body .dimention-container .input-container .input-wrapper-group .input-wrapper {
   width: 25% !important;
 }
 
-.eb-panel-control
-.components-panel__body
-.dimention-container
-.input-container
-.input-wrapper
-input {
+.eb-panel-control .components-panel__body .dimention-container .input-container .input-wrapper input {
   color: #1e1e1e;
   height: 30px !important;
   border-color: #ebebeb !important;
 }
 
-.eb-panel-control
-.components-panel__body
-.dimention-container
-.input-container
-.input-wrapper
-input:focus {
+.eb-panel-control .components-panel__body .dimention-container .input-container .input-wrapper input:focus {
   box-shadow: none;
   color: #000;
 }
 
-.eb-panel-control
-.components-panel__body
-.dimention-container
-.input-container
-.input-wrapper:first-child
-input {
+.eb-panel-control .components-panel__body .dimention-container .input-container .input-wrapper:first-child input {
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
 }
 
-.eb-panel-control
-.components-panel__body
-.dimention-container
-.input-container
-.input-wrapper:last-child
-input {
+.eb-panel-control .components-panel__body .dimention-container .input-container .input-wrapper:last-child input {
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
 
-.eb-panel-control
-.components-panel__body
-.dimention-container
-.input-container
-.components-button.linked-btn {
+.eb-panel-control .components-panel__body .dimention-container .input-container .components-button.linked-btn {
   height: 30px !important;
   width: 20px !important;
   padding: 0 !important;
@@ -371,10 +314,7 @@ input {
   margin-bottom: 8px;
 }
 
-.eb-panel-control
-.eb-range-controller-container
-.components-range-control
-.components-base-control__field {
+.eb-panel-control .eb-range-controller-container .components-range-control .components-base-control__field {
   margin-bottom: 0 !important;
 }
 
@@ -391,10 +331,15 @@ input {
   cursor: pointer;
 }
 
-.eb-panel-control
-.eb-range-controller-container
-.eb-range-reset-button
-.dashicon {
+.eb-panel-control.eb-typography-component-panel .eb-range-controller-container .eb-range-reset-button {
+  padding-top: 8px;
+}
+
+.eb-panel-control .eb-reset-button-margin-fix .eb-range-controller-container .eb-range-reset-button {
+  margin-top: 26px;
+}
+
+.eb-panel-control .eb-range-controller-container .eb-range-reset-button .dashicon {
   font-size: 14px;
   color: #62626f;
   width: 20px;
@@ -456,14 +401,8 @@ input {
   border-color: #ebebeb !important;
 }
 
-.eb-panel-control
-.components-range-control__root
-.components-input-control
-input,
-.eb-panel-control
-.components-range-control__root
-.components-input-control
-.components-input-control__backdrop,
+.eb-panel-control .components-range-control__root .components-input-control input,
+.eb-panel-control .components-range-control__root .components-input-control .components-input-control__backdrop,
 .eb-panel-control .components-range-control__root .components-button {
   height: 26px !important;
   min-height: 26px !important;
@@ -497,10 +436,7 @@ input,
   width: 150px !important;
 }
 
-.eb-panel-control
-.eb-gradient-control
-.eb-gradient-toggle-label
-.components-base-control__field {
+.eb-panel-control .eb-gradient-control .eb-gradient-toggle-label .components-base-control__field {
   display: flex;
   align-items: center;
 }
@@ -625,20 +561,23 @@ button.eb-res-btn:focus {
   left: 83px;
 }
 
-/* 
-   fix of this issue (https://prnt.sc/111gq2g) start
-  */
 .eb-panel-control .components-button:not(.eb-unit-control-btn-group) {
   position: relative;
   z-index: 0;
 }
 
-/* 
-fix of this issue (https://prnt.sc/111gq2g) end
-*/
 .eb-typography-base div {
   display: flex;
   justify-content: space-between;
+}
+
+.components-base-control.eb-fontpicker-fontfamily {
+  z-index: 99999;
+  position: relative;
+}
+
+.components-base-control.eb-fontpicker-fontfamily input {
+  box-shadow: unset;
 }
 
 .components-button.has-icon .dashicon.dashicons-format-image {
@@ -669,10 +608,7 @@ fix of this issue (https://prnt.sc/111gq2g) end
   text-transform: capitalize;
 }
 
-.eb-panel-control
-.newWithResWrapper
-.eb-range-controller-container
-.eb-range-reset-button {
+.eb-panel-control .newWithResWrapper .eb-range-controller-container .eb-range-reset-button {
   margin-top: 0;
 }
 
@@ -687,9 +623,7 @@ fix of this issue (https://prnt.sc/111gq2g) end
 /* 
 unit (px,em,%) anchors not grabbing on hover fix start
 */
-.eb-panel-control
-.components-button-group.eb-unit-control-btn-group
-.components-button {
+.eb-panel-control .components-button-group.eb-unit-control-btn-group .components-button {
   position: relative;
   z-index: 1111;
   font-size: 10px;
@@ -781,6 +715,10 @@ dimensions-control submodules css start
   text-align: center;
 }
 
+.input-container.left-right-disabled {
+  justify-content: flex-start;
+}
+
 .input-container {
   display: flex;
   flex-direction: row;
@@ -814,6 +752,12 @@ dimensions-control submodules css start
   border-radius: 0px 4px 4px 0px;
   border: 1px solid #8d96a0;
   border-left: none;
+}
+
+.eb-panel-control .components-panel__body .dimention-container .input-container .input-wrapper input:disabled {
+  background-color: #e6e9ec;
+  color: #6d7882;
+  cursor: not-allowed;
 }
 
 /* 
@@ -1049,45 +993,36 @@ unit-control submodule's css end
 .eb-panel-control {
   background-color: #f7f7f7;
 }
-
 .eb-panel-control .eb-parent-tab-panel .components-tab-panel__tabs {
   background-color: #fff;
 }
-
 .eb-panel-control .eb-parent-tab-panel .components-tab-panel__tabs .eb-tab {
   font-size: 1.1em;
   background-color: #fff;
   border-right: 1px solid #fff;
   border-top: 3px solid transparent;
 }
-
 .eb-panel-control .eb-parent-tab-panel .components-tab-panel__tabs .eb-tab.active-tab {
   background-color: #f7f7f7;
   border-color: #cebeff !important;
 }
-
 .eb-panel-control .eb-parent-tab-panel .components-tab-panel__tabs .eb-tab:not(:first-child) {
   border-left: 1px solid #fff;
 }
-
 .eb-panel-control .eb-parent-tab-panel .components-tab-panel__tabs .eb-tab:hover {
   color: #551ef7;
 }
-
 .eb-panel-control .eb-parent-tab-panel .components-tab-panel__tabs .eb-tab:focus {
   box-shadow: unset;
 }
-
 .eb-panel-control .eb-parent-tab-panel .components-panel__body.eb-subpanel {
   border: 0;
   padding-left: 0;
   padding-right: 0;
 }
-
 .eb-panel-control .eb-parent-tab-panel .components-panel__body-title {
   background-color: #e8e8e8;
 }
-
 .eb-panel-control .eb-parent-tab-panel .eb-subpanel .components-panel__body-title {
   margin-left: 0;
   margin-right: 0;
@@ -1098,39 +1033,32 @@ unit-control submodule's css end
   margin-bottom: 10px;
   border-top: 0;
 }
-
 .eb-panel-control .eb-parent-tab-panel .eb-slider-item-single-panel.is-opened {
   background-color: #efefef;
   border: 1px solid #e0e0e0;
   border-radius: 4px;
 }
-
 .eb-panel-control .eb-parent-tab-panel .eb-slider-item-single-panel.is-opened .components-panel__body-title {
   background-color: #e0e0e0;
   border: 0;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
-
 .eb-panel-control .eb-parent-tab-panel .eb-slider-item-single-panel .components-panel__body-title {
   background-color: #eaeaea;
   border: 1px solid #d8d8d8;
   border-radius: 4px;
 }
-
 .eb-panel-control .eb-parent-tab-panel .eb-slider-item-single-panel .components-panel__body-title button {
   padding: 12px;
 }
-
 .eb-panel-control .eb-parent-tab-panel .eb-slider-item-single-panel .components-panel__body-title button:focus {
   outline: 0;
   box-shadow: unset;
 }
-
 .eb-panel-control .eb-parent-tab-panel .eb-slider-item-single-panel textarea {
   border-color: #ebebeb;
 }
-
 .eb-panel-control .eb-parent-tab-panel .eb-slider-item-single-panel .error {
   color: red;
   margin-top: -10px;
@@ -1160,29 +1088,14 @@ summary::-webkit-details-marker {
 }
 
 .eb-panel-control .components-base-control .components-text-control__input,
-.eb-panel-control
-.components-base-control
-.drag-helper
-.eb-accordion-sortable-item
-.eb-social-delete-icon,
-.eb-panel-control
-.components-base-control
-.drag-helper
-.eb-accordion-sortable-item
-.drag-handle,
-.eb-panel-control
-.components-base-control
-.drag-helper
-.eb-accordion-sortable-item {
+.eb-panel-control .components-base-control .drag-helper .eb-accordion-sortable-item .eb-social-delete-icon,
+.eb-panel-control .components-base-control .drag-helper .eb-accordion-sortable-item .drag-handle,
+.eb-panel-control .components-base-control .drag-helper .eb-accordion-sortable-item {
   border-color: #ebebeb !important;
   padding: 5px 0;
 }
 
-.eb-panel-control
-.components-base-control
-.drag-helper
-.eb-accordion-sortable-item
-.drag-handle {
+.eb-panel-control .components-base-control .drag-helper .eb-accordion-sortable-item .drag-handle {
   border-right: none;
 }
 
@@ -1257,18 +1170,20 @@ summary::-webkit-details-marker {
 .eb-sortable-accordion-list {
   margin-bottom: 0px;
 }
-
 .eb-sortable-accordion-list li:last-child {
   margin-bottom: 0px;
+}
+
+.eb-panel-control .eb-fontpicker-fontfamily {
+  z-index: 99999;
+  position: relative;
 }
 
 .eb-control-item-wrapper {
   margin-bottom: 10px;
 }
 
-.eb-panel-control
-.components-base-control__field
-.components-text-control__input {
+.eb-panel-control .components-base-control__field .components-text-control__input {
   padding: 10px;
 }
 
@@ -1284,60 +1199,53 @@ summary::-webkit-details-marker {
   margin-bottom: 30px;
 }
 
-.eb-row-wrapper
-.eb-guten-block-main-parent-wrapper.eb-column-editor-wrap.wp-block,
-.eb-row-wrapper
-.eb-guten-block-main-parent-wrapper.eb-column-editor-wrap.wp-block
-.wp-block {
+.eb-row-wrapper .eb-guten-block-main-parent-wrapper.eb-column-editor-wrap.wp-block,
+.eb-row-wrapper .eb-guten-block-main-parent-wrapper.eb-column-editor-wrap.wp-block .wp-block {
   max-width: none;
 }
 
+body.eb-mimmik-added .eb-guten-block-main-parent-wrapper.eb-row-editor-wrap .eb-row-root-container {
+  overflow-x: hidden;
+}
 body.eb-mimmik-added .marginPaddingNaai.wp-block,
 body.eb-mimmik-added .eb-guten-block-main-parent-wrapper.eb-row-editor-wrap .wp-block,
-body.eb-mimmik-added .eb-guten-block-main-parent-wrapper.eb-row-editor-wrap
-.block-editor-block-list__block.wp-block {
+body.eb-mimmik-added .eb-guten-block-main-parent-wrapper.eb-row-editor-wrap .block-editor-block-list__block.wp-block {
   margin-top: 0;
   margin-bottom: 0;
   padding-top: 0;
   padding-bottom: 0;
 }
 
-.eb-row-wrapper
-> .eb-row-inner
-> .block-editor-inner-blocks
-> .block-editor-block-list__layout {
-  margin: auto;
+.eb-row-wrapper > .eb-row-inner > .block-editor-inner-blocks {
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
-
-.eb-guten-block-main-parent-wrapper.eb-column-editor-wrap {
-  position: relative;
+.eb-row-wrapper > .eb-row-inner > .block-editor-inner-blocks > .block-editor-block-list__layout {
+  max-width: none !important;
+  width: auto !important;
 }
 
 .eb-guten-block-main-parent-wrapper.eb-column-editor-wrap {
   position: relative !important;
 }
-
 .eb-guten-block-main-parent-wrapper.eb-column-editor-wrap .eb-column-inner .block-list-appender {
   margin: 0 !important;
   padding: 0 !important;
 }
-
 .eb-guten-block-main-parent-wrapper.eb-column-editor-wrap .width-dragger-change {
   display: none;
   position: absolute;
-  z-index: 888;
+  z-index: 8;
   right: -5px;
   top: 0;
   bottom: 0;
   width: 12px;
   cursor: col-resize;
 }
-
 .eb-guten-block-main-parent-wrapper.eb-column-editor-wrap .width-dragger-change > .dragger-inner {
   margin: 0 5px;
   height: 100%;
 }
-
 .eb-guten-block-main-parent-wrapper.eb-column-editor-wrap .width-dragger-change > .dragger-inner .circle {
   position: absolute;
   width: 10px;
@@ -1348,7 +1256,6 @@ body.eb-mimmik-added .eb-guten-block-main-parent-wrapper.eb-row-editor-wrap
   left: 2px;
   transform: translateY(-50%);
 }
-
 .eb-guten-block-main-parent-wrapper.eb-column-editor-wrap .width-dragger-change > .dragger-inner > .dashicons {
   position: absolute;
   display: flex;
@@ -1364,11 +1271,9 @@ body.eb-mimmik-added .eb-guten-block-main-parent-wrapper.eb-row-editor-wrap
   transform: translateY(-50%);
   color: #a3a5c0;
 }
-
 .eb-guten-block-main-parent-wrapper.eb-column-editor-wrap .width-dragger-change:hover > .dragger-inner {
   background-color: #000;
 }
-
 .eb-guten-block-main-parent-wrapper.eb-column-editor-wrap .cols-width-tooltip {
   width: 170px;
   position: absolute;
@@ -1381,9 +1286,12 @@ body.eb-mimmik-added .eb-guten-block-main-parent-wrapper.eb-row-editor-wrap
   display: flex;
   justify-content: space-between;
   align-items: center;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  z-index: 9999;
 }
-
 .eb-guten-block-main-parent-wrapper.eb-column-editor-wrap .cols-width-tooltip i.ovl_shapes {
   position: absolute;
   background: #fff;
@@ -1391,22 +1299,18 @@ body.eb-mimmik-added .eb-guten-block-main-parent-wrapper.eb-row-editor-wrap
   width: 30px;
   border-radius: 50%;
 }
-
 .eb-guten-block-main-parent-wrapper.eb-column-editor-wrap .cols-width-tooltip i.ovl_circle1 {
   left: 55px;
 }
-
 .eb-guten-block-main-parent-wrapper.eb-column-editor-wrap .cols-width-tooltip i.ovl_circle2 {
   right: 55px;
 }
-
 .eb-guten-block-main-parent-wrapper.eb-column-editor-wrap .cols-width-tooltip > span {
   height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
 .eb-guten-block-main-parent-wrapper.eb-column-editor-wrap .cols-width-tooltip > span.dashicons {
   color: #a3a5c0;
   border: 1px solid #a3a5c0;
@@ -1416,34 +1320,113 @@ body.eb-mimmik-added .eb-guten-block-main-parent-wrapper.eb-row-editor-wrap
   background: #fff;
   z-index: 333;
 }
-
 .eb-guten-block-main-parent-wrapper.eb-column-editor-wrap .cols-width-tooltip > span:not(.dashicons) {
   background: #a3a5c0;
   color: #fff;
   width: 65px;
 }
-
 .eb-guten-block-main-parent-wrapper.eb-column-editor-wrap .cols-width-tooltip > :not(.dashicons):first-child {
   padding-right: 10px;
-  clip-path: polygon(100% 0, 90% 50%, 100% 100%, 0% 100%, 0 50%, 0% 0%);
+  -webkit-clip-path: polygon(100% 0, 90% 50%, 100% 100%, 0% 100%, 0 50%, 0% 0%);
+          clip-path: polygon(100% 0, 90% 50%, 100% 100%, 0% 100%, 0 50%, 0% 0%);
 }
-
 .eb-guten-block-main-parent-wrapper.eb-column-editor-wrap .cols-width-tooltip > :not(.dashicons):nth-child(3) {
   padding-left: 10px;
-  clip-path: polygon(100% 0, 100% 50%, 100% 100%, 0% 100%, 10% 50%, 0% 0%);
+  -webkit-clip-path: polygon(100% 0, 100% 50%, 100% 100%, 0% 100%, 10% 50%, 0% 0%);
+          clip-path: polygon(100% 0, 100% 50%, 100% 100%, 0% 100%, 10% 50%, 0% 0%);
 }
 
-body.eb-responsive-preview-option-Desktop
-.eb-guten-block-main-parent-wrapper.eb-column-editor-wrap
-.width-dragger-change {
+body.eb-responsive-preview-option-Desktop .eb-guten-block-main-parent-wrapper.eb-column-editor-wrap .width-dragger-change {
   display: block;
 }
 
-@media all and (max-width: 1024px) {
-  .eb-row-wrapper
-> .eb-row-inner
-> .block-editor-inner-blocks
-> .block-editor-block-list__layout {
-    flex-wrap: wrap;
-  }
+body.eb-mimmik-added .edit-post-visual-editor .eb-column-wrapper > .eb-column-inner .components-button {
+  padding-top: 13px;
+  padding-bottom: 13px;
 }
+
+body.eb-mimmik-added .edit-post-visual-editor .block-editor-block-toolbar {
+  position: relative;
+  z-index: 999;
+}
+
+body.eb-mimmik-added .edit-post-visual-editor .components-popover.block-editor-block-list__block-popover {
+  z-index: 999;
+}
+
+body.eb-mimmik-added .edit-post-visual-editor .wp-block.editor-post-title.editor-post-title__block {
+  padding-bottom: 40px;
+}
+
+.eb-image-comparison-wrapper .eb-image-comparison-placeholder {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.eb-image-comparison-wrapper .eb-image-comparison-upload {
+  height: 200px;
+  width: 200px;
+  margin-right: 10px;
+  background: #e3e3e3;
+  display: inline;
+}
+
+.eb-image-comparison-wrapper .eb-image-comparison-image {
+  height: 200px;
+  width: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.drag-handle {
+  flex: 1;
+  background: transparent;
+  border-right: 1px solid #b4b4cb;
+  cursor: move;
+  color: #fff;
+  align-items: center;
+  display: flex !important;
+  justify-content: center;
+  flex: 2 1 0% !important;
+  border-left: 1px solid #b4b4cb;
+}
+
+.eb-sortable-item {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #b4b4cb;
+  line-height: 2.5em;
+}
+
+.eb-sortable-title {
+  flex: 12;
+  padding-left: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 200px;
+  white-space: nowrap;
+}
+
+.eb-sortable-trash {
+  font-size: 16px;
+  border-left: 1px solid gray;
+  line-height: 2.5em;
+  flex: 1;
+  text-align: center;
+  padding: 8px;
+}
+
+.eb-sortable-trash:hover {
+  background: #f44336;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.eb-sortable-title:hover {
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=controls.css.map*/
