@@ -6,12 +6,12 @@
  * Description: Toggle Content block for Gutenberg
  * Author: WPDeveloper
  * Author URI: https://wpdeveloper.net
- * Version: 1.1.1
+ * Version: 1.2.0
  * License: GPL3+
  * License URI: http://www.gnu.org/licenses/gpl-3.0.txt
- * Text Domain: toggle-content 
+ * Text Domain: toggle-content
  *
- * @package toggle-content 
+ * @package toggle-content
  */
 
 
@@ -23,7 +23,7 @@
  */
 
 
-define('TOGGLE_CONTENT_VERSION', "1.1.0");
+define('TOGGLE_CONTENT_VERSION', "1.2.0");
 define('TOGGLE_CONTENT_ADMIN_URL', plugin_dir_url(__FILE__));
 define('TOGGLE_CONTENT_ADMIN_PATH', dirname(__FILE__));
 
@@ -79,9 +79,9 @@ function create_block_toggle_content_block_init()
 	);
 
 
-	// 
-	// 
-	// 
+	//
+	//
+	//
 	$controls_dependencies = require TOGGLE_CONTENT_ADMIN_PATH . '/dist/controls.asset.php';
 
 	wp_register_script(

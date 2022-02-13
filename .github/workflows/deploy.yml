@@ -21,6 +21,10 @@ jobs:
         with:
             submodules: recursive
             token: ${{ secrets.EB_PAT }}
+      # node version
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
       # Runs a single command using the runners shell
       # - name: Git Submodule Cloning
       #   run: git submodule update --init --recursive
