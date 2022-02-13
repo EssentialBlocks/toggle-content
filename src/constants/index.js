@@ -1,4 +1,4 @@
-const { __ } = wp.i18n;
+import { __ } from "@wordpress/i18n";
 
 export const DEFAULT_TEMPLATE = [
 	["core/paragraph", {}],
@@ -6,66 +6,66 @@ export const DEFAULT_TEMPLATE = [
 ];
 
 export const INITIAL_CONTENT = [
-	{ label: __("Primary"), value: "primary" },
-	{ label: __("Secondary"), value: "secondary" },
+	{ label: __("Primary", "essential-blocks"), value: "primary" },
+	{ label: __("Secondary", "essential-blocks"), value: "secondary" },
 ];
 
 export const SWITCH_STYLES = [
-	{ label: __("Rectangle"), value: "rectangle" },
-	{ label: __("Rounded"), value: "rounded" },
-	// { label: __("Text"), value: "text" },
-	{ label: __("Toggle"), value: "toggle" },
+	{ label: __("Rectangle", "essential-blocks"), value: "rectangle" },
+	{ label: __("Rounded", "essential-blocks"), value: "rounded" },
+	// { label: __("Text", "essential-blocks"), value: "text" },
+	{ label: __("Toggle", "essential-blocks"), value: "toggle" },
 ];
 
 export const SEPERATOR_TYPE = [
-	{ label: __("None"), value: "none" },
-	{ label: __("Circle"), value: "circle" },
-	{ label: __("Diamond"), value: "diamond" },
+	{ label: __("None", "essential-blocks"), value: "none" },
+	{ label: __("Circle", "essential-blocks"), value: "circle" },
+	{ label: __("Diamond", "essential-blocks"), value: "diamond" },
 ];
 
 export const SWITCH_SIZE = [
-	{ label: __("Small"), value: "s" },
-	{ label: __("Medium"), value: "m" },
-	{ label: __("Large"), value: "l" },
-	{ label: __("Extra Large"), value: "xl" },
+	{ label: __("Small", "essential-blocks"), value: "s" },
+	{ label: __("Medium", "essential-blocks"), value: "m" },
+	{ label: __("Large", "essential-blocks"), value: "l" },
+	{ label: __("Extra Large", "essential-blocks"), value: "xl" },
 ];
 
 export const ALIGNMENT = [
-	{ label: __("Left"), value: "left" },
-	{ label: __("Center"), value: "center" },
-	{ label: __("Right"), value: "right" },
+	{ label: __("Left", "essential-blocks"), value: "left" },
+	{ label: __("Center", "essential-blocks"), value: "center" },
+	{ label: __("Right", "essential-blocks"), value: "right" },
 ];
 
 export const BORDER_STYLES = [
-	{ label: __("None"), value: "none" },
-	{ label: __("Dashed"), value: "dashed" },
-	{ label: __("Solid"), value: "solid" },
-	{ label: __("Dotted"), value: "dotted" },
-	{ label: __("Double"), value: "double" },
-	{ label: __("Groove"), value: "groove" },
-	{ label: __("Inset"), value: "inset" },
-	{ label: __("Outset"), value: "outset" },
-	{ label: __("Ridge"), value: "ridge" },
+	{ label: __("None", "essential-blocks"), value: "none" },
+	{ label: __("Dashed", "essential-blocks"), value: "dashed" },
+	{ label: __("Solid", "essential-blocks"), value: "solid" },
+	{ label: __("Dotted", "essential-blocks"), value: "dotted" },
+	{ label: __("Double", "essential-blocks"), value: "double" },
+	{ label: __("Groove", "essential-blocks"), value: "groove" },
+	{ label: __("Inset", "essential-blocks"), value: "inset" },
+	{ label: __("Outset", "essential-blocks"), value: "outset" },
+	{ label: __("Ridge", "essential-blocks"), value: "ridge" },
 ];
 
 export const BACKGROUND_TYPE = [
-	{ label: __("Solid"), value: "solid" },
-	{ label: __("Gradient"), value: "gradient" },
+	{ label: __("Solid", "essential-blocks"), value: "solid" },
+	{ label: __("Gradient", "essential-blocks"), value: "gradient" },
 ];
 
 export const TEXT_TRANSFORM = [
-	{ label: __("None"), value: "none" },
-	{ label: __("Lowercase"), value: "lowercase" },
-	{ label: __("Capitalize"), value: "capitalize" },
-	{ label: __("Uppercase"), value: "uppercase" },
+	{ label: __("None", "essential-blocks"), value: "none" },
+	{ label: __("Lowercase", "essential-blocks"), value: "lowercase" },
+	{ label: __("Capitalize", "essential-blocks"), value: "capitalize" },
+	{ label: __("Uppercase", "essential-blocks"), value: "uppercase" },
 ];
 
 export const TEXT_DECORATION = [
-	{ label: __("Initial"), value: "initial" },
-	{ label: __("Overline"), value: "overline" },
-	{ label: __("Line Through"), value: "line-through" },
-	{ label: __("Underline"), value: "underline" },
-	{ label: __("Underline Oveline"), value: "underline overline" },
+	{ label: __("Initial", "essential-blocks"), value: "initial" },
+	{ label: __("Overline", "essential-blocks"), value: "overline" },
+	{ label: __("Line Through", "essential-blocks"), value: "line-through" },
+	{ label: __("Underline", "essential-blocks"), value: "underline" },
+	{ label: __("Underline Oveline", "essential-blocks"), value: "underline overline" },
 ];
 
 export const DEFAULT_BACKGROUND = "#3074ff";

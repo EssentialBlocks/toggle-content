@@ -4,7 +4,7 @@
 	"description": "Example block written with ESNext standard and JSX support – build step required.",
 	"author": "The WordPress Contributors",
 	"license": "GPL-2.0-or-later",
-	"main": "build/index.js",
+	"main": "Gruntfile.js",
 	"scripts": {
 		"build": "wp-scripts build",
 		"format:js": "wp-scripts format-js",
@@ -14,14 +14,15 @@
 		"packages-update": "wp-scripts packages-update"
 	},
 	"devDependencies": {
-		"@babel/plugin-proposal-class-properties": "^7.10.4",
-		"@wordpress/scripts": "^12.1.1"
+		"@babel/plugin-proposal-class-properties": "^7.16.5",
+		"@wordpress/scripts": "^19.2.2"
 	},
 	"dependencies": {
-		"@fonticonpicker/react-fonticonpicker": "^1.2.0",
+		"@fonticonpicker/react-fonticonpicker": "hz-tyfoon/react-fonticonpicker#master",
 		"array-move": "^3.0.1",
-		"classnames": "^2.2.6",
-		"react-sortable-hoc": "^1.11.0",
-		"react-transition-group": "^4.3.0"
+		"classnames": "^2.3.1",
+		"react-sortable-hoc": "^2.0.0",
+		"react-transition-group": "^4.4.2",
+		"react-select": "^5.2.1"
 	}
 }

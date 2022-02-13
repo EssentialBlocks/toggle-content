@@ -5,12 +5,14 @@ import {
 	tglWrapPaddingConst,
 } from "./constants/dimensionsConstants";
 
-// import { WrpBgConst } from "./constants/backgroundsConstants";
+import {
+	rangeButtonWidth,
+	rangeButtonHeight,
+	rangeHeadingSpace,
+} from "./constants/rangeNames";
 
-// import {
-// 	WrpBdShadowConst,
-// 	prefixSocialBdShadow,
-// } from "./constants/borderShadowConstants";
+import { WrpBgConst } from "./constants/backgroundsConstants";
+import { WrpBdShadowConst } from "./constants/borderShadowConstants";
 
 // import {
 // 	wrapperWidth,
@@ -21,13 +23,22 @@ import {
 // 	sclDeviderPosRight,
 // } from "./constants/rangeNames";
 
-import {
+// import {
+// 	generateTypographyAttributes,
+// 	generateDimensionsAttributes,
+// 	generateBackgroundAttributes,
+// 	generateBorderShadowAttributes,
+// 	generateResponsiveRangeAttributes,
+// } from "../../../util/helpers";
+
+const {
+	//
 	generateTypographyAttributes,
 	generateDimensionsAttributes,
-	// generateBackgroundAttributes,
-	// generateBorderShadowAttributes,
-	// generateResponsiveRangeAttributes,
-} from "../util/helpers";
+	generateBackgroundAttributes,
+	generateBorderShadowAttributes,
+	generateResponsiveRangeAttributes,
+} = window.EBToggleContentControls;
 
 const attributes = {
 	// the following 4 attributes is must required for responsive options and asset generation for frontend
@@ -65,12 +76,12 @@ const attributes = {
 		type: "string",
 		default: "rounded",
 	},
-	buttonHeight: {
-		type: "number",
-	},
-	buttonWidth: {
-		type: "number",
-	},
+	// buttonHeight: {
+	// 	type: "number",
+	// },
+	// buttonWidth: {
+	// 	type: "number",
+	// },
 	alignment: {
 		type: "string",
 		default: "center",
@@ -90,13 +101,13 @@ const attributes = {
 	activeColor: {
 		type: "string",
 	},
-	headingSpace: {
-		type: "number",
-	},
-	headingSpaceUnit: {
-		type: "string",
-		default: "px",
-	},
+	// headingSpace: {
+	// 	type: "number",
+	// },
+	// headingSpaceUnit: {
+	// 	type: "string",
+	// 	default: "px",
+	// },
 	labelSpace: {
 		type: "number",
 	},
@@ -104,41 +115,6 @@ const attributes = {
 		type: "string",
 		default: "px",
 	},
-	// fontFamily: {
-	// 	type: "string",
-	// },
-	// fontWeight: {
-	// 	type: "string",
-	// },
-	// fontSize: {
-	// 	type: "number",
-	// },
-	// fontSizeUnit: {
-	// 	type: "string",
-	// 	default: "px",
-	// },
-	// lineHeight: {
-	// 	type: "number",
-	// },
-	// lineHeightUnit: {
-	// 	type: "string",
-	// 	default: "px",
-	// },
-	// letterSpacing: {
-	// 	type: "number",
-	// },
-	// letterSpacingUnit: {
-	// 	type: "string",
-	// 	default: "px",
-	// },
-	// textDecoration: {
-	// 	type: "string",
-	// 	default: "none",
-	// },
-	// textTransform: {
-	// 	type: "string",
-	// 	default: "none",
-	// },
 	backgroundType: {
 		type: "string",
 		default: "solid",
@@ -229,6 +205,28 @@ const attributes = {
 		// 	isLinked: false,
 		// }
 	),
+
+	//  BorderShadow attributes  ⬇
+	...generateBorderShadowAttributes(WrpBdShadowConst, {
+		// noShadow: true,
+		// noBorder: true,
+	}),
+
+	//  background attributes ⬇
+	...generateBackgroundAttributes(WrpBgConst, {
+		defaultBgGradient: "linear-gradient(45deg,#7967ff,#c277f2)",
+		// noOverlayBgi: true, // if 'noOverlay : true' is given then there's no need to give 'noOverlayBgi : true'
+	}),
+
+	//
+	// Responsive Range Controller attributes ⬇
+	...generateResponsiveRangeAttributes(rangeButtonWidth, {
+		defaultUnit: "%", // if 'noUnits: true' is also passed here then 'defaultUnit' won't work, also it doesn't make sense to pass a defaultUnit when No units given
+	}),
+	...generateResponsiveRangeAttributes(rangeButtonHeight, {
+		noUnits: true,
+	}),
+	...generateResponsiveRangeAttributes(rangeHeadingSpace, {}),
 };
 
 export default attributes;

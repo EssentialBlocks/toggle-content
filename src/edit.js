@@ -1,19 +1,17 @@
 /**
  * WordPress dependencies
  */
-const { __ } = wp.i18n;
-const { select, subscribe, dispatch } = wp.data;
-const { createBlock } = wp.blocks;
-const {
+import { __ } from "@wordpress/i18n";
+import { useEffect, useState, useRef } from "@wordpress/element";
+import {
 	useBlockProps,
 	BlockControls,
 	AlignmentToolbar,
 	InnerBlocks,
 	RichText,
-} = wp.blockEditor;
-const { useState, useRef, useEffect } = wp.element;
-
-import "./editor.scss";
+} from "@wordpress/block-editor";
+import { createBlock } from "@wordpress/blocks";
+import { select, subscribe, dispatch } from "@wordpress/data";
 
 /**
  * Internal dependencies
@@ -26,12 +24,45 @@ import {
 } from "./constants";
 
 import {
+	rangeButtonWidth,
+	rangeButtonHeight,
+	rangeHeadingSpace,
+} from "./constants/rangeNames";
+
+import { WrpBgConst } from "./constants/backgroundsConstants";
+import { WrpBdShadowConst } from "./constants/borderShadowConstants";
+
+// import {
+// 	softMinifyCssStrings,
+// 	generateDimensionsControlStyles,
+// 	generateBackgroundControlStyles,
+// 	generateResponsiveRangeStyles,
+// 	generateBorderShadowStyles,
+// 	generateTypographyStyles,
+// 	mimmikCssForPreviewBtnClick,
+// 	duplicateBlockIdFix,
+// } from "../../../util/helpers";
+
+const {
+	//
+
 	softMinifyCssStrings,
 	generateDimensionsControlStyles,
+	generateBackgroundControlStyles,
+	generateResponsiveRangeStyles,
+	generateBorderShadowStyles,
 	generateTypographyStyles,
-	mimmikCssForPreviewBtnClick,
+	// mimmikCssForPreviewBtnClick,
 	duplicateBlockIdFix,
-} from "../util/helpers";
+} = window.EBToggleContentControls;
+
+const editorStoreForGettingPreivew =
+	eb_style_handler.editor_type === "edit-site"
+		? "core/edit-site"
+		: "core/edit-post";
+
+
+import classnames from "classnames";
 
 import Inspector from "./inspector";
 
@@ -46,7 +77,7 @@ import {
 	tglWrapPaddingConst,
 } from "./constants/dimensionsConstants";
 
-const Edit = ({ clientId, isSelected, attributes, setAttributes }) => {
+const Edit = ({ clientId, isSelected, attributes, setAttributes, className }) => {
 	const {
 		resOption,
 		blockId,
@@ -56,18 +87,14 @@ const Edit = ({ clientId, isSelected, attributes, setAttributes }) => {
 		initialContent,
 		switchStyle,
 		switchSize,
-		buttonHeight,
-		buttonWidth,
 		seperatorType,
-		primaryLabelText,
-		secondaryLabelText,
+		primaryLabelText = "First",
+		secondaryLabelText = "Second",
 		alignment,
 		activeColor,
 		activeBg,
 		primaryLabelColor,
 		secondaryLabelColor,
-		headingSpace,
-		headingSpaceUnit,
 		labelSpace,
 		labelSpaceUnit,
 		backgroundType,
@@ -105,7 +132,7 @@ const Edit = ({ clientId, isSelected, attributes, setAttributes }) => {
 	// this useEffect is for setting the resOption attribute to desktop/tab/mobile depending on the added 'eb-res-option-' class
 	useEffect(() => {
 		setAttributes({
-			resOption: select("core/edit-post").__experimentalGetPreviewDeviceType(),
+			resOption: select(editorStoreForGettingPreivew).__experimentalGetPreviewDeviceType(),
 		});
 	}, []);
 
@@ -121,16 +148,16 @@ const Edit = ({ clientId, isSelected, attributes, setAttributes }) => {
 		});
 	}, []);
 
-	// this useEffect is for mimmiking css when responsive options clicked from wordpress's 'preview' button
-	useEffect(() => {
-		mimmikCssForPreviewBtnClick({
-			domObj: document,
-			select,
-		});
-	}, []);
+	// // this useEffect is for mimmiking css when responsive options clicked from wordpress's 'preview' button
+	// useEffect(() => {
+	// 	mimmikCssForPreviewBtnClick({
+	// 		domObj: document,
+	// 		select,
+	// 	});
+	// }, []);
 
 	const blockProps = useBlockProps({
-		className: `eb-guten-block-main-parent-wrapper`,
+		className: classnames(className, `eb-guten-block-main-parent-wrapper`),
 	});
 
 	useEffect(() => {
@@ -251,16 +278,30 @@ const Edit = ({ clientId, isSelected, attributes, setAttributes }) => {
 	};
 
 	const getMargin = () => {
-		let width = buttonWidth || 30;
-
 		switch (alignment) {
 			case "center":
-				return `${(100 - width) / 2}%`;
+				return {
+					marginLeft: "auto",
+					marginRight: "auto",
+				};
+
 			case "right":
-				return `${100 - width}%`;
+				return {
+					marginLeft: "auto",
+					marginRight: "0px",
+				};
+
 			case "left":
-				return `0%`;
+				return {
+					marginLeft: "0px",
+					marginRight: "auto",
+				};
 		}
+
+		return {
+			marginLeft: "auto",
+			marginRight: "auto",
+		};
 	};
 
 	// styles related to generateTypographyStyles start ⬇
@@ -275,6 +316,40 @@ const Edit = ({ clientId, isSelected, attributes, setAttributes }) => {
 		// defaultFontSize: 20,
 	});
 	// styles related to generateTypographyStyles end
+
+	// styles related to generateResponsiveRangeStyles start ⬇
+	const {
+		rangeStylesDesktop: btnHeightDesktop,
+		rangeStylesTab: btnHeightTab,
+		rangeStylesMobile: btnHeightMobile,
+	} = generateResponsiveRangeStyles({
+		controlName: rangeButtonHeight,
+		customUnit: "px",
+		property: "height",
+		attributes,
+	});
+
+	const {
+		rangeStylesDesktop: btnWidthDesktop,
+		rangeStylesTab: btnWidthTab,
+		rangeStylesMobile: btnWidthMobile,
+	} = generateResponsiveRangeStyles({
+		controlName: rangeButtonWidth,
+		property: "width",
+		attributes,
+	});
+
+	const {
+		rangeStylesDesktop: headingSpaceDesktop,
+		rangeStylesTab: headingSpaceTab,
+		rangeStylesMobile: headingSpaceMobile,
+	} = generateResponsiveRangeStyles({
+		controlName: rangeHeadingSpace,
+		property: "margin-bottom",
+		attributes,
+	});
+
+	// styles related to generateResponsiveRangeStyles end
 
 	// styles related to generateDimensionsControlStyles start ⬇
 	const {
@@ -298,10 +373,71 @@ const Edit = ({ clientId, isSelected, attributes, setAttributes }) => {
 	});
 	// styles related to generateDimensionsControlStyles end
 
+	// styles related to generateBackgroundControlStyles start ⬇
+	const {
+		backgroundStylesDesktop: wrpBackgroundStylesDesktop,
+		hoverBackgroundStylesDesktop: wrpHoverBackgroundStylesDesktop,
+		backgroundStylesTab: wrpBackgroundStylesTab,
+		hoverBackgroundStylesTab: wrpHoverBackgroundStylesTab,
+		backgroundStylesMobile: wrpBackgroundStylesMobile,
+		hoverBackgroundStylesMobile: wrpHoverBackgroundStylesMobile,
+		overlayStylesDesktop: wrpOverlayStylesDesktop,
+		hoverOverlayStylesDesktop: wrpHoverOverlayStylesDesktop,
+		overlayStylesTab: wrpOverlayStylesTab,
+		hoverOverlayStylesTab: wrpHoverOverlayStylesTab,
+		overlayStylesMobile: wrpOverlayStylesMobile,
+		hoverOverlayStylesMobile: wrpHoverOverlayStylesMobile,
+		bgTransitionStyle: wrpBgTransitionStyle,
+		ovlTransitionStyle: wrpOvlTransitionStyle,
+	} = generateBackgroundControlStyles({
+		attributes,
+		controlName: WrpBgConst,
+		// noOverlay: true,
+		// noMainBgi: true,
+		// noOverlayBgi: true, // if 'noOverlay : true' is given then there's no need to give 'noOverlayBgi : true'
+	});
+
+	// styles related to generateBackgroundControlStyles End
+
+	// styles related to generateBorderShadowStyles start ⬇
+	const {
+		styesDesktop: wrpBdShdStyesDesktop,
+		styesTab: wrpBdShdStyesTab,
+		styesMobile: wrpBdShdStyesMobile,
+		stylesHoverDesktop: wrpBdShdStylesHoverDesktop,
+		stylesHoverTab: wrpBdShdStylesHoverTab,
+		stylesHoverMobile: wrpBdShdStylesHoverMobile,
+		transitionStyle: wrpBdShdTransitionStyle,
+	} = generateBorderShadowStyles({
+		controlName: WrpBdShadowConst,
+		attributes,
+		// noShadow: true,
+		// noBorder: true,
+	});
+
+	// styles related to generateBorderShadowStyles End
+
 	const wrapperStylesDesktop = `
 	.${blockId}.eb-toggle-wrapper{
 		${wrpMarginDesktop}
 		${wrpPaddingDesktop}
+		${wrpBackgroundStylesDesktop}
+		${wrpBdShdStyesDesktop}
+		transition: all 0.5s, ${wrpBgTransitionStyle}, ${wrpBdShdTransitionStyle};
+	}
+	
+	.${blockId}.eb-toggle-wrapper:hover{
+		${wrpHoverBackgroundStylesDesktop}
+		${wrpBdShdStylesHoverDesktop}
+	}
+	
+	.${blockId}.eb-toggle-wrapper:before{
+		${wrpOverlayStylesDesktop}
+		transition: all 0.5s, ${wrpOvlTransitionStyle};
+	}
+	
+	.${blockId}.eb-toggle-wrapper:hover:before{
+		${wrpHoverOverlayStylesDesktop}
 	}
 
 	.${blockId}.eb-toggle-wrapper .eb-toggle-secondary-label-text,
@@ -315,6 +451,16 @@ const Edit = ({ clientId, isSelected, attributes, setAttributes }) => {
 
 	.${blockId}.eb-toggle-wrapper .eb-text-switch-toggle{
 		z-index:0;
+	}
+
+	${
+		switchStyle === "toggle"
+			? `
+			.${blockId}.eb-toggle-wrapper .eb-text-switch-content{
+				${btnWidthDesktop}
+			}
+			`
+			: ""
 	}
 	
 	.${blockId}.eb-toggle-wrapper .eb-text-switch-toggle,
@@ -330,13 +476,13 @@ const Edit = ({ clientId, isSelected, attributes, setAttributes }) => {
 	
 	.${blockId}.eb-toggle-wrapper .eb-toggle-heading{
 		text-align: ${alignment || "center"};
-		margin-bottom: ${headingSpace || 30}${headingSpaceUnit || "px"};
 		${tglTypoStylesDesktop}
+		${headingSpaceDesktop}
 	}
 	
 	.${blockId}.eb-toggle-wrapper .eb-text-switch-label,
 	.${blockId}.eb-toggle-wrapper .eb-toggle-slider{
-		${switchStyle === "toggle" ? `height:${buttonHeight || 50}px;` : ""}
+		${switchStyle === "toggle" ? `${btnHeightDesktop}` : ""}
 		background-color:${backgroundColor || DEFAULT_BACKGROUND};
 		background-image:${backgroundType === "gradient" ? backgroundGradient : "none"};
 		${switchStyle === "rounded" ? `border-radius:21px;` : ""}
@@ -401,23 +547,87 @@ const Edit = ({ clientId, isSelected, attributes, setAttributes }) => {
 	.${blockId}.eb-toggle-wrapper{
 		${wrpMarginTab}
 		${wrpPaddingTab}
+		${wrpBackgroundStylesTab}
+		${wrpBdShdStyesTab}
+	}
+
+	.${blockId}.eb-toggle-wrapper:hover{
+		${wrpHoverBackgroundStylesTab}
+		${wrpBdShdStylesHoverTab}
+	}
+	
+	.${blockId}.eb-toggle-wrapper:before{
+		${wrpOverlayStylesTab}
+	}
+	
+	.${blockId}.eb-toggle-wrapper:hover:before{
+		${wrpHoverOverlayStylesTab}
 	}
 
 	.${blockId}.eb-toggle-wrapper .eb-toggle-heading{
 		${tglTypoStylesTab}
+		${headingSpaceTab}
 	}
+	
+	${
+		switchStyle === "toggle"
+			? `
+			.${blockId}.eb-toggle-wrapper .eb-text-switch-content{
+				${btnWidthTab}
+			}
+
+			.${blockId}.eb-toggle-wrapper .eb-text-switch-label,
+			.${blockId}.eb-toggle-wrapper .eb-toggle-slider{
+				${btnHeightTab}
+			}
+			`
+			: ""
+	}
+	
+	
 	`;
 
 	const wrapperStylesMobile = `
 	.${blockId}.eb-toggle-wrapper{
 		${wrpMarginMobile}
 		${wrpPaddingMobile}
+		${wrpBackgroundStylesMobile}
+		${wrpBdShdStyesMobile}
 	}
 
+	.${blockId}.eb-toggle-wrapper:hover{
+		${wrpHoverBackgroundStylesMobile}
+		${wrpBdShdStylesHoverMobile}
+	}
+	
+	.${blockId}.eb-toggle-wrapper:before{
+		${wrpOverlayStylesMobile}
+	}
+	
+	.${blockId}.eb-toggle-wrapper:hover:before{
+		${wrpHoverOverlayStylesMobile}
+	}
 
 	.${blockId}.eb-toggle-wrapper .eb-toggle-heading{
 		${tglTypoStylesMobile}
+		${headingSpaceMobile}
 	}
+
+	${
+		switchStyle === "toggle"
+			? `
+			.${blockId}.eb-toggle-wrapper .eb-text-switch-content{
+				${btnWidthMobile}
+			}
+			
+			.${blockId}.eb-toggle-wrapper .eb-text-switch-label,
+			.${blockId}.eb-toggle-wrapper .eb-toggle-slider{
+				${btnHeightMobile}
+			}
+			`
+			: ""
+	}
+	
 	`;
 
 	// all css styles for large screen width (desktop/laptop) in strings ⬇
@@ -576,10 +786,7 @@ const Edit = ({ clientId, isSelected, attributes, setAttributes }) => {
 					}}
 				>
 					<div className="eb-text-switch-wrapper">
-						<div
-							className="eb-text-switch-content"
-							style={{ width: `${buttonWidth}%`, marginLeft: getMargin() }}
-						>
+						<div className="eb-text-switch-content" style={{ ...getMargin() }}>
 							<label
 								className="eb-text-switch-label"
 								// style={sliderStyle}
@@ -597,7 +804,7 @@ const Edit = ({ clientId, isSelected, attributes, setAttributes }) => {
 										tagName="span"
 										className="eb-toggle-primary-label-text"
 										ref={primaryTextRef}
-										placeholder={__("First")}
+										// placeholder={__("First", "essential-blocks")}
 										// style={primaryLabelStyle}
 										value={primaryLabelText}
 										onChange={(primaryLabelText) =>
@@ -609,7 +816,7 @@ const Edit = ({ clientId, isSelected, attributes, setAttributes }) => {
 										tagName="span"
 										className="eb-toggle-secondary-label-text"
 										ref={secondaryTextRef}
-										placeholder={__("Second")}
+										// placeholder={__("Second", "essential-blocks")}
 										// style={secondaryLabelStyle}
 										value={secondaryLabelText}
 										onChange={(secondaryLabelText) =>
@@ -633,7 +840,7 @@ const Edit = ({ clientId, isSelected, attributes, setAttributes }) => {
 						tagName="span"
 						className="eb-toggle-primary-label"
 						ref={primaryRef}
-						placeholder={__("First")}
+						placeholder={__("First", "essential-blocks")}
 						keepPlaceholderOnFocus
 						// style={primaryLabelStyle}
 						value={primaryLabelText}
@@ -667,7 +874,7 @@ const Edit = ({ clientId, isSelected, attributes, setAttributes }) => {
 						tagName="span"
 						ref={secondaryRef}
 						className="eb-toggle-secondary-label"
-						placeholder={__("Second")}
+						placeholder={__("Second", "essential-blocks")}
 						keepPlaceholderOnFocus
 						// style={secondaryLabelStyle}
 						value={secondaryLabelText}
