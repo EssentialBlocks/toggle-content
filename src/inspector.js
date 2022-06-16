@@ -37,40 +37,7 @@ import { WrpBgConst } from "./constants/backgroundsConstants";
 
 import { WrpBdShadowConst } from "./constants/borderShadowConstants";
 
-// import UnitControl from "../../../util/unit-control";
-// import GradientColorControl from "../../../util/gradient-color-controller";
-// // import FontPicker from "../../../util/typography-control/FontPicker";
-// import ColorControl from "../../../util/color-control";
-// import ResetControl from "../../../util/reset-control";
-
-// import TypographyDropdown from "../../../util/typography-control-v2";
-// import ResponsiveDimensionsControl from "../../../util/dimensions-control-v2";
-// import ResponsiveRangeController from "../../../util/responsive-range-control";
-// // import ImageAvatar from "../../../util/image-avatar/";
-// import BorderShadowControl from "../../../util/border-shadow-control";
-// import BackgroundControl from "../../../util/background-control";
-
-// import {
-// 	mimmikCssForResBtns,
-// 	mimmikCssOnPreviewBtnClickWhileBlockSelected,
-// } from "../../../util/helpers";
-
-// import IconList from "../../../util/faIcons";
-
-// import {
-// 	TypographyIcon,
-// 	// UserIcon,
-// 	LeftAlignIcon,
-// 	RightAlignIcon,
-// 	CenterAlignIcon,
-// } from "../../../util/icons";
-
 const {
-	//
-	// mimmikCssForResBtns,
-	// mimmikCssOnPreviewBtnClickWhileBlockSelected,
-
-	//
 	UnitControl,
 	GradientColorControl,
 	ColorControl,
@@ -80,10 +47,11 @@ const {
 	ResponsiveRangeController,
 	BorderShadowControl,
 	BackgroundControl,
+	AdvancedControls,
 } = window.EBToggleContentControls;
 
 const editorStoreForGettingPreivew =
-	eb_style_handler.editor_type === "edit-site"
+	eb_conditional_localize.editor_type === "edit-site"
 		? "core/edit-site"
 		: "core/edit-post";
 
@@ -570,6 +538,8 @@ const Inspector = ({ attributes, setAttributes }) => {
 										// noBorder
 										/>
 									</PanelBody>
+
+									<AdvancedControls attributes={attributes} setAttributes={setAttributes} />
 								</>
 							)}
 						</div>

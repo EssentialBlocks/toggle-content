@@ -48,6 +48,7 @@ function create_block_toggle_content_block_init()
 		'wp-element',
 		'wp-block-editor',
 		'toggle-content-controls-util',
+		'essential-blocks-eb-animation'
 	));
 
 	$index_js     = TOGGLE_CONTENT_ADMIN_URL . 'dist/index.js';
@@ -59,11 +60,29 @@ function create_block_toggle_content_block_init()
 		true
 	);
 
+	$load_animation_js = TOGGLE_CONTENT_ADMIN_URL . 'assets/js/eb-animation-load.js';
+	wp_register_script(
+		'essential-blocks-eb-animation',
+		$load_animation_js,
+		array(),
+		TOGGLE_CONTENT_VERSION,
+		true
+	);
+
+	$animate_css = TOGGLE_CONTENT_ADMIN_URL . 'assets/css/animate.min.css';
+	wp_register_style(
+		'essential-blocks-animation',
+		$animate_css,
+		array(),
+		TOGGLE_CONTENT_VERSION
+	);
+
+
 	$style_css     = TOGGLE_CONTENT_ADMIN_URL . 'dist/style.css';
 	wp_register_style(
-		'create-block-toggle-content-block-editor',
+		'create-block-toggle-content-block-editor-css',
 		$style_css,
-		array(),
+		array('essential-blocks-animation'),
 		TOGGLE_CONTENT_VERSION,
 		"all"
 	);
@@ -73,50 +92,21 @@ function create_block_toggle_content_block_init()
 	wp_register_script(
 		'essential-blocks-toggle-content-frontend',
 		$frontend_js,
-		array(),
+		array('essential-blocks-eb-animation'),
 		TOGGLE_CONTENT_VERSION,
 		true
 	);
 
-
-	//
-	//
-	//
-	$controls_dependencies = require TOGGLE_CONTENT_ADMIN_PATH . '/dist/controls.asset.php';
-
-	wp_register_script(
-		"toggle-content-controls-util",
-		TOGGLE_CONTENT_ADMIN_URL . '/dist/controls.js',
-		array_merge($controls_dependencies['dependencies'], array("essential-blocks-edit-post")),
-		$controls_dependencies['version'],
-		true
-	);
-
-	wp_localize_script('toggle-content-controls-util', 'EssentialBlocksLocalize', array(
-		'eb_wp_version' => (float) get_bloginfo('version'),
-		'rest_rootURL' => get_rest_url(),
-	));
-
-	wp_register_style(
-		'toggle-content-editor-css',
-		TOGGLE_CONTENT_ADMIN_URL . '/dist/controls.css',
-		array(
-			"create-block-toggle-content-block-editor"
-		),
-		$controls_dependencies['version'],
-		'all'
-	);
-
 	if (!WP_Block_Type_Registry::get_instance()->is_registered('essential-blocks/countdown')) {
 		register_block_type(
-			Countdown_Helper::get_block_register_path("toggle-content/toggle-content", TOGGLE_CONTENT_ADMIN_PATH),
+			Toggle_Content_Helper::get_block_register_path("toggle-content/toggle-content", TOGGLE_CONTENT_ADMIN_PATH),
 			array(
 				'editor_script'	=> 'create-block-toggle-content-block-editor',
-				'editor_style' 	=> 'toggle-content-editor-css',
+				'editor_style' 	=> 'create-block-toggle-content-block-editor-css',
 				'render_callback' => function ($attributes, $content) {
 					if (!is_admin()) {
 						wp_enqueue_script('essential-blocks-toggle-content-frontend');
-						wp_enqueue_style('create-block-toggle-content-block-editor');
+						wp_enqueue_style('create-block-toggle-content-block-editor-css');
 					}
 					return $content;
 				}
@@ -125,4 +115,4 @@ function create_block_toggle_content_block_init()
 	}
 }
 
-add_action('init', 'create_block_toggle_content_block_init');
+add_action('init', 'create_block_toggle_content_block_init', 99);
