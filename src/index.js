@@ -9,6 +9,7 @@ import { __ } from "@wordpress/i18n";
 import { ToggleContentIcon } from "./icon";
 import Edit from "./edit";
 import Save from "./save";
+import deprecated from "./deprecated";
 import example from "./example";
 import metadata from "../block.json";
 import attributes from "./attributes";
@@ -25,4 +26,5 @@ ebConditionalRegisterBlockType(metadata, {
 		__("eb Toggle Content", "essential-blocks"),
 	],
 	example,
+	deprecated,
 });

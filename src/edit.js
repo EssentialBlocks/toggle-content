@@ -32,35 +32,20 @@ import {
 import { WrpBgConst } from "./constants/backgroundsConstants";
 import { WrpBdShadowConst } from "./constants/borderShadowConstants";
 
-// import {
-// 	softMinifyCssStrings,
-// 	generateDimensionsControlStyles,
-// 	generateBackgroundControlStyles,
-// 	generateResponsiveRangeStyles,
-// 	generateBorderShadowStyles,
-// 	generateTypographyStyles,
-// 	mimmikCssForPreviewBtnClick,
-// 	duplicateBlockIdFix,
-// } from "../../../util/helpers";
-
 const {
-	//
-
 	softMinifyCssStrings,
 	generateDimensionsControlStyles,
 	generateBackgroundControlStyles,
 	generateResponsiveRangeStyles,
 	generateBorderShadowStyles,
 	generateTypographyStyles,
-	// mimmikCssForPreviewBtnClick,
 	duplicateBlockIdFix,
 } = window.EBToggleContentControls;
 
 const editorStoreForGettingPreivew =
-	eb_style_handler.editor_type === "edit-site"
+	eb_conditional_localize.editor_type === "edit-site"
 		? "core/edit-site"
 		: "core/edit-post";
-
 
 import classnames from "classnames";
 
@@ -77,13 +62,18 @@ import {
 	tglWrapPaddingConst,
 } from "./constants/dimensionsConstants";
 
-const Edit = ({ clientId, isSelected, attributes, setAttributes, className }) => {
+const Edit = ({
+	clientId,
+	isSelected,
+	attributes,
+	setAttributes,
+	className,
+}) => {
 	const {
 		resOption,
 		blockId,
 		blockMeta,
-
-		//
+		classHook,
 		initialContent,
 		switchStyle,
 		switchSize,
@@ -132,7 +122,9 @@ const Edit = ({ clientId, isSelected, attributes, setAttributes, className }) =>
 	// this useEffect is for setting the resOption attribute to desktop/tab/mobile depending on the added 'eb-res-option-' class
 	useEffect(() => {
 		setAttributes({
-			resOption: select(editorStoreForGettingPreivew).__experimentalGetPreviewDeviceType(),
+			resOption: select(
+				editorStoreForGettingPreivew
+			).__experimentalGetPreviewDeviceType(),
 		});
 	}, []);
 
@@ -166,8 +158,18 @@ const Edit = ({ clientId, isSelected, attributes, setAttributes, className }) =>
 				".block-editor-block-list__layout"
 			);
 
-			if (container && container.children.length === 2) {
-				const { firstChild, lastChild } = container;
+			let childElemenets = [];
+			const child = container.children;
+
+			for (let i = 0; i < child.length; i++) {
+				if (child[i].classList.contains("block-editor-block-list__block")) {
+					childElemenets.push(child[i]);
+				}
+			}
+
+			if (container && childElemenets.length === 2) {
+				let firstChild = childElemenets[0];
+				let lastChild = childElemenets[1];
 
 				if (isPrimary) {
 					hideBlock(lastChild);
@@ -667,20 +669,21 @@ const Edit = ({ clientId, isSelected, attributes, setAttributes, className }) =>
 		}
 	}, [attributes]);
 
-	return [
-		isSelected && (
-			<Inspector attributes={attributes} setAttributes={setAttributes} />
-		),
+	return (
+		<>
+			{isSelected && (
+				<Inspector attributes={attributes} setAttributes={setAttributes} />
+			)}
 
-		<BlockControls>
-			<AlignmentToolbar
-				value={alignment}
-				onChange={(alignment) => setAttributes({ alignment })}
-			/>
-		</BlockControls>,
-		<div {...blockProps}>
-			<style>
-				{`
+			<BlockControls>
+				<AlignmentToolbar
+					value={alignment}
+					onChange={(alignment) => setAttributes({ alignment })}
+				/>
+			</BlockControls>
+			<div {...blockProps}>
+				<style>
+					{`
 
 			${
 				!isPrimary
@@ -776,119 +779,123 @@ const Edit = ({ clientId, isSelected, attributes, setAttributes, className }) =>
 				
 				}
 				`}
-			</style>
-			<div className={`${blockId} eb-toggle-wrapper`}>
-				<div
-					className="eb-toggle-heading"
-					style={{
-						// ...headingStyle,
-						display: switchStyle === "toggle" ? "block" : "none",
-					}}
-				>
-					<div className="eb-text-switch-wrapper">
-						<div className="eb-text-switch-content" style={{ ...getMargin() }}>
-							<label
-								className="eb-text-switch-label"
-								// style={sliderStyle}
-							>
+				</style>
+				<div className={`eb-parent-wrapper eb-parent-${blockId} ${classHook}`}>
+					<div className={`${blockId} eb-toggle-wrapper`}>
+						<div
+							className="eb-toggle-heading"
+							style={{
+								// ...headingStyle,
+								display: switchStyle === "toggle" ? "block" : "none",
+							}}
+						>
+							<div className="eb-text-switch-wrapper">
 								<div
-									className="eb-text-switch-toggle"
-									style={{
-										// ...controllerStyle,
-										// zIndex: 0,
-										marginLeft: !isPrimary && "50%",
-									}}
-								></div>
-								<div className="eb-switch-names">
-									<RichText
-										tagName="span"
-										className="eb-toggle-primary-label-text"
-										ref={primaryTextRef}
-										// placeholder={__("First", "essential-blocks")}
-										// style={primaryLabelStyle}
-										value={primaryLabelText}
-										onChange={(primaryLabelText) =>
-											setAttributes({ primaryLabelText })
-										}
-									/>
+									className="eb-text-switch-content"
+									style={{ ...getMargin() }}
+								>
+									<label
+										className="eb-text-switch-label"
+										// style={sliderStyle}
+									>
+										<div
+											className="eb-text-switch-toggle"
+											style={{
+												// ...controllerStyle,
+												// zIndex: 0,
+												marginLeft: !isPrimary && "50%",
+											}}
+										></div>
+										<div className="eb-switch-names">
+											<RichText
+												tagName="span"
+												className="eb-toggle-primary-label-text"
+												ref={primaryTextRef}
+												// placeholder={__("First", "essential-blocks")}
+												// style={primaryLabelStyle}
+												value={primaryLabelText}
+												onChange={(primaryLabelText) =>
+													setAttributes({ primaryLabelText })
+												}
+											/>
 
-									<RichText
-										tagName="span"
-										className="eb-toggle-secondary-label-text"
-										ref={secondaryTextRef}
-										// placeholder={__("Second", "essential-blocks")}
-										// style={secondaryLabelStyle}
-										value={secondaryLabelText}
-										onChange={(secondaryLabelText) =>
-											setAttributes({ secondaryLabelText })
-										}
-									/>
+											<RichText
+												tagName="span"
+												className="eb-toggle-secondary-label-text"
+												ref={secondaryTextRef}
+												// placeholder={__("Second", "essential-blocks")}
+												// style={secondaryLabelStyle}
+												value={secondaryLabelText}
+												onChange={(secondaryLabelText) =>
+													setAttributes({ secondaryLabelText })
+												}
+											/>
+										</div>
+									</label>
 								</div>
+							</div>
+						</div>
+
+						<div
+							className="eb-toggle-heading"
+							style={{
+								// ...headingStyle,
+								display: switchStyle !== "toggle" ? "block" : "none",
+							}}
+						>
+							<RichText
+								tagName="span"
+								className="eb-toggle-primary-label"
+								ref={primaryRef}
+								placeholder={__("First", "essential-blocks")}
+								value={primaryLabelText}
+								onChange={(primaryLabelText) =>
+									setAttributes({ primaryLabelText })
+								}
+							/>
+							<label
+								className={`eb-toggle-switch toggle-${switchSize}`}
+								// style={labelStyle}
+							>
+								<input
+									type="checkbox"
+									checked={isPrimary}
+									onChange={(e) => onSwitchClick(e)}
+								/>
+								<span
+									className="eb-toggle-controller"
+									// style={controllerStyle}
+								/>
+								<span
+									className="eb-toggle-slider"
+									// style={sliderStyle}
+								/>
 							</label>
+
+							<span
+								className={`eb-toggle-seperator eb-toggle-${seperatorType}`}
+								// style={seperatorStyle}
+							></span>
+
+							<RichText
+								tagName="span"
+								ref={secondaryRef}
+								className="eb-toggle-secondary-label"
+								placeholder={__("Second", "essential-blocks")}
+								value={secondaryLabelText}
+								onChange={(secondaryLabelText) =>
+									setAttributes({ secondaryLabelText })
+								}
+							/>
+						</div>
+						<div className="eb-toggle-content" ref={contentRef}>
+							<InnerBlocks template={DEFAULT_TEMPLATE} renderAppender={false} />
 						</div>
 					</div>
 				</div>
-
-				<div
-					className="eb-toggle-heading"
-					style={{
-						// ...headingStyle,
-						display: switchStyle !== "toggle" ? "block" : "none",
-					}}
-				>
-					<RichText
-						tagName="span"
-						className="eb-toggle-primary-label"
-						ref={primaryRef}
-						placeholder={__("First", "essential-blocks")}
-						keepPlaceholderOnFocus
-						// style={primaryLabelStyle}
-						value={primaryLabelText}
-						onChange={(primaryLabelText) => setAttributes({ primaryLabelText })}
-					/>
-					<label
-						className={`eb-toggle-switch toggle-${switchSize}`}
-						// style={labelStyle}
-					>
-						<input
-							type="checkbox"
-							checked={isPrimary}
-							onChange={(e) => onSwitchClick(e)}
-						/>
-						<span
-							className="eb-toggle-controller"
-							// style={controllerStyle}
-						/>
-						<span
-							className="eb-toggle-slider"
-							// style={sliderStyle}
-						/>
-					</label>
-
-					<span
-						className={`eb-toggle-seperator eb-toggle-${seperatorType}`}
-						// style={seperatorStyle}
-					></span>
-
-					<RichText
-						tagName="span"
-						ref={secondaryRef}
-						className="eb-toggle-secondary-label"
-						placeholder={__("Second", "essential-blocks")}
-						keepPlaceholderOnFocus
-						// style={secondaryLabelStyle}
-						value={secondaryLabelText}
-						onChange={(secondaryLabelText) =>
-							setAttributes({ secondaryLabelText })
-						}
-					/>
-				</div>
-				<div className="eb-toggle-content" ref={contentRef}>
-					<InnerBlocks template={DEFAULT_TEMPLATE} renderAppender={false} />
-				</div>
 			</div>
-		</div>,
-	];
+		</>
+	);
 };
 
 export default Edit;
