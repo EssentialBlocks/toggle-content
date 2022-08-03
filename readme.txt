@@ -88,7 +88,8 @@ Yes, it will work with any standard WordPress theme.
 == Changelog ==
 
 = 1.2.3 - dev =
-* Improved: Style handler for reusable block 
+* Improved: Style handler for reusable block
+* Improved: update controls
 
 = 1.2.2 - 21/06/2022 =
 * Added: Animation, Custom Css and Responsive Options
