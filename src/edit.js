@@ -39,13 +39,9 @@ const {
 	generateResponsiveRangeStyles,
 	generateBorderShadowStyles,
 	generateTypographyStyles,
+	// mimmikCssForPreviewBtnClick,
 	duplicateBlockIdFix,
 } = window.EBToggleContentControls;
-
-const editorStoreForGettingPreivew =
-	eb_conditional_localize.editor_type === "edit-site"
-		? "core/edit-site"
-		: "core/edit-post";
 
 import classnames from "classnames";
 
@@ -119,15 +115,6 @@ const Edit = ({
 	const primaryRef = useRef(null);
 	const secondaryRef = useRef(null);
 
-	// this useEffect is for setting the resOption attribute to desktop/tab/mobile depending on the added 'eb-res-option-' class
-	useEffect(() => {
-		setAttributes({
-			resOption: select(
-				editorStoreForGettingPreivew
-			).__experimentalGetPreviewDeviceType(),
-		});
-	}, []);
-
 	// this useEffect is for creating a unique blockId for each block's unique className
 	useEffect(() => {
 		const BLOCK_PREFIX = "eb-toggle";
@@ -196,9 +183,8 @@ const Edit = ({
 	useEffect(() => {
 		// Replace removed block with an empty block
 		if (isRemoved) {
-			const { innerBlocks } = select("core/block-editor").getBlocksByClientId(
-				clientId
-			)[0];
+			const { innerBlocks } =
+				select("core/block-editor").getBlocksByClientId(clientId)[0];
 
 			const newBlock = createBlock("core/paragraph", {});
 

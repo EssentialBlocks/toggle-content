@@ -50,11 +50,6 @@ const {
 	AdvancedControls,
 } = window.EBToggleContentControls;
 
-const editorStoreForGettingPreivew =
-	eb_conditional_localize.editor_type === "edit-site"
-		? "core/edit-site"
-		: "core/edit-post";
-
 import objAttributes from "./attributes";
 
 import {
@@ -104,33 +99,6 @@ const Inspector = ({ attributes, setAttributes }) => {
 		spread,
 		inset,
 	} = attributes;
-
-	// this useEffect is for setting the resOption attribute to desktop/tab/mobile depending on the added 'eb-res-option-' class only the first time once
-	useEffect(() => {
-		setAttributes({
-			resOption: select(editorStoreForGettingPreivew).__experimentalGetPreviewDeviceType(),
-		});
-	}, []);
-
-	// // this useEffect is for mimmiking css for all the eb blocks on resOption changing
-	// useEffect(() => {
-	// 	mimmikCssForResBtns({
-	// 		domObj: document,
-	// 		resOption,
-	// 	});
-	// }, [resOption]);
-
-	// // this useEffect is to mimmik css for responsive preview in the editor page when clicking the buttons in the 'Preview button of wordpress' located beside the 'update' button while any block is selected and it's inspector panel is mounted in the DOM
-	// useEffect(() => {
-	// 	const cleanUp = mimmikCssOnPreviewBtnClickWhileBlockSelected({
-	// 		domObj: document,
-	// 		select,
-	// 		setAttributes,
-	// 	});
-	// 	return () => {
-	// 		cleanUp();
-	// 	};
-	// }, []);
 
 	const resRequiredProps = {
 		setAttributes,
