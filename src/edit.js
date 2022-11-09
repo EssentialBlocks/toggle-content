@@ -11,7 +11,7 @@ import {
 	RichText,
 } from "@wordpress/block-editor";
 import { createBlock } from "@wordpress/blocks";
-import { select, subscribe, dispatch } from "@wordpress/data";
+import { select, subscribe, dispatch, useSelect } from "@wordpress/data";
 
 /**
  * Internal dependencies
@@ -127,14 +127,6 @@ const Edit = ({
 		});
 	}, []);
 
-	// // this useEffect is for mimmiking css when responsive options clicked from wordpress's 'preview' button
-	// useEffect(() => {
-	// 	mimmikCssForPreviewBtnClick({
-	// 		domObj: document,
-	// 		select,
-	// 	});
-	// }, []);
-
 	const blockProps = useBlockProps({
 		className: classnames(className, `eb-guten-block-main-parent-wrapper`),
 	});
@@ -169,12 +161,23 @@ const Edit = ({
 		}
 	});
 
+	/**
+	 * Get innerBlocks
+	 */
+	const { innerBlocks } = useSelect(
+		(select) => select("core/block-editor").getBlocksByClientId(clientId)[0]
+	);
+	useEffect(() => {
+		if (innerBlocks && innerBlocks.length === 2) {
+			setRemoved(false);
+		} else {
+			setRemoved(true);
+		}
+	}, [innerBlocks]);
+
 	useEffect(() => {
 		// Set block id
 		setAttributes({ id: clientId });
-
-		// Listen primary/seconday block remove event
-		subscribe(checkInnerBlocks);
 
 		// Add label click event listender for text type switch
 		setClickEvents();
@@ -183,19 +186,31 @@ const Edit = ({
 	useEffect(() => {
 		// Replace removed block with an empty block
 		if (isRemoved) {
-			const { innerBlocks } =
-				select("core/block-editor").getBlocksByClientId(clientId)[0];
+			const blocks = select("core/block-editor").getBlocksByClientId(
+				clientId
+			)[0];
+
+			const innerBlocks =
+				blocks && blocks.hasOwnProperty("innterBlocks")
+					? blocks.innerBlocks
+					: createBlock("core/paragraph", {});
+
+			const { replaceInnerBlocks } = dispatch("core/block-editor");
 
 			const newBlock = createBlock("core/paragraph", {});
 
+			const filterInnerBlock = innerBlocks[0]
+				? innerBlocks[0]
+				: createBlock("core/paragraph", {});
+
 			let replaceBlocks = [];
 			if (isPrimary) {
-				replaceBlocks = [newBlock, innerBlocks[0]];
+				replaceBlocks = [newBlock, filterInnerBlock];
 			} else {
-				replaceBlocks = [innerBlocks[0], newBlock];
+				replaceBlocks = [filterInnerBlock, newBlock];
 			}
 
-			dispatch("core/block-editor").replaceInnerBlocks(clientId, replaceBlocks);
+			replaceInnerBlocks(clientId, replaceBlocks);
 		}
 	}, [isRemoved]);
 
@@ -218,18 +233,6 @@ const Edit = ({
 	const hideBlock = (node) => (node.style.display = "none");
 
 	const showBlock = (node) => (node.style.display = "block");
-
-	const checkInnerBlocks = () => {
-		const block = select("core/block-editor").getBlocksByClientId(clientId)[0];
-
-		if (block) {
-			const { innerBlocks } = block;
-
-			innerBlocks && innerBlocks.length === 2
-				? setRemoved(false)
-				: setRemoved(true);
-		}
-	};
 
 	const onSwitchClick = (e) => {
 		setPrimary(e.target.checked);
@@ -670,100 +673,100 @@ const Edit = ({
 			<div {...blockProps}>
 				<style>
 					{`
-
-			${
-				!isPrimary
-					? `
-					.${blockId}.eb-toggle-wrapper .eb-text-switch-toggle{
-						margin-left: 50%;
+					.eb-toggle-content .block-editor-block-list__layout > p:nth-child(2) > span {
+						opacity: 1 !important;
 					}
-					`
-					: ""
-			}
+					${
+						!isPrimary
+							? `
+							.${blockId}.eb-toggle-wrapper .eb-text-switch-toggle{
+								margin-left: 50%;
+							}
+							`
+							: ""
+					}
 
-			${
-				switchStyle !== "toggle"
-					? `
-				.${blockId}.eb-toggle-wrapper .eb-text-switch-toggle,
-				.${blockId}.eb-toggle-wrapper .eb-toggle-controller{
-					transform: ${getTransform()};
-					border-radius: ${getRadius()};
-				}
-				`
-					: ""
-			}
+					${
+						switchStyle !== "toggle"
+							? `
+						.${blockId}.eb-toggle-wrapper .eb-text-switch-toggle,
+						.${blockId}.eb-toggle-wrapper .eb-toggle-controller{
+							transform: ${getTransform()};
+							border-radius: ${getRadius()};
+						}
+						`
+							: ""
+					}
 
-				
-			.${blockId}.eb-toggle-wrapper .eb-toggle-primary-label-text,
-			.${blockId}.eb-toggle-wrapper .eb-toggle-primary-label
-			{
-				color: ${
-					isPrimary
-						? activeColor || primaryLabelColor || "inherit"
-						: primaryLabelColor || "inherit"
-				};
-				${
-					switchStyle === "text"
-						? `background: ${
-								isPrimary
-									? activeBg || DEFAULT_ACTIVE_BG
-									: backgroundColor || DEFAULT_BACKGROUND
-						  };`
-						: ""
-				}
-			}
+						
+					.${blockId}.eb-toggle-wrapper .eb-toggle-primary-label-text,
+					.${blockId}.eb-toggle-wrapper .eb-toggle-primary-label
+					{
+						color: ${
+							isPrimary
+								? activeColor || primaryLabelColor || "inherit"
+								: primaryLabelColor || "inherit"
+						};
+						${
+							switchStyle === "text"
+								? `background: ${
+										isPrimary
+											? activeBg || DEFAULT_ACTIVE_BG
+											: backgroundColor || DEFAULT_BACKGROUND
+								  };`
+								: ""
+						}
+					}
 
-				
-			.${blockId}.eb-toggle-wrapper .eb-toggle-secondary-label-text,
-			.${blockId}.eb-toggle-wrapper .eb-toggle-secondary-label
-			{
-				color: ${
-					!isPrimary
-						? activeColor || secondaryLabelColor || "inherit"
-						: secondaryLabelColor || "inherit"
-				};
-				${
-					switchStyle === "text"
-						? `background: ${
-								!isPrimary
-									? activeBg || DEFAULT_ACTIVE_BG
-									: backgroundColor || DEFAULT_BACKGROUND
-						  };`
-						: ""
-				}
-			}
-
-
-			.${blockId}.eb-toggle-wrapper .eb-toggle-seperator{
-				background:${backgroundColor || DEFAULT_BACKGROUND};
-			}
-			
+						
+					.${blockId}.eb-toggle-wrapper .eb-toggle-secondary-label-text,
+					.${blockId}.eb-toggle-wrapper .eb-toggle-secondary-label
+					{
+						color: ${
+							!isPrimary
+								? activeColor || secondaryLabelColor || "inherit"
+								: secondaryLabelColor || "inherit"
+						};
+						${
+							switchStyle === "text"
+								? `background: ${
+										!isPrimary
+											? activeBg || DEFAULT_ACTIVE_BG
+											: backgroundColor || DEFAULT_BACKGROUND
+								  };`
+								: ""
+						}
+					}
 
 
-				${desktopAllStyles}
+					.${blockId}.eb-toggle-wrapper .eb-toggle-seperator{
+						background:${backgroundColor || DEFAULT_BACKGROUND};
+					}
 
-				/* mimmikcssStart */
+					${desktopAllStyles}
 
-				${resOption === "Tablet" ? tabAllStyles : " "}
-				${resOption === "Mobile" ? tabAllStyles + mobileAllStyles : " "}
+					/* mimmikcssStart */
 
-				/* mimmikcssEnd */
+					${resOption === "Tablet" ? tabAllStyles : " "}
+					${resOption === "Mobile" ? tabAllStyles + mobileAllStyles : " "}
 
-				@media all and (max-width: 1024px) {	
+					/* mimmikcssEnd */
 
-					/* tabcssStart */			
-					${softMinifyCssStrings(tabAllStyles)}
-					/* tabcssEnd */			
-				
-				}
-				
-				@media all and (max-width: 767px) {
+					@media all and (max-width: 1024px) {	
+
+						/* tabcssStart */			
+						${softMinifyCssStrings(tabAllStyles)}
+						/* tabcssEnd */			
 					
-					/* mobcssStart */			
-					${softMinifyCssStrings(mobileAllStyles)}
-					/* mobcssEnd */			
-				
-				}
+					}
+					
+					@media all and (max-width: 767px) {
+						
+						/* mobcssStart */			
+						${softMinifyCssStrings(mobileAllStyles)}
+						/* mobcssEnd */			
+					
+					}
 				`}
 				</style>
 				<div className={`eb-parent-wrapper eb-parent-${blockId} ${classHook}`}>
