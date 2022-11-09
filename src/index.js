@@ -14,7 +14,7 @@ import example from "./example";
 import metadata from "../block.json";
 import attributes from "./attributes";
 import "./style.scss";
-const { ebConditionalRegisterBlockType } = EBToggleContentControls;
+const { ebConditionalRegisterBlockType } = window.EBToggleContentControls;
 
 ebConditionalRegisterBlockType(metadata, {
 	icon: ToggleContentIcon,
