@@ -23,7 +23,7 @@
  */
 
 
-define('TOGGLE_CONTENT_VERSION', "1.2.4");
+define('TOGGLE_CONTENT_VERSION', "1.2.5");
 define('TOGGLE_CONTENT_ADMIN_URL', plugin_dir_url(__FILE__));
 define('TOGGLE_CONTENT_ADMIN_PATH', dirname(__FILE__));
 
