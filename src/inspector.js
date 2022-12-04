@@ -10,7 +10,7 @@ import {
 	RangeControl,
 	SelectControl,
 	ToggleControl,
-	TabPanel
+	TabPanel,
 } from "@wordpress/components";
 import { select } from "@wordpress/data";
 
@@ -178,13 +178,13 @@ const Inspector = ({ attributes, setAttributes }) => {
 
 										{(switchStyle === "rounded" ||
 											switchStyle === "reactangle") && (
-												<SelectControl
-													label={__("Switch Size", "essential-blocks")}
-													value={switchSize}
-													options={SWITCH_SIZE}
-													onChange={(switchSize) => setAttributes({ switchSize })}
-												/>
-											)}
+											<SelectControl
+												label={__("Switch Size", "essential-blocks")}
+												value={switchSize}
+												options={SWITCH_SIZE}
+												onChange={(switchSize) => setAttributes({ switchSize })}
+											/>
+										)}
 
 										{switchStyle === "toggle" && (
 											<>
@@ -231,27 +231,27 @@ const Inspector = ({ attributes, setAttributes }) => {
 
 										{(switchStyle === "rectangle" ||
 											switchStyle === "rounded") && (
-												<>
-													<UnitControl
-														selectedUnit={labelSpaceUnit}
-														unitTypes={[
-															{ label: "px", value: "px" },
-															{ label: "%", value: "%" },
-														]}
-														onClick={(labelSpaceUnit) =>
-															setAttributes({ labelSpaceUnit })
-														}
-													/>
+											<>
+												<UnitControl
+													selectedUnit={labelSpaceUnit}
+													unitTypes={[
+														{ label: "px", value: "px" },
+														{ label: "%", value: "%" },
+													]}
+													onClick={(labelSpaceUnit) =>
+														setAttributes({ labelSpaceUnit })
+													}
+												/>
 
-													<RangeControl
-														label={__("Label Space", "essential-blocks")}
-														value={labelSpace}
-														onChange={(labelSpace) =>
-															setAttributes({ labelSpace })
-														}
-													/>
-												</>
-											)}
+												<RangeControl
+													label={__("Label Space", "essential-blocks")}
+													value={labelSpace}
+													onChange={(labelSpace) =>
+														setAttributes({ labelSpace })
+													}
+												/>
+											</>
+										)}
 
 										<TypographyDropdown
 											baseLabel="Typography"
@@ -305,7 +305,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 											{backgroundType === "gradient" && (
 												<PanelBody
 													title={__("Background Gradient", "essential-blocks")}
-												// initialOpen={false}
+													// initialOpen={false}
 												>
 													<GradientColorControl
 														gradientColor={
@@ -355,7 +355,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 											{controllerType === "gradient" && (
 												<PanelBody
 													title={__("Controller Gradient", "essential-blocks")}
-												// initialOpen={false}
+													// initialOpen={false}
 												>
 													<GradientColorControl
 														gradientColor={
@@ -371,7 +371,10 @@ const Inspector = ({ attributes, setAttributes }) => {
 										</PanelBody>
 									)}
 
-									<PanelBody title={__("Border", "essential-blocks")} initialOpen={false}>
+									<PanelBody
+										title={__("Border", "essential-blocks")}
+										initialOpen={false}
+									>
 										<SelectControl
 											label={__("Border Style", "essential-blocks")}
 											value={borderStyle}
@@ -407,7 +410,10 @@ const Inspector = ({ attributes, setAttributes }) => {
 									</PanelBody>
 
 									{switchStyle !== "text" && (
-										<PanelBody title={__("Shadow", "essential-blocks")} initialOpen={false}>
+										<PanelBody
+											title={__("Shadow", "essential-blocks")}
+											initialOpen={false}
+										>
 											<ColorControl
 												label={__("Shadow Color", "essential-blocks")}
 												color={shadowColor}
@@ -477,7 +483,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 								<>
 									<PanelBody
 										title={__("Margin & Padding")}
-									// initialOpen={true}
+										// initialOpen={true}
 									>
 										<ResponsiveDimensionsControl
 											resRequiredProps={resRequiredProps}
@@ -491,7 +497,10 @@ const Inspector = ({ attributes, setAttributes }) => {
 										/>
 									</PanelBody>
 
-									<PanelBody title={__("Background ", "essential-blocks")} initialOpen={false}>
+									<PanelBody
+										title={__("Background ", "essential-blocks")}
+										initialOpen={false}
+									>
 										<BackgroundControl
 											controlName={WrpBgConst}
 											resRequiredProps={resRequiredProps}
@@ -502,12 +511,15 @@ const Inspector = ({ attributes, setAttributes }) => {
 										<BorderShadowControl
 											controlName={WrpBdShadowConst}
 											resRequiredProps={resRequiredProps}
-										// noShadow
-										// noBorder
+											// noShadow
+											// noBorder
 										/>
 									</PanelBody>
 
-									<AdvancedControls attributes={attributes} setAttributes={setAttributes} />
+									<AdvancedControls
+										attributes={attributes}
+										setAttributes={setAttributes}
+									/>
 								</>
 							)}
 						</div>

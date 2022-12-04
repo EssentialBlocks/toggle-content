@@ -13,6 +13,8 @@ import {
 import { createBlock } from "@wordpress/blocks";
 import { select, subscribe, dispatch, useSelect } from "@wordpress/data";
 
+const { times } = lodash;
+
 /**
  * Internal dependencies
  */
@@ -186,14 +188,9 @@ const Edit = ({
 	useEffect(() => {
 		// Replace removed block with an empty block
 		if (isRemoved) {
-			const blocks = select("core/block-editor").getBlocksByClientId(
+			const { innerBlocks } = select("core/block-editor").getBlocksByClientId(
 				clientId
 			)[0];
-
-			const innerBlocks =
-				blocks && blocks.hasOwnProperty("innterBlocks")
-					? blocks.innerBlocks
-					: createBlock("core/paragraph", {});
 
 			const { replaceInnerBlocks } = dispatch("core/block-editor");
 
@@ -416,17 +413,17 @@ const Edit = ({
 		${wrpBdShdStyesDesktop}
 		transition: all 0.5s, ${wrpBgTransitionStyle}, ${wrpBdShdTransitionStyle};
 	}
-	
+
 	.${blockId}.eb-toggle-wrapper:hover{
 		${wrpHoverBackgroundStylesDesktop}
 		${wrpBdShdStylesHoverDesktop}
 	}
-	
+
 	.${blockId}.eb-toggle-wrapper:before{
 		${wrpOverlayStylesDesktop}
 		transition: all 0.5s, ${wrpOvlTransitionStyle};
 	}
-	
+
 	.${blockId}.eb-toggle-wrapper:hover:before{
 		${wrpHoverOverlayStylesDesktop}
 	}
@@ -453,7 +450,7 @@ const Edit = ({
 			`
 			: ""
 	}
-	
+
 	.${blockId}.eb-toggle-wrapper .eb-text-switch-toggle,
 	.${blockId}.eb-toggle-wrapper .eb-toggle-controller
 	{
@@ -464,13 +461,13 @@ const Edit = ({
 		background-image:${controllerType === "gradient" ? controllerGradient : "none"};
 		transition:0.4s;
 	}
-	
+
 	.${blockId}.eb-toggle-wrapper .eb-toggle-heading{
 		text-align: ${alignment || "center"};
 		${tglTypoStylesDesktop}
 		${headingSpaceDesktop}
 	}
-	
+
 	.${blockId}.eb-toggle-wrapper .eb-text-switch-label,
 	.${blockId}.eb-toggle-wrapper .eb-toggle-slider{
 		${switchStyle === "toggle" ? `${btnHeightDesktop}` : ""}
@@ -483,14 +480,14 @@ const Edit = ({
 		box-shadow: ${hOffset || 0}px ${vOffset || 0}px ${blur || 0}px ${
 		spread || 0
 	}px ${shadowColor || "#00000000"} ${inset ? "inset" : ""};
-	
+
 	}
 
 	.${blockId}.eb-toggle-wrapper .eb-toggle-switch{
 		margin: 0 ${labelSpace || 10}${labelSpaceUnit || px};
 		${switchStyle === "text" ? `display:none` : ""}
 	}
-	
+
 	${
 		switchStyle === "text"
 			? `
@@ -546,11 +543,11 @@ const Edit = ({
 		${wrpHoverBackgroundStylesTab}
 		${wrpBdShdStylesHoverTab}
 	}
-	
+
 	.${blockId}.eb-toggle-wrapper:before{
 		${wrpOverlayStylesTab}
 	}
-	
+
 	.${blockId}.eb-toggle-wrapper:hover:before{
 		${wrpHoverOverlayStylesTab}
 	}
@@ -559,7 +556,7 @@ const Edit = ({
 		${tglTypoStylesTab}
 		${headingSpaceTab}
 	}
-	
+
 	${
 		switchStyle === "toggle"
 			? `
@@ -574,8 +571,8 @@ const Edit = ({
 			`
 			: ""
 	}
-	
-	
+
+
 	`;
 
 	const wrapperStylesMobile = `
@@ -590,11 +587,11 @@ const Edit = ({
 		${wrpHoverBackgroundStylesMobile}
 		${wrpBdShdStylesHoverMobile}
 	}
-	
+
 	.${blockId}.eb-toggle-wrapper:before{
 		${wrpOverlayStylesMobile}
 	}
-	
+
 	.${blockId}.eb-toggle-wrapper:hover:before{
 		${wrpHoverOverlayStylesMobile}
 	}
@@ -610,7 +607,7 @@ const Edit = ({
 			.${blockId}.eb-toggle-wrapper .eb-text-switch-content{
 				${btnWidthMobile}
 			}
-			
+
 			.${blockId}.eb-toggle-wrapper .eb-text-switch-label,
 			.${blockId}.eb-toggle-wrapper .eb-toggle-slider{
 				${btnHeightMobile}
@@ -618,11 +615,11 @@ const Edit = ({
 			`
 			: ""
 	}
-	
+
 	`;
 
 	// all css styles for large screen width (desktop/laptop) in strings ⬇
-	const desktopAllStyles = softMinifyCssStrings(`		
+	const desktopAllStyles = softMinifyCssStrings(`
 		${wrapperStylesDesktop}
 
 
@@ -698,7 +695,7 @@ const Edit = ({
 							: ""
 					}
 
-						
+
 					.${blockId}.eb-toggle-wrapper .eb-toggle-primary-label-text,
 					.${blockId}.eb-toggle-wrapper .eb-toggle-primary-label
 					{
@@ -718,7 +715,7 @@ const Edit = ({
 						}
 					}
 
-						
+
 					.${blockId}.eb-toggle-wrapper .eb-toggle-secondary-label-text,
 					.${blockId}.eb-toggle-wrapper .eb-toggle-secondary-label
 					{
@@ -752,20 +749,20 @@ const Edit = ({
 
 					/* mimmikcssEnd */
 
-					@media all and (max-width: 1024px) {	
+					@media all and (max-width: 1024px) {
 
-						/* tabcssStart */			
+						/* tabcssStart */
 						${softMinifyCssStrings(tabAllStyles)}
-						/* tabcssEnd */			
-					
+						/* tabcssEnd */
+
 					}
-					
+
 					@media all and (max-width: 767px) {
-						
-						/* mobcssStart */			
+
+						/* mobcssStart */
 						${softMinifyCssStrings(mobileAllStyles)}
-						/* mobcssEnd */			
-					
+						/* mobcssEnd */
+
 					}
 				`}
 				</style>
