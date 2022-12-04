@@ -2,7 +2,7 @@
 Contributors: wpdevteam, re_enter_rupok, Asif2BD, rahat89, hztyfoon, fencermonir
 Tags: gutenberg, block, blocks, editor, toggle, toggle content, content toggle, content switch, switch block, gutenberg blocks
 Requires at least: 5.6
-Tested up to: 6.0
+Tested up to: 6.1
 Stable tag: 1.2.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -31,7 +31,7 @@ This Block is brought to you by [WPDeveloper](https://wpdeveloper.com), the team
 - For documentation and tutorials go to our [documentation](https://essential-blocks.com/docs/)
 - To report issue and contribution visit [Github](https://github.com/EssentialBlocks/toggle-content).
 - If you have any more questions, visit our support on the [Plugin's Forum](https://wordpress.org/support/plugin/toggle-content).
-- For more information about features, FAQs and documentation, check out our website at [WPDeveloper](https://wpdeveloper.net/).
+- For more information about features, FAQs and documentation, check out our website at [WPDeveloper](https://wpdeveloper.com/).
 
 ## 🙌 JOIN THE COMMUNITY ##
 
@@ -60,7 +60,7 @@ Consider checking out our other WordPress solutions & boost your WordPress websi
 ⚡ [Flexia](http://wordpress.org/plugins/flexia): Most lightweight, customizable & multi purpose theme for WordPress
 
 
-Visit [WPDeveloper](https://wpdeveloper.net/) to learn more about how to do better in WordPress with [Help Tutorial, Tips & Tricks](https://wpdeveloper.net/blog).
+Visit [WPDeveloper](https://wpdeveloper.com/) to learn more about how to do better in WordPress with [Help Tutorial, Tips & Tricks](https://wpdeveloper.com/blog).
 
 == Installation ==
 
@@ -87,7 +87,7 @@ Yes, it will work with any standard WordPress theme.
 
 == Changelog ==
 
-= 1.2.6 - dev =
+= 1.2.6 - 4/12/2022 =
 * Improved: update congrols
 
 = 1.2.5 - 9/11/2022 =
