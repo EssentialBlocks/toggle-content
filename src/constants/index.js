@@ -1,8 +1,8 @@
 import { __ } from "@wordpress/i18n";
 
 export const DEFAULT_TEMPLATE = [
-	["core/paragraph", {}],
-	["core/paragraph", {}],
+	["essential-blocks/wrapper", {}],
+	["essential-blocks/wrapper", {}],
 ];
 
 export const INITIAL_CONTENT = [

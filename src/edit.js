@@ -170,10 +170,14 @@ const Edit = ({
 		(select) => select("core/block-editor").getBlocksByClientId(clientId)[0]
 	);
 	useEffect(() => {
-		if (innerBlocks && innerBlocks.length === 2) {
-			setRemoved(false);
-		} else {
-			setRemoved(true);
+		const isBlockJustInserted =
+			select("core/block-editor").wasBlockJustInserted(clientId);
+		if (!isBlockJustInserted) {
+			if (innerBlocks && innerBlocks.length === 2) {
+				setRemoved(false);
+			} else {
+				setRemoved(true);
+			}
 		}
 	}, [innerBlocks]);
 
@@ -188,17 +192,12 @@ const Edit = ({
 	useEffect(() => {
 		// Replace removed block with an empty block
 		if (isRemoved) {
-			const { innerBlocks } = select("core/block-editor").getBlocksByClientId(
-				clientId
-			)[0];
-
 			const { replaceInnerBlocks } = dispatch("core/block-editor");
-
-			const newBlock = createBlock("core/paragraph", {});
+			const newBlock = createBlock("essential-blocks/wrapper", {});
 
 			const filterInnerBlock = innerBlocks[0]
 				? innerBlocks[0]
-				: createBlock("core/paragraph", {});
+				: createBlock("essential-blocks/wrapper", {});
 
 			let replaceBlocks = [];
 			if (isPrimary) {
@@ -875,7 +874,11 @@ const Edit = ({
 							/>
 						</div>
 						<div className="eb-toggle-content" ref={contentRef}>
-							<InnerBlocks template={DEFAULT_TEMPLATE} renderAppender={false} />
+							<InnerBlocks
+								templateLock={false}
+								template={DEFAULT_TEMPLATE}
+								renderAppender={false}
+							/>
 						</div>
 					</div>
 				</div>

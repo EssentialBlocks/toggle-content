@@ -50,3 +50,4 @@ dist/*.*.map
 src
 util
 .wordpress-org
+/controls/
