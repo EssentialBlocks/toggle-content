@@ -170,8 +170,9 @@ const Edit = ({
 		(select) => select("core/block-editor").getBlocksByClientId(clientId)[0]
 	);
 	useEffect(() => {
-		const isBlockJustInserted =
-			select("core/block-editor").wasBlockJustInserted(clientId);
+		const isBlockJustInserted = select(
+			"core/block-editor"
+		).wasBlockJustInserted(clientId);
 		if (!isBlockJustInserted) {
 			if (innerBlocks && innerBlocks.length === 2) {
 				setRemoved(false);
@@ -193,11 +194,11 @@ const Edit = ({
 		// Replace removed block with an empty block
 		if (isRemoved) {
 			const { replaceInnerBlocks } = dispatch("core/block-editor");
-			const newBlock = createBlock("essential-blocks/wrapper", {});
+			const newBlock = createBlock("core/group", {});
 
 			const filterInnerBlock = innerBlocks[0]
 				? innerBlocks[0]
-				: createBlock("essential-blocks/wrapper", {});
+				: createBlock("core/group", {});
 
 			let replaceBlocks = [];
 			if (isPrimary) {
