@@ -89,7 +89,7 @@ Yes, it will work with any standard WordPress theme.
 
 = 1.2.7 - dev =
 * Improved: font loader and Controls
-* Added: Wrapper block as a inner block
+* Added: core group block as a inner block
 
 = 1.2.6 - 4/12/2022 =
 * Improved: update congrols
