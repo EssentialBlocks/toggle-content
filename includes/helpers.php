@@ -48,11 +48,11 @@ class Toggle_Content_Helper
          */
         if ($pagenow == 'post-new.php' || $pagenow == 'post.php' || $pagenow == 'site-editor.php' || ($pagenow == 'themes.php' && !empty($_SERVER['QUERY_STRING']) && str_contains($_SERVER['QUERY_STRING'], 'gutenberg-edit-site'))) {
 
-            $controls_dependencies = include_once TOGGLE_CONTENT_ADMIN_PATH . '/dist/controls.asset.php';
+            $controls_dependencies = include_once TOGGLE_CONTENT_ADMIN_PATH . '/dist/modules.asset.php';
 
             wp_register_script(
                 "toggle-content-controls-util",
-                TOGGLE_CONTENT_ADMIN_URL . 'dist/controls.js',
+                TOGGLE_CONTENT_ADMIN_URL . 'dist/modules.js',
                 array_merge($controls_dependencies['dependencies']),
                 $controls_dependencies['version'],
                 true
@@ -61,6 +61,7 @@ class Toggle_Content_Helper
             wp_localize_script('toggle-content-controls-util', 'EssentialBlocksLocalize', array(
                 'eb_wp_version' => (float) get_bloginfo('version'),
                 'rest_rootURL' => get_rest_url(),
+								'fontAwesome' => "true"
             ));
 
             if ($pagenow == 'post-new.php' || $pagenow == 'post.php') {
@@ -75,7 +76,7 @@ class Toggle_Content_Helper
 
             wp_enqueue_style(
                 'toggle-content-editor-css',
-                TOGGLE_CONTENT_ADMIN_URL . 'dist/controls.css',
+                TOGGLE_CONTENT_ADMIN_URL . 'dist/modules.css',
                 array(),
                 $controls_dependencies['version'],
                 'all'

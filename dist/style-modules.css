@@ -1,0 +1,131 @@
+/*!************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/controls/icon-picker/style.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************/
+#wipIcon {
+  margin-bottom: 20px;
+  max-width: 30px;
+}
+#wipIcon .dashicon,
+#wipIcon i {
+  font-size: 30px;
+}
+#wipIcon .dashicon:hover,
+#wipIcon i:hover {
+  cursor: pointer;
+  color: #3175d5;
+}
+
+.wip-iconpicker-popup {
+  width: 350px;
+  top: 10px !important;
+}
+.wip-iconpicker-popup .components-search-control__input-wrapper {
+  margin: 10px 15px;
+}
+.wip-iconpicker-popup .components-search-control__input-wrapper input {
+  border: 1px solid #d0d5dd !important;
+  background-color: #fff !important;
+  border-radius: 8px !important;
+}
+.wip-iconpicker-popup .components-popover__content {
+  width: 100%;
+}
+
+.wip-parent-tab-panel .components-tab-panel__tabs {
+  border-bottom: 1px solid #eaecf0;
+}
+.wip-parent-tab-panel .wip-icon-tab {
+  height: 30px;
+  color: #9f9d9d;
+}
+.wip-parent-tab-panel .wip-icon-tab.active-tab,
+.wip-parent-tab-panel .wip-tab.active-tab {
+  border-bottom: 2px solid #3c434a;
+  color: #3c434a;
+}
+
+.wip-icon-area {
+  display: flex;
+  flex-wrap: wrap;
+  width: calc(100% - 20px);
+  gap: 5px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  align-items: flex-start;
+  justify-content: flex-start;
+  max-height: 225px;
+  margin: 10px 15px;
+}
+.wip-icon-area .wip-icon-box {
+  text-align: center;
+  width: calc(20% - 4px);
+  height: 50px;
+  position: relative;
+  transition: 0.3s;
+  order: 2;
+}
+.wip-icon-area .wip-icon-box.active {
+  background-color: #f2f4f7;
+  border-radius: 8px;
+  order: 1;
+}
+.wip-icon-area .wip-icon-box:hover {
+  background-color: #f2f4f7;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.wip-icon-area .wip-icon-box .wip-icon-content {
+  height: 100%;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wip-icon-area .wip-icon-box .dashicon,
+.wip-icon-area .wip-icon-box i {
+  font-size: 22px;
+  display: block;
+  margin: 0 auto;
+}
+.wip-icon-area .wip-icon-box .components-panel__row {
+  font-size: 11px;
+  line-height: 1.4;
+  border-radius: 8px;
+  display: block;
+  text-transform: capitalize;
+  background-color: #101828;
+  color: #ffffff;
+  height: auto !important;
+  min-height: auto !important;
+  padding: 10px 5px;
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  width: 130%;
+  z-index: 999;
+}
+.wip-icon-area .wip-icon-box .components-panel__row:before {
+  content: "";
+  position: absolute;
+  left: calc(50% - 5px);
+  top: -6px;
+  border-top: none;
+  border-right: 6px solid transparent;
+  border-left: 6px solid transparent;
+  border-bottom: 6px solid black;
+}
+
+.wip-social-profile #wipIcon {
+  margin-bottom: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  min-width: 30px;
+}
+.wip-social-profile #wipIcon .dashicon,
+.wip-social-profile #wipIcon i {
+  font-size: 18px;
+}
+
+/*# sourceMappingURL=style-modules.css.map*/

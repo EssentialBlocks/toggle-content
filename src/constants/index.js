@@ -1,8 +1,8 @@
 import { __ } from "@wordpress/i18n";
 
 export const DEFAULT_TEMPLATE = [
-	["core/group", {}],
-	["core/group", {}],
+	["core/paragraph", {}],
+	["core/paragraph", {}],
 ];
 
 export const INITIAL_CONTENT = [
@@ -65,10 +65,7 @@ export const TEXT_DECORATION = [
 	{ label: __("Overline", "essential-blocks"), value: "overline" },
 	{ label: __("Line Through", "essential-blocks"), value: "line-through" },
 	{ label: __("Underline", "essential-blocks"), value: "underline" },
-	{
-		label: __("Underline Oveline", "essential-blocks"),
-		value: "underline overline",
-	},
+	{ label: __("Underline Oveline", "essential-blocks"), value: "underline overline" },
 ];
 
 export const DEFAULT_BACKGROUND = "#3074ff";

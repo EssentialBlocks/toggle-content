@@ -7,6 +7,5 @@
 	"supports": {
 		"align": ["wide", "full"]
 	},
-	"textdomain": "toggle-content",
-	"editorScript": "file:./dist/index.js"
+	"textdomain": "toggle-content"
 }

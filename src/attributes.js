@@ -1,15 +1,8 @@
 import * as typoPrefixs from "./constants/typographyPrefixConstants";
 
-import {
-	tglWrapMarginConst,
-	tglWrapPaddingConst,
-} from "./constants/dimensionsConstants";
+import { tglWrapMarginConst, tglWrapPaddingConst } from "./constants/dimensionsConstants";
 
-import {
-	rangeButtonWidth,
-	rangeButtonHeight,
-	rangeHeadingSpace,
-} from "./constants/rangeNames";
+import { rangeButtonWidth, rangeButtonHeight, rangeHeadingSpace } from "./constants/rangeNames";
 
 import { WrpBgConst } from "./constants/backgroundsConstants";
 import { WrpBdShadowConst } from "./constants/borderShadowConstants";

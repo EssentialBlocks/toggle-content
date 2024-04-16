@@ -6,7 +6,7 @@
  * Description: Toggle Content block for Gutenberg
  * Author: WPDeveloper
  * Author URI: https://wpdeveloper.net
- * Version: 1.2.7
+ * Version: 1.2.8
  * License: GPL3+
  * License URI: http://www.gnu.org/licenses/gpl-3.0.txt
  * Text Domain: toggle-content
@@ -21,7 +21,7 @@
  * @see https://developer.wordpress.org/block-editor/tutorials/block-tutorial/applying-styles-with-stylesheets/
  */
 
-define( 'TOGGLE_CONTENT_VERSION', "1.2.7" );
+define( 'TOGGLE_CONTENT_VERSION', "1.2.8" );
 define( 'TOGGLE_CONTENT_ADMIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'TOGGLE_CONTENT_ADMIN_PATH', dirname( __FILE__ ) );
 
