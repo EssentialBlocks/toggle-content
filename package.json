@@ -1,6 +1,6 @@
 {
 	"name": "toggle-content",
-	"version": "1.2.8",
+	"version": "1.5.0",
 	"description": "Example block written with ESNext standard and JSX support – build step required.",
 	"author": "The WordPress Contributors",
 	"license": "GPL-2.0-or-later",

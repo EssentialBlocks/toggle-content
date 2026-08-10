@@ -6,13 +6,21 @@
  * Description: Toggle Content block for Gutenberg
  * Author: WPDeveloper
  * Author URI: https://wpdeveloper.net
- * Version: 1.2.8
+ * Version: 1.5.0
  * License: GPL3+
  * License URI: http://www.gnu.org/licenses/gpl-3.0.txt
  * Text Domain: toggle-content
+ * Requires at least: 6.0
+ * Tested up to: 7.0
+ * Requires PHP: 7.4
  *
  * @package toggle-content
  */
+
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 
 /**
  * Registers all block assets so that they can be enqueued through the block editor
@@ -21,24 +29,37 @@
  * @see https://developer.wordpress.org/block-editor/tutorials/block-tutorial/applying-styles-with-stylesheets/
  */
 
-define( 'TOGGLE_CONTENT_VERSION', "1.2.8" );
+define( 'TOGGLE_CONTENT_VERSION', "1.5.0" );
 define( 'TOGGLE_CONTENT_ADMIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'TOGGLE_CONTENT_ADMIN_PATH', dirname( __FILE__ ) );
 
 require_once __DIR__ . '/includes/font-loader.php';
 require_once __DIR__ . '/includes/post-meta.php';
 require_once __DIR__ . '/includes/helpers.php';
-require_once __DIR__ . '/lib/style-handler/style-handler.php';
+
+/**
+ * The style-handler is shipped as a git submodule. Guard the include so an
+ * uninitialised submodule degrades to "no generated styles" instead of a fatal.
+ */
+if ( file_exists( __DIR__ . '/lib/style-handler/style-handler.php' ) ) {
+    require_once __DIR__ . '/lib/style-handler/style-handler.php';
+}
 
 function create_block_toggle_content_block_init() {
 
     $script_asset_path = TOGGLE_CONTENT_ADMIN_PATH . "/dist/index.asset.php";
     if ( ! file_exists( $script_asset_path ) ) {
-        throw new Error(
-            'You need to run `npm start` or `npm run build` for the "toggle-content/toggle-content" block first.'
-        );
+        // Missing build output must not fatal the whole site on `init`.
+        add_action( 'admin_notices', 'toggle_content_missing_build_notice' );
+        return;
     }
-    $script_asset     = require $script_asset_path;
+    $script_asset = require $script_asset_path;
+    if ( ! is_array( $script_asset ) || ! isset( $script_asset['dependencies'] ) || ! is_array( $script_asset['dependencies'] ) ) {
+        $script_asset = [
+            'dependencies' => [],
+            'version'      => TOGGLE_CONTENT_VERSION
+        ];
+    }
     $all_dependencies = array_merge( $script_asset['dependencies'], [
         'wp-blocks',
         'wp-i18n',
@@ -111,3 +132,16 @@ function create_block_toggle_content_block_init() {
 }
 
 add_action( 'init', 'create_block_toggle_content_block_init', 99 );
+
+/**
+ * Admin notice shown when the block build output is missing.
+ */
+function toggle_content_missing_build_notice() {
+    if ( ! current_user_can( 'activate_plugins' ) ) {
+        return;
+    }
+    printf(
+        '<div class="notice notice-error"><p>%s</p></div>',
+        esc_html__( 'Toggle Content: build output is missing. Run `npm install && npm run build` in the plugin directory.', 'toggle-content' )
+    );
+}

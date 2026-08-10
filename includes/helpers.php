@@ -46,15 +46,35 @@ class Toggle_Content_Helper
         /**
          * Only for admin add/edit pages/posts
          */
-        if ($pagenow == 'post-new.php' || $pagenow == 'post.php' || $pagenow == 'site-editor.php' || ($pagenow == 'themes.php' && !empty($_SERVER['QUERY_STRING']) && str_contains($_SERVER['QUERY_STRING'], 'gutenberg-edit-site'))) {
+        $query_string = isset($_SERVER['QUERY_STRING'])
+            ? sanitize_text_field(wp_unslash($_SERVER['QUERY_STRING']))
+            : '';
 
-            $controls_dependencies = include_once TOGGLE_CONTENT_ADMIN_PATH . '/dist/modules.asset.php';
+        if ($pagenow == 'post-new.php' || $pagenow == 'post.php' || $pagenow == 'site-editor.php' || ($pagenow == 'themes.php' && !empty($query_string) && str_contains($query_string, 'gutenberg-edit-site'))) {
+
+            $controls_asset_path = TOGGLE_CONTENT_ADMIN_PATH . '/dist/modules.asset.php';
+            if (!file_exists($controls_asset_path)) {
+                return;
+            }
+
+            // `require`, not `include_once`: a second `*_once` include returns bool,
+            // which would make the array offsets below fatal on PHP 8.
+            $controls_dependencies = require $controls_asset_path;
+            if (!is_array($controls_dependencies)) {
+                $controls_dependencies = array();
+            }
+            $controls_deps    = isset($controls_dependencies['dependencies']) && is_array($controls_dependencies['dependencies'])
+                ? $controls_dependencies['dependencies']
+                : array();
+            $controls_version = isset($controls_dependencies['version'])
+                ? $controls_dependencies['version']
+                : TOGGLE_CONTENT_VERSION;
 
             wp_register_script(
                 "toggle-content-controls-util",
                 TOGGLE_CONTENT_ADMIN_URL . 'dist/modules.js',
-                array_merge($controls_dependencies['dependencies']),
-                $controls_dependencies['version'],
+                $controls_deps,
+                $controls_version,
                 true
             );
 
@@ -78,7 +98,7 @@ class Toggle_Content_Helper
                 'toggle-content-editor-css',
                 TOGGLE_CONTENT_ADMIN_URL . 'dist/modules.css',
                 array(),
-                $controls_dependencies['version'],
+                $controls_version,
                 'all'
             );
         }
@@ -86,6 +106,7 @@ class Toggle_Content_Helper
 
     public static function get_block_register_path($blockname, $blockPath)
     {
+        // Unreachable below WP 6.0 (declared floor); kept as a defensive fallback.
         if ((float) get_bloginfo('version') <= 5.6) {
             return $blockname;
         } else {
