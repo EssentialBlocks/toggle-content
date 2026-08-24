@@ -78,10 +78,28 @@ class Toggle_Content_Helper
                 true
             );
 
+            /**
+             * Keys consumed by the bundled controls (dist/modules.js).
+             *
+             * `responsiveBreakpoints` is read by StyleComponent to wrap the editor
+             * preview styles in media queries. When it is missing the queries become
+             * `max-width: undefinedpx`, which is invalid CSS, so the whole tablet and
+             * mobile block is dropped and responsive settings look like they do
+             * nothing in the editor.
+             *
+             * The values must match the breakpoints the style-handler hardcodes when
+             * it builds the frontend stylesheet, otherwise the editor preview and the
+             * frontend disagree about where a breakpoint starts.
+             */
             wp_localize_script('toggle-content-controls-util', 'EssentialBlocksLocalize', array(
                 'eb_wp_version' => (float) get_bloginfo('version'),
                 'rest_rootURL' => get_rest_url(),
-								'fontAwesome' => "true"
+                'fontAwesome' => "true",
+                'googleFont' => "true",
+                'responsiveBreakpoints' => array(
+                    'tablet' => 1024,
+                    'mobile' => 767,
+                ),
             ));
 
             if ($pagenow == 'post-new.php' || $pagenow == 'post.php') {

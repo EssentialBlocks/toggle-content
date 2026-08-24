@@ -61,18 +61,25 @@ document.addEventListener("DOMContentLoaded", function (event) {
 			}
 		};
 
-		// Toggle type switch
-		let id = block.querySelector(".eb-text-switch-label").getAttribute("for");
-		let toggler = block.querySelector(`#${id}`);
+		// Toggle type switch. The label is absent from hand-edited or third-party
+		// markup, and an uncaught throw here would abort the whole loop and leave
+		// every remaining toggle block on the page unstyled.
+		let switchLabel = block.querySelector(".eb-text-switch-label");
+		let id = switchLabel ? switchLabel.getAttribute("for") : null;
+		let toggler = id ? block.querySelector(`#${id}`) : null;
 
 		if (initContent === "primary") {
 			showPrimary();
 		} else {
-			toggler.checked = true;
+			if (toggler) {
+				toggler.checked = true;
+			}
 			showSecondary();
 		}
 
-		toggler.addEventListener("change", onTextToggleChange);
+		if (toggler) {
+			toggler.addEventListener("change", onTextToggleChange);
+		}
 
 		function onTextToggleChange() {
 			this.checked ? showSecondary() : showPrimary();

@@ -95,7 +95,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 
     return (
         <InspectorControls key="controls">
-            <span className="eb-panel-control">
+            <div className="eb-panel-control">
                 <TabPanel
                     className="eb-parent-tab-panel"
                     activeClass="active-tab"
@@ -125,7 +125,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                             options={SWITCH_STYLES}
                                         />
 
-                                        {(switchStyle === "rounded" || switchStyle === "reactangle") && (
+                                        {(switchStyle === "rounded" || switchStyle === "rectangle") && (
                                             <SelectControl
                                                 label={__("Switch Size", "essential-blocks")}
                                                 value={switchSize}
@@ -157,7 +157,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                             </>
                                         )}
 
-                                        {switchStyle === "text" && (
+                                        {switchStyle === "toggle" && (
                                             <SelectControl
                                                 label={__("Sepetator Type", "essential-blocks")}
                                                 value={seperatorType}
@@ -206,7 +206,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 <>
                                     <PanelBody
                                         title={__(
-                                            `${switchStyle === "text" ? "Colors" : "Label Colors"}`,
+                                            `${switchStyle === "toggle" ? "Colors" : "Label Colors"}`,
                                             "essential-blocks"
                                         )}
                                         initialOpen={true}
@@ -226,7 +226,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                             color={activeColor}
                                             onChange={(activeColor) => setAttributes({ activeColor })}
                                         />
-                                        {switchStyle === "text" && (
+                                        {switchStyle === "toggle" && (
                                             <>
                                                 <ColorControl
                                                     label={__("Background", "essential-blocks")}
@@ -242,7 +242,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                         )}
                                     </PanelBody>
 
-                                    {switchStyle !== "text" && (
+                                    {switchStyle !== "toggle" && (
                                         <PanelBody
                                             title={__("Switch Background", "essential-blocks")}
                                             initialOpen={false}
@@ -285,7 +285,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                         </PanelBody>
                                     )}
 
-                                    {switchStyle !== "text" && (
+                                    {switchStyle !== "toggle" && (
                                         <PanelBody
                                             title={__("Controller Background", "essential-blocks")}
                                             initialOpen={false}
@@ -350,7 +350,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                             max={17}
                                         />
 
-                                        {switchStyle === "text" && (
+                                        {switchStyle === "toggle" && (
                                             <RangeControl
                                                 label={__("Border Radius", "essential-blocks")}
                                                 value={borderRadius}
@@ -361,7 +361,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                         )}
                                     </PanelBody>
 
-                                    {switchStyle !== "text" && (
+                                    {switchStyle !== "toggle" && (
                                         <PanelBody title={__("Shadow", "essential-blocks")} initialOpen={false}>
                                             <ColorControl
                                                 label={__("Shadow Color", "essential-blocks")}
@@ -458,7 +458,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                         </div>
                     )}
                 </TabPanel>
-            </span>
+            </div>
         </InspectorControls>
     );
 };

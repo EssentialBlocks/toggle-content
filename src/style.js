@@ -1,4 +1,3 @@
-import { useState } from "@wordpress/element";
 import {
     DEFAULT_BACKGROUND,
     DEFAULT_ACTIVE_BG,
@@ -74,9 +73,15 @@ export default function Style(props) {
         [`${typoPrefix_tgl}SizeUnit`]: sizeUnit,
     } = attributes;
 
-    const [isPrimary, setPrimary] = useState(
-        initialContent === "primary" ? true : false
-    );
+    // `isPrimary` is owned by edit.js -- the editor preview has to follow the
+    // switch the user is actually clicking. Style() used to keep its own
+    // useState copy, seeded from `initialContent` and never updated (setPrimary
+    // had no call sites), so the active label colour and the controller
+    // transform stayed frozen on whichever side was initially active.
+    const isPrimary =
+        props.isPrimary !== undefined
+            ? props.isPrimary
+            : initialContent === "primary";
 
     const getTransform = () => {
         if (isPrimary) return "translateX(0px)";
@@ -457,15 +462,6 @@ export default function Style(props) {
 					.eb-toggle-content .block-editor-block-list__layout > p:nth-child(2) > span {
 						opacity: 1 !important;
 					}
-					${!isPrimary
-                        ? `
-							.${blockId}.eb-toggle-wrapper .eb-text-switch-toggle{
-								margin-left: 50%;
-							}
-							`
-                        : ""
-                    }
-
 					${switchStyle !== "toggle"
                         ? `
 						.${blockId}.eb-toggle-wrapper .eb-text-switch-toggle,

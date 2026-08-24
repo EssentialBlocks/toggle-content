@@ -38,11 +38,18 @@ require_once __DIR__ . '/includes/post-meta.php';
 require_once __DIR__ . '/includes/helpers.php';
 
 /**
- * The style-handler is shipped as a git submodule. Guard the include so an
- * uninitialised submodule degrades to "no generated styles" instead of a fatal.
+ * The style-handler is shipped as a git submodule. It is what turns each block's
+ * `blockMeta` attribute into the generated stylesheet under `uploads/eb-style/`
+ * and enqueues it on the frontend. Without it the editor still renders its inline
+ * `<style>`, but the frontend gets no generated CSS at all.
+ *
+ * Guard the include so an uninitialised submodule degrades instead of fatalling,
+ * but warn loudly: a silent skip looks exactly like "the block has no styles".
  */
 if ( file_exists( __DIR__ . '/lib/style-handler/style-handler.php' ) ) {
     require_once __DIR__ . '/lib/style-handler/style-handler.php';
+} else {
+    add_action( 'admin_notices', 'toggle_content_missing_style_handler_notice' );
 }
 
 function create_block_toggle_content_block_init() {
@@ -113,7 +120,7 @@ function create_block_toggle_content_block_init() {
         true
     );
 
-    if ( ! WP_Block_Type_Registry::get_instance()->is_registered( 'essential-blocks/countdown' ) ) {
+    if ( ! WP_Block_Type_Registry::get_instance()->is_registered( 'essential-blocks/toggle-content' ) ) {
         register_block_type(
             Toggle_Content_Helper::get_block_register_path( "toggle-content/toggle-content", TOGGLE_CONTENT_ADMIN_PATH ),
             [
@@ -143,5 +150,21 @@ function toggle_content_missing_build_notice() {
     printf(
         '<div class="notice notice-error"><p>%s</p></div>',
         esc_html__( 'Toggle Content: build output is missing. Run `npm install && npm run build` in the plugin directory.', 'toggle-content' )
+    );
+}
+
+/**
+ * Admin notice shown when the style-handler submodule is missing.
+ *
+ * Without it no generated CSS is written or enqueued, so blocks render unstyled
+ * on the frontend while still looking correct in the editor.
+ */
+function toggle_content_missing_style_handler_notice() {
+    if ( ! current_user_can( 'activate_plugins' ) ) {
+        return;
+    }
+    printf(
+        '<div class="notice notice-error"><p>%s</p></div>',
+        esc_html__( 'Toggle Content: the style-handler library is missing, so block styles will not be applied on the frontend. Run `git submodule update --init --recursive` in the plugin directory, or reinstall the plugin from a complete package.', 'toggle-content' )
     );
 }
