@@ -330,6 +330,7 @@ export default function Style(props) {
 		${switchStyle === "toggle" ? `${btnHeightDesktop}` : ""}
 		background-color:${backgroundColor || DEFAULT_BACKGROUND};
 		background-image:${backgroundType === "gradient" ? backgroundGradient : "none"};
+		${backgroundType === "gradient" ? `background-origin:border-box;` : ""}
 		${switchStyle === "rounded" ? `border-radius:21px;` : ""}
 		border: ${borderWidth || 0}px ${borderStyle || "none"} ${borderColor || "#00000000"
         };
