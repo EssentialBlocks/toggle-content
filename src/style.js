@@ -226,6 +226,43 @@ export default function Style(props) {
 
     // styles related to generateBorderShadowStyles End
 
+    // Border Radius sits in the Border panel and inspector.js only exposes it
+    // for the "toggle" switch style, so it targets the same element Border
+    // Style/Color/Width already style -- the track (.eb-text-switch-label) --
+    // plus the sliding pill (.eb-text-switch-toggle), which would otherwise
+    // keep style.scss's 100px and round its corners inside a squared-off track.
+    //
+    // The pill is absolutely positioned with no offsets and `height: 100%`, so
+    // its border box sits flush against the track's *padding* box: the only
+    // spacing between the two is the rendered border, uniform on all four
+    // sides. CSS already curves the track's inner edge to
+    // `radius - border-width`, so handing the pill the raw radius makes its
+    // corners rounder than the space they occupy -- that mismatch is the gap
+    // that shows at the corners. Concentric rounding is
+    // `inner = outer - gap`, floored at 0 so a thick border cannot go negative.
+    //
+    // `border-style: none` is the default, and it forces the used border-width
+    // to 0 no matter what `borderWidth` holds, so there is no gap to subtract.
+    const toggleBorderGap =
+        borderStyle && borderStyle !== "none" ? borderWidth || 0 : 0;
+
+    // Only emitted once the attribute actually holds a number. It has no
+    // default, so `borderRadius || 0` would square the pill on every block that
+    // has never touched the control. `.${blockId}.eb-toggle-wrapper .x` scores
+    // 0-3-0 against style.scss's 0-1-0, so no !important is needed.
+    const toggleBorderRadiusDesktop =
+        switchStyle === "toggle" && typeof borderRadius === "number"
+            ? `
+	.${blockId}.eb-toggle-wrapper .eb-text-switch-label{
+		border-radius:${borderRadius}px;
+	}
+
+	.${blockId}.eb-toggle-wrapper .eb-text-switch-toggle{
+		border-radius:${Math.max(0, borderRadius - toggleBorderGap)}px;
+	}
+`
+            : "";
+
     const wrapperStylesDesktop = `
 	.${blockId}.eb-toggle-wrapper{
 		${wrpMarginDesktop}
@@ -300,7 +337,7 @@ export default function Style(props) {
         }px ${shadowColor || "#00000000"} ${inset ? "inset" : ""};
 
 	}
-
+${toggleBorderRadiusDesktop}
 	.${blockId}.eb-toggle-wrapper .eb-toggle-switch{
 		margin: 0 ${labelSpace || 10}${labelSpaceUnit || px};
 		${switchStyle === "text" ? `display:none` : ""}
