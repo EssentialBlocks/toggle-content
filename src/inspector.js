@@ -157,7 +157,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                             </>
                                         )}
 
-                                        {switchStyle === "toggle" && (
+                                        {switchStyle === "text" && (
                                             <SelectControl
                                                 label={__("Sepetator Type", "essential-blocks")}
                                                 value={seperatorType}
@@ -206,7 +206,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 <>
                                     <PanelBody
                                         title={__(
-                                            `${switchStyle === "toggle" ? "Colors" : "Label Colors"}`,
+                                            `${switchStyle === "text" ? "Colors" : "Label Colors"}`,
                                             "essential-blocks"
                                         )}
                                         initialOpen={true}
@@ -226,7 +226,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                             color={activeColor}
                                             onChange={(activeColor) => setAttributes({ activeColor })}
                                         />
-                                        {switchStyle === "toggle" && (
+                                        {switchStyle === "text" && (
                                             <>
                                                 <ColorControl
                                                     label={__("Background", "essential-blocks")}
@@ -242,7 +242,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                         )}
                                     </PanelBody>
 
-                                    {switchStyle !== "toggle" && (
+                                    {switchStyle !== "text" && (
                                         <PanelBody
                                             title={__("Switch Background", "essential-blocks")}
                                             initialOpen={false}
@@ -285,7 +285,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                         </PanelBody>
                                     )}
 
-                                    {switchStyle !== "toggle" && (
+                                    {switchStyle !== "text" && (
                                         <PanelBody
                                             title={__("Controller Background", "essential-blocks")}
                                             initialOpen={false}
@@ -361,7 +361,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                         )}
                                     </PanelBody>
 
-                                    {switchStyle !== "toggle" && (
+                                    {switchStyle !== "text" && (
                                         <PanelBody title={__("Shadow", "essential-blocks")} initialOpen={false}>
                                             <ColorControl
                                                 label={__("Shadow Color", "essential-blocks")}
