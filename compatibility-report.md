@@ -1,7 +1,7 @@
 # Toggle Content — PHP / WordPress Compatibility Pass
 
 **Plugin:** Toggle Content (`toggle-content`)
-**Version:** 1.2.8 → 1.5.0
+**Version:** 1.2.8 → 1.3.0
 **Branch:** `toggle-content-dev` (branched off `latest`, not `master` — see note below)
 **Date of pass:** 2026-08-10
 **Nothing committed or pushed.** All changes are left in the working tree.
@@ -217,11 +217,11 @@ Mapped 1:1 to the audit numbering in §4a.
 | 10 | `get_fonts_family()` returns early when `$attributes` is not a non-empty array, and again when `preg_grep()` yields nothing. | `includes/font-loader.php:67-74` |
 | 11 | `private static $block_name = [];` → `= '';` to match its actual usage. | `includes/font-loader.php:16` |
 | 12 | Added `Requires at least: 6.0`, `Tested up to: 7.0`, `Requires PHP: 7.4` to the main plugin header. | `toggle-content.php:13-15` |
-| 13 | `readme.txt`: `Requires at least` 5.6 → 6.0, `Tested up to` 6.5 → 7.0, added `Requires PHP: 7.4`, `Stable tag` 1.2.8 → 1.5.0, added a 1.5.0 changelog entry. | `readme.txt:4-7, 90-94` |
+| 13 | `readme.txt`: `Requires at least` 5.6 → 6.0, `Tested up to` 6.5 → 7.0, added `Requires PHP: 7.4`, `Stable tag` 1.2.8 → 1.3.0, added a 1.3.0 changelog entry. | `readme.txt:4-7, 90-94` |
 | 14 | Added the `ABSPATH` guard. | `toggle-content.php:19-22` |
 | §5 | Added the "unreachable below WP 6.0" comment above the dead branch, per decision. | `includes/helpers.php:89` |
 
-**Version bump 1.2.8 → 1.5.0 (minor), kept in sync across all four locations:**
+**Version bump 1.2.8 → 1.3.0 (minor), kept in sync across all four locations:**
 plugin header `Version:`, `define( 'TOGGLE_CONTENT_VERSION', … )`, `readme.txt`
 `Stable tag`, and `package.json` `"version"`. (`composer.json` does not exist in
 this plugin.)
@@ -371,10 +371,10 @@ through 8.5 with no shim added.
 | `Requires at least` | `6.0` | `6.0` |
 | `Tested up to` | `7.0` | `7.0` |
 | `Requires PHP` | `7.4` | `7.4` |
-| `Version` / `Stable tag` | `1.5.0` | `1.5.0` |
+| `Version` / `Stable tag` | `1.3.0` | `1.3.0` |
 
-Also synced: `define( 'TOGGLE_CONTENT_VERSION', "1.5.0" )` and `package.json`
-`"version": "1.5.0"`.
+Also synced: `define( 'TOGGLE_CONTENT_VERSION', "1.3.0" )` and `package.json`
+`"version": "1.3.0"`.
 
 **Verified range: PHP 7.4 → 8.5, WordPress 6.0 → 7.0.**
 

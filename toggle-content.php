@@ -6,12 +6,12 @@
  * Description: Toggle Content block for Gutenberg
  * Author: WPDeveloper
  * Author URI: https://wpdeveloper.net
- * Version: 1.5.0
+ * Version: 1.3.0
  * License: GPL3+
  * License URI: http://www.gnu.org/licenses/gpl-3.0.txt
  * Text Domain: toggle-content
  * Requires at least: 6.0
- * Tested up to: 7.0
+ * Tested up to: 7.1
  * Requires PHP: 7.4
  *
  * @package toggle-content
@@ -29,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @see https://developer.wordpress.org/block-editor/tutorials/block-tutorial/applying-styles-with-stylesheets/
  */
 
-define( 'TOGGLE_CONTENT_VERSION', "1.5.0" );
+define( 'TOGGLE_CONTENT_VERSION', "1.3.0" );
 define( 'TOGGLE_CONTENT_ADMIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'TOGGLE_CONTENT_ADMIN_PATH', dirname( __FILE__ ) );
 
