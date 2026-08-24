@@ -191,6 +191,21 @@ export default function Edit(props) {
 		setPrimary(e.target.checked);
 	};
 
+	// The "toggle" switch style has no real checkbox in the editor -- its two
+	// labels are RichText, so a `label[for]` like the one save.js renders would
+	// swallow every click meant to place the caret. Deciding the side from the
+	// click position reproduces the frontend behaviour exactly: clicking the
+	// inactive half switches to it, clicking the active half changes nothing
+	// (and so is free to put the caret in the text).
+	const onTextSwitchClick = (e) => {
+		const bounds = e.currentTarget.getBoundingClientRect();
+		const clickedPrimary = e.clientX - bounds.left < bounds.width / 2;
+
+		if (clickedPrimary !== isPrimary) {
+			setPrimary(clickedPrimary);
+		}
+	};
+
 
 
 
@@ -234,7 +249,7 @@ export default function Edit(props) {
 				/>
 			</BlockControls>
 			<div {...blockProps}>
-				<Style {...props} />
+				<Style {...props} isPrimary={isPrimary} />
 				<div className={`eb-parent-wrapper eb-parent-${blockId} ${classHook}`}>
 					<div className={`${blockId} eb-toggle-wrapper`}>
 						<div
@@ -251,6 +266,7 @@ export default function Edit(props) {
 								>
 									<label
 										className="eb-text-switch-label"
+										onClick={onTextSwitchClick}
 									// style={sliderStyle}
 									>
 										<div
@@ -258,7 +274,8 @@ export default function Edit(props) {
 											style={{
 												// ...controllerStyle,
 												// zIndex: 0,
-												marginLeft: !isPrimary && "50%",
+												transform:
+													!isPrimary && "translateX(100%)",
 											}}
 										></div>
 										<div className="eb-switch-names">

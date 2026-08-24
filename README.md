@@ -1,16 +1,16 @@
-=== Toggle Content ===
-Contributors: wpdevteam, re_enter_rupok, Asif2BD, rahat89, RahatSheikhLeon
-Tags: gutenberg, block, blocks, editor, toggle, toggle content, content toggle, content switch, switch block, gutenberg blocks
-Requires at least: 6.0
-Tested up to: 7.1
-Requires PHP: 7.4
-Stable tag: 1.3.0
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+# Toggle Content #
+**Contributors:** wpdevteam, re_enter_rupok, Asif2BD, rahat89, RahatSheikhLeon
+**Tags:** gutenberg, block, blocks, editor, toggle, toggle content, content toggle, content switch, switch block, gutenberg blocks
+**Requires at least:** 6.0
+**Tested up to:** 7.1
+**Requires PHP:** 7.4
+**Stable tag:** 1.3.0
+**License:** GPLv2 or later
+**License URI:** http://www.gnu.org/licenses/gpl-2.0.html
 
 Toggle Content block for Gutenberg to switch content or blocks with a beautiful switcher.
 
-== Description ==
+## Description ##
 
 **Content Toggle** will let you showcase your key content in an interactive way to attract visitors instantly. Using this Toggle Content plugin, you can use this feature within the Gutenberg Editor.
 
@@ -63,32 +63,32 @@ Consider checking out our other WordPress solutions & boost your WordPress websi
 
 Visit [WPDeveloper](https://wpdeveloper.com/) to learn more about how to do better in WordPress with [Help Tutorial, Tips & Tricks](https://wpdeveloper.com/blog).
 
-== Installation ==
+## Installation ##
 
-= Modern Way: =
+### Modern Way: ###
 1. Go to the WordPress Block/Gutenberg Editor
 2. Search For "Toggle Content".
 3. Install in 1-click
 
-= Old Way: =
+### Old Way: ###
 1. Upload `toggle-content` to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Follow the [Documentation](https://essential-blocks.com/docs/)
 
 
-== Frequently Asked Questions ==
+## Frequently Asked Questions ##
 
-= Does it work with any WordPress theme? =
+### Does it work with any WordPress theme? ###
 
 Yes, it will work with any standard WordPress theme.
 
 
-== Screenshots ==
+## Screenshots ##
 
 
-== Changelog ==
+## Changelog ##
 
-= 1.3.0 - 25/08/2026 =
+### 1.3.0 - 25/08/2026 ###
 * Fixed: PHP 8.0 - 8.5 compatibility issues
 * Fixed: WordPress version detection
 * Fixed: PHP 7.x compatibility
@@ -96,42 +96,42 @@ Yes, it will work with any standard WordPress theme.
 * Improved: Asset loading and overall stability
 * Tested up to WordPress 7.1
 
-= 1.2.8 - 16/04/2024 =
+### 1.2.8 - 16/04/2024 ###
 * Fixed: compatibility support with wordpress 6.5 version
 * Improved: controls
 
-= 1.2.7 - 02/04/2023 =
+### 1.2.7 - 02/04/2023 ###
 * Improved: font loader and Controls
 * Added: core group block as a inner block
 
-= 1.2.6 - 4/12/2022 =
+### 1.2.6 - 4/12/2022 ###
 * Improved: update congrols
 
-= 1.2.5 - 9/11/2022 =
+### 1.2.5 - 9/11/2022 ###
 * Fixed: compatibility issue with WordPress 6.1
 
-= 1.2.4 - 25/08/2022 =
+### 1.2.4 - 25/08/2022 ###
 * Improved: update controls
 
-= 1.2.3 - 03/08/2022 =
+### 1.2.3 - 03/08/2022 ###
 * Improved: Style handler for reusable block
 * Improved: update controls
 
-= 1.2.2 - 21/06/2022 =
+### 1.2.2 - 21/06/2022 ###
 * Added: Animation, Custom Css and Responsive Options
 * Improved: Converted style-handler to php for working perfectly with Reusable blocks and FSE
 * Improved: Controls & structure
 
-= 1.2.1 - 13/02/2022 =
+### 1.2.1 - 13/02/2022 ###
 * Fixed: Frontend js file not enqueued
 
-= 1.2.0 - 13-02-2022 =
+### 1.2.0 - 13-02-2022 ###
 * Added: Block description in block.json file
 * Added: Support for full site editing & wp5.9
 * Added: Responsive options for button height, width & heading space
 * Improved: Controls and structure
 
-= 1.1.0 - 26/10/2021 =
+### 1.1.0 - 26/10/2021 ###
 * Added: Dynamic asset generation for inline styles
 * Added: Responsive control
 * Improved: Controls and structure
@@ -139,18 +139,18 @@ Yes, it will work with any standard WordPress theme.
 * Improved: Responsive Device Preview improved. Now the preview options synced with the wordpress's default preview button.
 * Improved: Security for asset generation
 
-= 1.0.2 - 09-09-2020 =
+### 1.0.2 - 09-09-2020 ###
 - Fix frontend js file missing issue
 
-= 1.0.1 - 23-07-2020 =
+### 1.0.1 - 23-07-2020 ###
 - Updated Block structure
 
 * Initial release
 
-= 1.0.0 - 12-07-2020 =
+### 1.0.0 - 12-07-2020 ###
 
 * Initial release
 
 
-== Upgrade Notice ==
+## Upgrade Notice ##
 [Major update] New structure and performance improvement, will break existing block.

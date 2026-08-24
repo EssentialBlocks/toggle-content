@@ -1,4 +1,3 @@
-import { useState } from "@wordpress/element";
 import {
     DEFAULT_BACKGROUND,
     DEFAULT_ACTIVE_BG,
@@ -74,9 +73,15 @@ export default function Style(props) {
         [`${typoPrefix_tgl}SizeUnit`]: sizeUnit,
     } = attributes;
 
-    const [isPrimary, setPrimary] = useState(
-        initialContent === "primary" ? true : false
-    );
+    // `isPrimary` is owned by edit.js -- the editor preview has to follow the
+    // switch the user is actually clicking. Style() used to keep its own
+    // useState copy, seeded from `initialContent` and never updated (setPrimary
+    // had no call sites), so the active label colour and the controller
+    // transform stayed frozen on whichever side was initially active.
+    const isPrimary =
+        props.isPrimary !== undefined
+            ? props.isPrimary
+            : initialContent === "primary";
 
     const getTransform = () => {
         if (isPrimary) return "translateX(0px)";
@@ -221,6 +226,43 @@ export default function Style(props) {
 
     // styles related to generateBorderShadowStyles End
 
+    // Border Radius sits in the Border panel and inspector.js only exposes it
+    // for the "toggle" switch style, so it targets the same element Border
+    // Style/Color/Width already style -- the track (.eb-text-switch-label) --
+    // plus the sliding pill (.eb-text-switch-toggle), which would otherwise
+    // keep style.scss's 100px and round its corners inside a squared-off track.
+    //
+    // The pill is absolutely positioned with no offsets and `height: 100%`, so
+    // its border box sits flush against the track's *padding* box: the only
+    // spacing between the two is the rendered border, uniform on all four
+    // sides. CSS already curves the track's inner edge to
+    // `radius - border-width`, so handing the pill the raw radius makes its
+    // corners rounder than the space they occupy -- that mismatch is the gap
+    // that shows at the corners. Concentric rounding is
+    // `inner = outer - gap`, floored at 0 so a thick border cannot go negative.
+    //
+    // `border-style: none` is the default, and it forces the used border-width
+    // to 0 no matter what `borderWidth` holds, so there is no gap to subtract.
+    const toggleBorderGap =
+        borderStyle && borderStyle !== "none" ? borderWidth || 0 : 0;
+
+    // Only emitted once the attribute actually holds a number. It has no
+    // default, so `borderRadius || 0` would square the pill on every block that
+    // has never touched the control. `.${blockId}.eb-toggle-wrapper .x` scores
+    // 0-3-0 against style.scss's 0-1-0, so no !important is needed.
+    const toggleBorderRadiusDesktop =
+        switchStyle === "toggle" && typeof borderRadius === "number"
+            ? `
+	.${blockId}.eb-toggle-wrapper .eb-text-switch-label{
+		border-radius:${borderRadius}px;
+	}
+
+	.${blockId}.eb-toggle-wrapper .eb-text-switch-toggle{
+		border-radius:${Math.max(0, borderRadius - toggleBorderGap)}px;
+	}
+`
+            : "";
+
     const wrapperStylesDesktop = `
 	.${blockId}.eb-toggle-wrapper{
 		${wrpMarginDesktop}
@@ -288,6 +330,7 @@ export default function Style(props) {
 		${switchStyle === "toggle" ? `${btnHeightDesktop}` : ""}
 		background-color:${backgroundColor || DEFAULT_BACKGROUND};
 		background-image:${backgroundType === "gradient" ? backgroundGradient : "none"};
+		${backgroundType === "gradient" ? `background-origin:border-box;` : ""}
 		${switchStyle === "rounded" ? `border-radius:21px;` : ""}
 		border: ${borderWidth || 0}px ${borderStyle || "none"} ${borderColor || "#00000000"
         };
@@ -295,7 +338,7 @@ export default function Style(props) {
         }px ${shadowColor || "#00000000"} ${inset ? "inset" : ""};
 
 	}
-
+${toggleBorderRadiusDesktop}
 	.${blockId}.eb-toggle-wrapper .eb-toggle-switch{
 		margin: 0 ${labelSpace || 10}${labelSpaceUnit || px};
 		${switchStyle === "text" ? `display:none` : ""}
@@ -457,15 +500,6 @@ export default function Style(props) {
 					.eb-toggle-content .block-editor-block-list__layout > p:nth-child(2) > span {
 						opacity: 1 !important;
 					}
-					${!isPrimary
-                        ? `
-							.${blockId}.eb-toggle-wrapper .eb-text-switch-toggle{
-								margin-left: 50%;
-							}
-							`
-                        : ""
-                    }
-
 					${switchStyle !== "toggle"
                         ? `
 						.${blockId}.eb-toggle-wrapper .eb-text-switch-toggle,
