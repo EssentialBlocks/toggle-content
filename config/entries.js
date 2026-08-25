@@ -1,5 +1,5 @@
 //Export All Controls
-import "../controls/src/backend-css";
+import "../controls/src/backend.scss";
 
 //Export All Controls
 export { default as UnitControl } from "../controls/src/controls/unit-control";
@@ -30,4 +30,5 @@ export {
 	generateBorderShadowStyles,
 	generateTypographyStyles,
 	ebConditionalRegisterBlockType,
+	StyleComponent
 } from "../controls/src/helpers";

@@ -1,96 +1,21 @@
 export const ToggleContentIcon = () => {
-	return (
-		<svg
-			xmlns="http://www.w3.org/2000/svg"
-			xmlnsXlink="http://www.w3.org/1999/xlink"
-			viewBox="0 0 66 70"
-		>
-			<linearGradient id="a">
-				<stop offset="0" stopColor="#1a6dff"></stop>
-				<stop offset="1" stopColor="#c822ff"></stop>
-			</linearGradient>
-			<linearGradient
-				id="toggle-b"
-				x1="1.959"
-				x2="68.382"
-				y1="47.1"
-				y2="47.1"
-				gradientUnits="userSpaceOnUse"
-				xlinkHref="#a"
-			></linearGradient>
-			<linearGradient
-				id="toggle-c"
-				x1="1.959"
-				x2="68.382"
-				y1="47.15"
-				y2="47.15"
-				gradientUnits="userSpaceOnUse"
-				xlinkHref="#a"
-			></linearGradient>
-			<linearGradient
-				id="d"
-				x1="1.959"
-				x2="68.382"
-				y1="7.5"
-				y2="7.5"
-				gradientUnits="userSpaceOnUse"
-				xlinkHref="#a"
-			></linearGradient>
-			<linearGradient
-				id="e"
-				x1="1.959"
-				x2="68.382"
-				y1="7.6"
-				y2="7.6"
-				gradientUnits="userSpaceOnUse"
-				xlinkHref="#a"
-			></linearGradient>
-			<linearGradient
-				id="f"
-				x1="1.959"
-				x2="68.382"
-				y1="36.6"
-				y2="36.6"
-				gradientUnits="userSpaceOnUse"
-				xlinkHref="#a"
-			></linearGradient>
-			<linearGradient
-				id="g"
-				x1="1.959"
-				x2="68.382"
-				y1="43.3"
-				y2="43.3"
-				gradientUnits="userSpaceOnUse"
-				xlinkHref="#a"
-			></linearGradient>
-			<linearGradient
-				id="h"
-				x1="1.959"
-				x2="68.382"
-				y1="49.95"
-				y2="49.95"
-				gradientUnits="userSpaceOnUse"
-				xlinkHref="#a"
-			></linearGradient>
-			<path
-				fill="url(#toggle-b)"
-				d="M26.5 24.2H4.6c-2.1 0-3.7 1.6-3.7 3.7v38.5c0 2 1.6 3.6 3.7 3.6h21.9c2.1 0 3.7-1.6 3.7-3.7V28.1c-.1-2.3-1.7-3.9-3.7-3.9zm.9 42.1c0 .5-.5.9-.9.9H4.6c-.5 0-.9-.5-.9-.9V28.1c0-.5.5-.9.9-.9h21.9c.5 0 .9.5.9.9z"
-			></path>
-			<path
-				fill="url(#toggle-c)"
-				d="M61.5 24.2H39.6c-2.1 0-3.7 1.6-3.7 3.7v38.5c0 2.1 1.6 3.7 3.7 3.7h21.9c2.1 0 3.7-1.6 3.7-3.7V28.1c.2-2.3-1.7-3.9-3.7-3.9zm.9 42.1c0 .5-.5.9-.9.9H39.6c-.5 0-.9-.5-.9-.9V28.1c0-.5.5-.9.9-.9h21.9c.5 0 .9.5.9.9z"
-			></path>
-			<path
-				fill="url(#d)"
-				d="M24.8 15h18.9c2.1 0 3.9-1.6 3.9-3.9V3.9C47.6 1.8 46 0 43.7 0H24.8c-2 0-3.9 1.6-3.9 3.9V11c0 2.4 1.6 4 3.9 4zM23.7 4.1c0-.5.5-.9.9-.9h18.9c.5 0 .9.5.9.9v7.1c0 .5-.5.9-.9.9H24.6c-.5 0-.9-.5-.9-.9z"
-			></path>
-			<path fill="url(#e)" d="M36.8 10.4H42.3V4.8H36.8V9z"></path>
-			<path fill="url(#f)" d="M56.6 35.2H44.4V38H56.6z"></path>
-			<path fill="url(#g)" d="M56.6 41.9H44.4v2.8H56.6z"></path>
-			<path fill="url(#h)" d="M56.6 48.6H44.4v2.7H56.6z"></path>
-			<path fill="url(#f)" d="M21.4 35.2H9.2V38H21.6v-2.8z"></path>
-			<path fill="url(#g)" d="M21.4 41.9H9.2v2.8H21.6v-2.8z"></path>
-			<path fill="url(#h)" d="M21.4 48.6H9.2v2.7H21.6v-2.7z"></path>
-		</svg>
-	);
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="57"
+            height="60"
+            fill="none"
+            viewBox="0 0 57 60"
+        >
+            <g fill="#6C3BFF" clipPath="url(#clip0_2_22890)">
+                <path d="M22.714 20.743H3.943c-1.8 0-3.172 1.371-3.172 3.171v33C.771 58.63 2.143 60 3.943 60h18.771c1.8 0 3.172-1.371 3.172-3.171V24.086c-.086-1.972-1.457-3.343-3.172-3.343zm.772 36.086c0 .428-.429.771-.772.771H3.943c-.429 0-.772-.429-.772-.771V24.086c0-.429.429-.772.772-.772h18.771c.429 0 .772.429.772.772v32.743zM52.714 20.743H33.943c-1.8 0-3.172 1.371-3.172 3.171v33c0 1.8 1.372 3.172 3.172 3.172h18.771c1.8 0 3.172-1.372 3.172-3.172V24.086c.171-1.972-1.457-3.343-3.172-3.343zm.772 36.086c0 .428-.429.771-.772.771H33.943c-.429 0-.772-.429-.772-.771V24.086c0-.429.429-.772.772-.772h18.771c.429 0 .772.429.772.772v32.743zM21.257 12.857h16.2c1.8 0 3.343-1.371 3.343-3.343V3.343C40.8 1.543 39.429 0 37.457 0h-16.2c-1.714 0-3.343 1.371-3.343 3.343v6.086c0 2.057 1.372 3.428 3.343 3.428zm-.943-9.343c0-.428.429-.771.772-.771h16.2c.428 0 .771.428.771.771V9.6c0 .429-.428.771-.771.771h-16.2c-.429 0-.772-.428-.772-.771V3.514z"></path>
+                <path d="M31.543 8.914h4.714v-4.8h-4.714v4.8zM48.514 30.171H38.057v2.4h10.457v-2.4zM48.514 35.914H38.057v2.4h10.457v-2.4zM48.514 41.657H38.057v2.314h10.457v-2.314zM18.343 30.171H7.886v2.4h10.628v-2.4h-.171zM18.343 35.914H7.886v2.4h10.628v-2.4h-.171zM18.343 41.657H7.886v2.314h10.628v-2.314h-.171z"></path>
+            </g>
+            <defs>
+                <clipPath id="clip0_2_22890">
+                    <path fill="#fff" d="M0 0H56.571V60H0z"></path>
+                </clipPath>
+            </defs>
+        </svg>
+    );
 };
