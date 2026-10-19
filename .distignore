@@ -74,6 +74,10 @@ behat.yml
 # Sourcemaps — never ship these
 *.map
 
+# Unused controls helper bundle; the block's frontend script is dist/frontend/index.js
+dist/frontend.js
+dist/frontend.asset.php
+
 # Docs & repo assets not shipped to users
 README.md
 compatibility-report.md

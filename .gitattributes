@@ -50,3 +50,7 @@ dist/*.* export-ignore
 src export-ignore
 util	export-ignore
 .wordpress-org	export-ignore
+*.map export-ignore
+controls export-ignore
+config export-ignore
+.nvmrc export-ignore
