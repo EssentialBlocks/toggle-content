@@ -1,0 +1,40 @@
+/**
+ * Keeps the block icon visible where the editor highlights it: the selected row
+ * of the "/" inserter, a selected List View row and the drag chip. The icon paths
+ * are filled #6C3BFF, which almost disappears on those blue or dark backgrounds,
+ * so they follow the row's text colour there instead.
+ *
+ * Same rules as Essential Blocks' block-icon-selected.css.
+ */
+.block-editor-autocompleters__block[aria-selected=true],
+.block-editor-list-view-leaf.is-selected {
+  --eb-icon-knockout: var(--wp-admin-theme-color, #3858e9);
+}
+
+.block-editor-list-view-leaf.is-selected.is-synced {
+  --eb-icon-knockout: var(--wp-block-synced-color, #7a00df);
+}
+
+.block-editor-block-draggable-chip {
+  --eb-icon-knockout: #1e1e1e;
+}
+
+.block-editor-autocompleters__block[aria-selected=true] .block-editor-block-icon svg [fill="#6C3BFF" i], .block-editor-list-view-leaf.is-selected .block-editor-block-icon svg [fill="#6C3BFF" i], .block-editor-block-draggable-chip .block-editor-block-icon svg [fill="#6C3BFF" i] {
+  fill: currentColor;
+}
+.block-editor-autocompleters__block[aria-selected=true] .block-editor-block-icon svg [stroke="#6C3BFF" i], .block-editor-list-view-leaf.is-selected .block-editor-block-icon svg [stroke="#6C3BFF" i], .block-editor-block-draggable-chip .block-editor-block-icon svg [stroke="#6C3BFF" i] {
+  stroke: currentColor;
+}
+.block-editor-autocompleters__block[aria-selected=true] .block-editor-block-icon svg [fill="#C5B1FF" i], .block-editor-list-view-leaf.is-selected .block-editor-block-icon svg [fill="#C5B1FF" i], .block-editor-block-draggable-chip .block-editor-block-icon svg [fill="#C5B1FF" i] {
+  fill: currentColor;
+  fill-opacity: 0.6;
+}
+.block-editor-autocompleters__block[aria-selected=true] .block-editor-block-icon svg > [fill=white i],
+.block-editor-autocompleters__block[aria-selected=true] .block-editor-block-icon svg > [fill="#fff" i],
+.block-editor-autocompleters__block[aria-selected=true] .block-editor-block-icon svg > [fill="#ffffff" i], .block-editor-list-view-leaf.is-selected .block-editor-block-icon svg > [fill=white i],
+.block-editor-list-view-leaf.is-selected .block-editor-block-icon svg > [fill="#fff" i],
+.block-editor-list-view-leaf.is-selected .block-editor-block-icon svg > [fill="#ffffff" i], .block-editor-block-draggable-chip .block-editor-block-icon svg > [fill=white i],
+.block-editor-block-draggable-chip .block-editor-block-icon svg > [fill="#fff" i],
+.block-editor-block-draggable-chip .block-editor-block-icon svg > [fill="#ffffff" i] {
+  fill: var(--eb-icon-knockout);
+}
