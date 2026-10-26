@@ -30,3 +30,6 @@ node_modules/
 package-lock.json
 yarn.lock
 changes.txt
+
+# Source maps expose the private controls source
+*.map
