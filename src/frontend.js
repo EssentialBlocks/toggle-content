@@ -3,7 +3,18 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 	if (!toggleBlocks) return;
 
+	// Initialise each block on its own so one malformed block cannot stop the
+	// remaining toggle blocks on the page from working.
 	for (let block of toggleBlocks) {
+		try {
+			initToggleBlock(block);
+		} catch (e) {
+			// eslint-disable-next-line no-console
+			console.error(e);
+		}
+	}
+
+	function initToggleBlock(block) {
 		// Selectors
 		let switcher = block.querySelector(".eb-toggle-switch > input");
 		let primaryLabel = block.querySelector(".eb-toggle-primary-label");
@@ -29,6 +40,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 		const defaultBg = "inherit";
 		const defaultActiveBg = "inherit";
+
+		// Both content panes are required to toggle anything.
+		if (!content || content.children.length < 2) return;
 
 		// Set initial display values, we'll use them to toggle content
 		let primaryDisplay = window.getComputedStyle(content.children[0]).display;
@@ -66,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 		// every remaining toggle block on the page unstyled.
 		let switchLabel = block.querySelector(".eb-text-switch-label");
 		let id = switchLabel ? switchLabel.getAttribute("for") : null;
-		let toggler = id ? block.querySelector(`#${id}`) : null;
+		let toggler = id ? block.querySelector("#" + CSS.escape(id)) : null;
 
 		if (initContent === "primary") {
 			showPrimary();
@@ -87,9 +101,15 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 		// Init text type label background
 		if (switchStyle === "text") {
-			primaryLabel.style.background = bgColor || defaultBg;
-			secondaryLabel.style.background = bgColor || defaultBg;
-			seperator.style.background = bgColor || defaultBg;
+			if (primaryLabel) {
+				primaryLabel.style.background = bgColor || defaultBg;
+			}
+			if (secondaryLabel) {
+				secondaryLabel.style.background = bgColor || defaultBg;
+			}
+			if (seperator) {
+				seperator.style.background = bgColor || defaultBg;
+			}
 		}
 
 		// Add click event for text type switch
