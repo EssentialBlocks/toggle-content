@@ -22,18 +22,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }, true);
     });
 
-    //For Admin Panel
-    window.addEventListener('DOMNodeInserted', (event) => {
-        var adminChangeSelector = document.getElementById('eb-animation-style');
-
-        if (adminChangeSelector) {
-            adminChangeSelector.addEventListener('change', function (event) {
-                setTimeout(function () {
-                    replaceAnimationClasses(document.querySelectorAll(keySelector));
-                }, 500);
-            }, true);
+    //For Admin Panel: the animation select is rendered later, so listen on the document
+    document.addEventListener('change', function (event) {
+        if (event.target && event.target.id === 'eb-animation-style') {
+            setTimeout(function () {
+                replaceAnimationClasses(document.querySelectorAll(keySelector));
+            }, 500);
         }
-    });
+    }, true);
 });
 
 
