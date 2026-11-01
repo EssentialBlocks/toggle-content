@@ -119,22 +119,30 @@ function create_block_toggle_content_block_init() {
         true
     );
 
-    if ( ! WP_Block_Type_Registry::get_instance()->is_registered( 'essential-blocks/toggle-content' ) ) {
-        register_block_type(
-            Toggle_Content_Helper::get_block_register_path( "toggle-content/toggle-content", TOGGLE_CONTENT_ADMIN_PATH ),
-            [
-                'editor_script'   => 'create-block-toggle-content-block-editor',
-                'editor_style'    => 'create-block-toggle-content-block-editor-css',
-                'render_callback' => function ( $attributes, $content ) {
-                    if ( ! is_admin() ) {
-                        wp_enqueue_script( 'essential-blocks-toggle-content-frontend' );
-                        wp_enqueue_style( 'create-block-toggle-content-block-editor-css' );
-                    }
-                    return $content;
-                }
-            ]
-        );
+    $eb_has_block = WP_Block_Type_Registry::get_instance()->is_registered( 'essential-blocks/toggle-content' );
+    $block_args   = [
+        'editor_script'   => 'create-block-toggle-content-block-editor',
+        'editor_style'    => 'create-block-toggle-content-block-editor-css',
+        'render_callback' => function ( $attributes, $content ) {
+            if ( ! is_admin() ) {
+                wp_enqueue_script( 'essential-blocks-toggle-content-frontend' );
+                wp_enqueue_style( 'create-block-toggle-content-block-editor-css' );
+            }
+            return $content;
+        }
+    ];
+
+    // Essential Blocks has its own version of this block under another name. Posts saved
+    // with this one still need its render callback and front-end assets, so keep it
+    // registered, but leave out the editor bundle, which can't run beside Essential Blocks.
+    if ( $eb_has_block ) {
+        unset( $block_args['editor_script'], $block_args['editor_style'] );
     }
+
+    register_block_type(
+        Toggle_Content_Helper::get_block_register_path( "toggle-content/toggle-content", TOGGLE_CONTENT_ADMIN_PATH ),
+        $block_args
+    );
 }
 
 add_action( 'init', 'create_block_toggle_content_block_init', 99 );
