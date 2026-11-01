@@ -85,7 +85,9 @@ var waitForElement = function (selector) {
             }
         });
 
-        observer.observe(document.body, {
+        // document.body is still null when this runs inside the block editor's
+        // canvas iframe, and observe(null) throws; <html> is always there.
+        observer.observe(document.body || document.documentElement, {
             childList: true,
             subtree: true
         });

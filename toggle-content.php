@@ -150,7 +150,7 @@ function toggle_content_block_icon_selected_style() {
         'eb-block-icon-selected',
         plugins_url( 'assets/css/block-icon-selected.css', __FILE__ ),
         [],
-        '1.0.0'
+        TOGGLE_CONTENT_VERSION
     );
 }
 add_action( 'enqueue_block_editor_assets', 'toggle_content_block_icon_selected_style' );
@@ -183,3 +183,19 @@ function toggle_content_missing_style_handler_notice() {
         esc_html__( 'Toggle Content: the style-handler library is missing, so block styles will not be applied on the frontend. Run `git submodule update --init --recursive` in the plugin directory, or reinstall the plugin from a complete package.', 'toggle-content' )
     );
 }
+
+/**
+ * Let Essential Blocks' animation assets win on the front end when it is active.
+ *
+ * Both plugins register these handles and the first registration wins. This
+ * plugin's loader doesn't set `window.ebAnimationLoaded`, so Essential Blocks'
+ * failsafe would reveal every animated block without playing it. Essential Blocks
+ * registers its own at priority 20 and handles the same `.eb___animated` classes.
+ */
+function toggle_content_use_essential_blocks_animation() {
+    if ( defined( 'ESSENTIAL_BLOCKS_VERSION' ) ) {
+        wp_deregister_script( 'essential-blocks-eb-animation' );
+        wp_deregister_style( 'essential-blocks-animation' );
+    }
+}
+add_action( 'wp_enqueue_scripts', 'toggle_content_use_essential_blocks_animation', 19 );
