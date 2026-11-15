@@ -139,8 +139,21 @@ export default function Edit(props) {
 	}, [innerBlocks]);
 
 	useEffect(() => {
-		// Set block id
-		setAttributes({ id: clientId });
+		// The saved `id` ties the checkbox to its label, so it only needs to be unique.
+		// Keep the stored one; a new id on every load marks the post dirty. Assign one
+		// when it is missing or when another toggle (a duplicate) already uses it.
+		const { id } = attributes;
+		const isIdTaken = (blocks) =>
+			blocks.some(
+				(block) =>
+					(block.clientId !== clientId &&
+						block.name === name &&
+						block.attributes.id === id) ||
+					isIdTaken(block.innerBlocks || [])
+			);
+		if (!id || isIdTaken(select("core/block-editor").getBlocks())) {
+			setAttributes({ id: clientId });
+		}
 
 		// Add label click event listender for text type switch
 		setClickEvents();
